@@ -22,3 +22,22 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
     isolation: isolate;
 }
+
+/* My Styling */
+body {
+    display: grid;
+    grid-template: 1fr minmax(auto, 116px) / minmax(auto, 180px) 1fr;
+    grid-template-areas: 'sidebar main' 'sidebar footer';
+}
+
+main {
+    grid-area: main;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+footer {
+    grid-area: footer;
+}
