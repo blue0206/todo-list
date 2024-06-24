@@ -8,7 +8,7 @@ closeBtn.addEventListener('click', () => {
 });
 
 // Task Constructor
-let idGen = 0;
+let taskIDGen = 0;
 function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
@@ -33,7 +33,7 @@ function taskConstructor()
             description.value, 
             dueDate.value, 
             priority.value, 
-            idGen
+            taskIDGen
         );
         taskList.push(task);
         console.log(task);
@@ -46,7 +46,7 @@ function taskConstructor()
         taskDisplayModal.showModal();
         
         // Increment the unique ID generator variable
-        idGen++;
+        taskIDGen++;
 
         // Clear modal form element input fields
         name.value = "";
