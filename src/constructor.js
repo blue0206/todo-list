@@ -20,18 +20,20 @@ function taskConstructor()
     
     const taskAddBtn = document.querySelector('.submit-task');
     taskAddBtn.addEventListener('click', () => {
-        const name = taskModal.querySelector('#task-name').value;
-        const description = taskModal.querySelector('#description').value;
+        const name = taskModal.querySelector('#task-name');
+        const description = taskModal.querySelector('#description');
 
         const task = new Task(name, description, idGen);
         taskList.push(task);
         console.log(task);
 
-        taskDisplayModal.querySelector('.task-name').textContent = name;
-        taskDisplayModal.querySelector('.task-description').textContent = description;
+        taskDisplayModal.querySelector('.task-name').textContent = name.value;
+        taskDisplayModal.querySelector('.task-description').textContent = description.value;
         taskDisplayModal.showModal();
         
         idGen++;
+        name.value = "";
+        description.value = "";
         taskModal.close();
     });
 };
