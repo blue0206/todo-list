@@ -1,4 +1,5 @@
 import { Task, taskList } from "./object-constructors.js";
+import { format } from "date-fns";
 
 const taskDisplayModal = document.querySelector('.task-modal');
 const closeBtn = document.querySelector('.close-btn');
@@ -15,6 +16,7 @@ function taskConstructor()
     taskModalBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             taskModal.showModal();
+            taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
         });
     });
     
@@ -36,7 +38,7 @@ function taskConstructor()
         idGen++;
         name.value = "";
         description.value = "";
-        dueDate.value = "" ;
+        dueDate.value = "";
         taskModal.close();
     });
 };
