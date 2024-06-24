@@ -22,18 +22,21 @@ function taskConstructor()
     taskAddBtn.addEventListener('click', () => {
         const name = taskModal.querySelector('#task-name');
         const description = taskModal.querySelector('#description');
+        const dueDate = taskModal.querySelector('#due-date');
 
-        const task = new Task(name, description, idGen);
+        const task = new Task(name.value, description.value, dueDate.value, idGen);
         taskList.push(task);
         console.log(task);
 
         taskDisplayModal.querySelector('.task-name').textContent = name.value;
         taskDisplayModal.querySelector('.task-description').textContent = description.value;
+        taskDisplayModal.querySelector('.date').textContent = dueDate.value;
         taskDisplayModal.showModal();
         
         idGen++;
         name.value = "";
         description.value = "";
+        dueDate.value = "" ;
         taskModal.close();
     });
 };
