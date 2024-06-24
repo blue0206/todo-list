@@ -1,5 +1,10 @@
 import { Task, taskList } from "./object-constructors.js";
-import { TaskDOM, taskListDOM } from "./dom-object-constructors.js";
+
+const taskDisplayModal = document.querySelector('.task-modal');
+const closeBtn = document.querySelector('.close-btn');
+closeBtn.addEventListener('click', () => {
+    taskDisplayModal.close();
+});
 
 // Task Constructor
 let idGen = 0;
@@ -20,9 +25,11 @@ function taskConstructor()
 
         const task = new Task(name, description, idGen);
         taskList.push(task);
-        const taskDOM = new TaskDOM(name, description, idGen);
-        taskListDOM.push(taskDOM);
-        console.log(task, taskDOM);
+        console.log(task);
+
+        taskDisplayModal.querySelector('.task-name').textContent = name;
+        taskDisplayModal.querySelector('.task-description').textContent = description;
+        taskDisplayModal.showModal();
         
         idGen++;
         taskModal.close();
