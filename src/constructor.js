@@ -25,20 +25,34 @@ function taskConstructor()
         const name = taskModal.querySelector('#task-name');
         const description = taskModal.querySelector('#description');
         const dueDate = taskModal.querySelector('#due-date');
+        const priority = taskModal.querySelector('#priority');
 
-        const task = new Task(name.value, description.value, dueDate.value, idGen);
+        // Create task object instance and push into array
+        const task = new Task(
+            name.value, 
+            description.value, 
+            dueDate.value, 
+            priority.value, 
+            idGen
+        );
         taskList.push(task);
         console.log(task);
 
+        // Display the task after updating it
         taskDisplayModal.querySelector('.task-name').textContent = name.value;
         taskDisplayModal.querySelector('.task-description').textContent = description.value;
         taskDisplayModal.querySelector('.date').textContent = dueDate.value;
+        taskDisplayModal.querySelector('.priority').textContent = priority.value;
         taskDisplayModal.showModal();
         
+        // Increment the unique ID generator variable
         idGen++;
+
+        // Clear modal form element input fields
         name.value = "";
         description.value = "";
         dueDate.value = "";
+        priority.value = "Medium";
         taskModal.close();
     });
 };
