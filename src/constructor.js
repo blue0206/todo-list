@@ -53,8 +53,37 @@ function taskConstructor()
         description.value = "";
         dueDate.value = "";
         priority.value = "Medium";
+        
         taskModal.close();
     });
 };
+
+// Project Constructor
+const projectModal = document.querySelector('.add-project-modal');
+const projectModalBtns = Array.from(document.querySelectorAll('.add-project'));
+
+projectModalBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        projectModal.showModal();
+    });
+});
+
+const projectAddBtn = document.querySelector('.submit-project');
+projectAddBtn.addEventListener('click', () => {
+    const name = projectModal.querySelector('#project-name');
+
+    // Create Project object instance and push into array
+    const project = new Project(name.value, idGen);
+    projectList.push(project);
+    console.log(project);
+
+    // Increment the unique ID generator variable
+    idGen++;
+
+    // Clear form input fields
+    name.value = "";
+
+    projectModal.close();
+});
 
 export { taskConstructor };
