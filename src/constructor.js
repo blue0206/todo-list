@@ -1,4 +1,5 @@
 import { Task, taskList, Project, projectList } from "./object-constructors.js";
+import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
 import { format } from "date-fns";
 
 const taskDisplayModal = document.querySelector('.task-modal');
@@ -53,7 +54,7 @@ function taskConstructor()
         description.value = "";
         dueDate.value = "";
         priority.value = "Medium";
-        
+
         taskModal.close();
     });
 };
@@ -72,10 +73,16 @@ const projectAddBtn = document.querySelector('.submit-project');
 projectAddBtn.addEventListener('click', () => {
     const name = projectModal.querySelector('#project-name');
 
-    // Create Project object instance and push into array
+    // Create Project object instance and push into array (application-side)
     const project = new Project(name.value, idGen);
     projectList.push(project);
     console.log(project);
+
+    // Create DOM content for project, 
+    // update sidebar display, store main DOM content in array
+    const projectDOM = new ProjectDOM(name.value, [], idGen);
+    projectListDOM.push(projectDOM);
+    projectDOM.sidebarDisplay();
 
     // Increment the unique ID generator variable
     idGen++;
