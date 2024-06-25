@@ -1,4 +1,4 @@
-import { Task, taskList } from "./object-constructors.js";
+import { Task, taskList, Project, projectList } from "./object-constructors.js";
 import { format } from "date-fns";
 
 const taskDisplayModal = document.querySelector('.task-modal');
@@ -8,7 +8,7 @@ closeBtn.addEventListener('click', () => {
 });
 
 // Task Constructor
-let taskIDGen = 0;
+let idGen = 0;
 function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
@@ -33,7 +33,7 @@ function taskConstructor()
             description.value, 
             dueDate.value, 
             priority.value, 
-            taskIDGen
+            idGen
         );
         taskList.push(task);
         console.log(task);
@@ -46,7 +46,7 @@ function taskConstructor()
         taskDisplayModal.showModal();
         
         // Increment the unique ID generator variable
-        taskIDGen++;
+        idGen++;
 
         // Clear modal form element input fields
         name.value = "";
