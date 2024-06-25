@@ -31,6 +31,28 @@ const ProjectDOM = function(name, projectTaskList, id) {
         projectContainer.appendChild(taskList);
         return projectContainer;
     };
+
+    const sidebarDisplay = () => {
+        const projectTab = document.querySelector('.project-tabs');
+        const insertBeforeNode = projectTab.querySelector('.add-project');
+
+        
+        const projectBtn = document.createElement('button');
+        projectBtn.classList.add('project-item');
+        projectBtn.id = id;
+
+        const img = new Image();
+        img.src = "";
+        img.alt = "Open Project";
+        projectBtn.appendChild(img);
+
+        const div = document.createElement('div');
+        div.textContent = name;
+        projectBtn.appendChild(div);
+
+
+        projectTab.insertBefore(projectBtn, insertBeforeNode);
+    };
     
     const taskListDOM = () => {
         projectTaskList.forEach((task) => {
@@ -56,7 +78,7 @@ const ProjectDOM = function(name, projectTaskList, id) {
         });
     };
     
-    return { mainDisplay };
+    return { mainDisplay, sidebarDisplay };
 };
 
 export { ProjectDOM, projectListDOM }; 
