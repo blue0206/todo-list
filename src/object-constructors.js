@@ -1,4 +1,5 @@
 const taskList = [];
+const projectList = [];
 
 const Task = function(name, description, dueDate, priority, id, status=false) {
     this.name = name;
@@ -10,4 +11,15 @@ const Task = function(name, description, dueDate, priority, id, status=false) {
     this.status = status;
 };
 
-export { Task, taskList };
+const Project = function(name, id, tasks=[]) {
+    this.name = name;
+    this.id = id;
+    this.tasks = tasks;
+};
+
+export { 
+    Task, 
+    taskList,
+    Project,
+    projectList, 
+};
