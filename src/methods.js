@@ -55,7 +55,7 @@ const dropDownListMethods = (selectElement) => {
 	const generate = (list) => {
 		list.forEach((item) => {
 		const option = document.createElement("option");
-		option.value = item.name;
+		option.value = item.id;
 		option.textContent = item.name;
 		selectElement.appendChild(option);
 		});
