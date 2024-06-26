@@ -1,5 +1,6 @@
 import { Task, taskList, Project, projectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
+import { generateSelection } from "./methods.js";
 import { format } from "date-fns";
 
 // Task Constructor
@@ -12,6 +13,7 @@ function taskConstructor()
         btn.addEventListener('click', () => {
             taskModal.showModal();
             taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
+            generateSelection(document.querySelector('#parent-project'), projectList);
         });
     });
     
