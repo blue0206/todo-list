@@ -40,7 +40,7 @@ function taskConstructor()
         projectList.forEach((project) => {
             if (project.name == task.project)
             {
-                project.tasks.push(task);
+                project.add(task);   
                 console.log(project);
             }
         });
@@ -110,9 +110,12 @@ function projectConstructor()
 
 // Create instance of Inbox
 const InboxInstance = function(){
-    const inbox = new Project("Inbox", 0);
-    const inboxDOM = new ProjectDOM("Inbox", [], 0);
-    projectList.push(inbox);
+    const obj = new Project("Inbox", 0);
+    const objDOM = ProjectDOM("Inbox", [], 0);
+    projectList.push(obj);
+    projectListDOM.push(objDOM);
+
+    return { obj, objDOM };
 }();
 
-export { taskConstructor, projectConstructor };
+export { taskConstructor, projectConstructor, InboxInstance };
