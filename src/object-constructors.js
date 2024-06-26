@@ -29,7 +29,6 @@ const Project = function(name, id, tasks=[]) {
 
 export { 
     Task, 
-    taskList,
     Project,
     projectList, 
 };
