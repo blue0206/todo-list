@@ -1,19 +1,19 @@
 const listMethods = (list) => {
     const add = (item) => list.push(item);
 
-    const remove = (item) => {
+    const remove = (itemID) => {
         let start = 0;
         let end = list.length - 1;
         let mid = Math.floor(start + (end-start)/2);
 
         while (start <= end)
         {
-            if (list[mid].id == item.id)
+            if (list[mid].id == itemID)
             {
                 list.splice(mid, 1);
                 break;
             }
-            else if (list[mid].id < item.id)
+            else if (list[mid].id < itemID)
             {
                 start = mid + 1;
             }
@@ -25,18 +25,18 @@ const listMethods = (list) => {
         }
     };
 
-	const search = (item) => {
+	const search = (itemID) => {
 		let start = 0;
         let end = list.length - 1;
         let mid = Math.floor(start + (end-start)/2);
 
         while (start <= end)
         {
-            if (list[mid].id == item.id)
+            if (list[mid].id == itemID)
             {
                 return list[mid];
             }
-            else if (list[mid].id < item.id)
+            else if (list[mid].id < itemID)
             {
                 start = mid + 1;
             }
