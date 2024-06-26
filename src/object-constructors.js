@@ -1,3 +1,5 @@
+import { listMethods } from "./methods";
+
 const taskList = [];
 const projectList = [];
 
@@ -13,9 +15,17 @@ const Task = function(name, description, dueDate, priority, id, project, status=
 };
 
 const Project = function(name, id, tasks=[]) {
-    this.name = name;
-    this.id = id;
-    this.tasks = tasks;
+    const obj = {
+        name,
+        id,
+        tasks
+    }
+    
+    return Object.assign(
+        {},
+        obj,
+        listMethods(tasks)
+    );
 };
 
 export { 
