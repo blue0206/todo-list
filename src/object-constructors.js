@@ -1,6 +1,5 @@
 import { listMethods } from "./methods";
 
-const taskList = [];
 const projectList = [];
 
 const Task = function(name, description, dueDate, priority, id, project, status=false) {
