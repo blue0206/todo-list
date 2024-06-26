@@ -2,7 +2,7 @@ import { Task, Project, projectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
 import { format } from "date-fns";
 
-let idGen = 0;
+let idGen = 1;
 // Task Constructor
 function taskConstructor()
 {
@@ -100,5 +100,12 @@ function projectConstructor()
         projectModal.close();
     });
 }
+
+// Create instance of Inbox
+const InboxInstance = function(){
+    const inbox = new Project("Inbox", 0);
+    const inboxDOM = new ProjectDOM("Inbox", [], 0);
+    projectList.push(inbox);
+}();
 
 export { taskConstructor, projectConstructor };
