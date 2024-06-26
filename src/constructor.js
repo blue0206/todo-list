@@ -55,37 +55,40 @@ function taskConstructor()
 };
 
 // Project Constructor
-const projectModal = document.querySelector('.add-project-modal');
-const projectModalBtns = Array.from(document.querySelectorAll('.add-project'));
-
-projectModalBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        projectModal.showModal();
+function projectConstructor()
+{
+    const projectModal = document.querySelector('.add-project-modal');
+    const projectModalBtns = Array.from(document.querySelectorAll('.add-project'));
+    
+    projectModalBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            projectModal.showModal();
+        });
     });
-});
+    
+    const projectAddBtn = document.querySelector('.submit-project');
+    projectAddBtn.addEventListener('click', () => {
+        const name = projectModal.querySelector('#project-name');
+    
+        // Create Project object instance and push into array (application-side)
+        const project = new Project(name.value, idGen);
+        projectList.push(project);
+        console.log(project);
+    
+        // Create DOM content for project, 
+        // update sidebar display, store main DOM content in array
+        const projectDOM = new ProjectDOM(name.value, [], idGen);
+        projectListDOM.push(projectDOM);
+        projectDOM.sidebarDisplay();
+    
+        // Increment the unique ID generator variable
+        idGen++;
+    
+        // Clear form input fields
+        name.value = "";
+    
+        projectModal.close();
+    });
+}
 
-const projectAddBtn = document.querySelector('.submit-project');
-projectAddBtn.addEventListener('click', () => {
-    const name = projectModal.querySelector('#project-name');
-
-    // Create Project object instance and push into array (application-side)
-    const project = new Project(name.value, idGen);
-    projectList.push(project);
-    console.log(project);
-
-    // Create DOM content for project, 
-    // update sidebar display, store main DOM content in array
-    const projectDOM = new ProjectDOM(name.value, [], idGen);
-    projectListDOM.push(projectDOM);
-    projectDOM.sidebarDisplay();
-
-    // Increment the unique ID generator variable
-    idGen++;
-
-    // Clear form input fields
-    name.value = "";
-
-    projectModal.close();
-});
-
-export { taskConstructor };
+export { taskConstructor, projectConstructor };
