@@ -8,6 +8,7 @@ const Task = function(name, description, dueDate, priority, id, project, status=
     this.dueDate = dueDate;
     this.priority = priority;
     this.id = id;
+    // Stores project id of the parent project of task.
     this.project = project;
     // Status = false corresponds to "Task Incomplete" and vice-versa.
     this.status = status;
