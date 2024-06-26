@@ -1,84 +1,85 @@
 const projectListDOM = [];
 
 const ProjectDOM = function(name, projectTaskList, id) {
-    const mainDisplay = () => {
-        const projectContainer = document.createElement('div');
-        projectContainer.classList.add('project-container');
-        projectContainer.id = id;
-    
+    const displayObj = {
+        mainDisplay: () => {
+            const projectContainer = document.createElement('div');
+            projectContainer.classList.add('project-container');
+            projectContainer.id = id;
         
-        const projectHeading = document.createElement('div');
-        projectHeading.classList.add('project-heading');
-    
-        const projectName = document.createElement('h1');
-        projectName.textContent = name;
-        projectName.classList.add('project-name');
-        projectHeading.appendChild(projectName);
-    
-        const editBtn = document.createElement('button');
-        editBtn.classList.add('edit');
-        projectHeading.appendChild(editBtn);
-    
-        projectContainer.appendChild(projectHeading);
-    
-    
-        const taskList = document.createElement('ul');
-        taskList.classList.add('project-task-list');
-
-        const taskContainer = taskListDOM();
-        taskList.appendChild(taskContainer);
+            
+            const projectHeading = document.createElement('div');
+            projectHeading.classList.add('project-heading');
         
-        projectContainer.appendChild(taskList);
-        return projectContainer;
-    };
-
-    const sidebarDisplay = () => {
-        const projectTab = document.querySelector('.project-tabs');
-        const insertBeforeNode = projectTab.querySelector('.add-project');
-
+            const projectName = document.createElement('h1');
+            projectName.textContent = name;
+            projectName.classList.add('project-name');
+            projectHeading.appendChild(projectName);
         
-        const projectBtn = document.createElement('button');
-        projectBtn.classList.add('project-item');
-        projectBtn.id = id;
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('edit');
+            projectHeading.appendChild(editBtn);
+        
+            projectContainer.appendChild(projectHeading);
+        
+        
+            const taskList = document.createElement('ul');
+            taskList.classList.add('project-task-list');
 
-        const img = new Image();
-        img.src = "";
-        img.alt = "Open Project";
-        projectBtn.appendChild(img);
-
-        const div = document.createElement('div');
-        div.textContent = name;
-        projectBtn.appendChild(div);
-
-
-        projectTab.insertBefore(projectBtn, insertBeforeNode);
-    };
-    
-    const taskListDOM = () => {
-        projectTaskList.forEach((task) => {
             const taskContainer = document.createElement('li');
-            taskContainer.classList.add('project-task');
-    
-            checkBox = document.createElement('input');
-            checkBox.type = 'checkbox';
-            taskContainer.appendChild(checkBox);
-    
+            projectTaskList.forEach((task) => {
+                    taskContainer.classList.add('project-task');
             
-            taskBody = document.createElement('div');
-            taskName = document.createElement('div');
-            taskName.textContent = task.name;
-            taskBody.appendChild(taskName);
-    
-            taskDescription = document.createElement('div');
-            taskDescription.textContent = task.description;
-            taskBody.appendChild(taskBody);
+                    const checkBox = document.createElement('input');
+                    checkBox.type = 'checkbox';
+                    taskContainer.appendChild(checkBox);
             
-            taskContainer.appendChild(taskBody);
-            return taskContainer;
-        });
+                    
+                    const taskBody = document.createElement('div');
+                    const taskName = document.createElement('div');
+                    taskName.textContent = task.name;
+                    taskBody.appendChild(taskName);
+            
+                    const taskDescription = document.createElement('div');
+                    taskDescription.textContent = task.description;
+                    taskBody.appendChild(taskDescription);
+                    
+                    taskContainer.appendChild(taskBody);
+                });
+            taskList.appendChild(taskContainer);
+            
+            projectContainer.appendChild(taskList);
+            return projectContainer;
+        },
+        sidebarDisplay: () => {
+            const projectTab = document.querySelector('.project-tabs');
+            const insertBeforeNode = projectTab.querySelector('.add-project');
+
+            
+            const projectBtn = document.createElement('button');
+            projectBtn.classList.add('project-item');
+            projectBtn.id = id;
+
+            const img = new Image();
+            img.src = "";
+            img.alt = "Open Project";
+            projectBtn.appendChild(img);
+
+            const div = document.createElement('div');
+            div.textContent = name;
+            projectBtn.appendChild(div);
+
+
+            projectTab.insertBefore(projectBtn, insertBeforeNode);
+        }
     };
-    
-    return { mainDisplay, sidebarDisplay };
+
+    return Object.assign(
+        {},
+        displayObj,
+    );
 };
+
+
 
 export { ProjectDOM, projectListDOM }; 
