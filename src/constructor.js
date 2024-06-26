@@ -1,5 +1,5 @@
 import { Task, Project, ProjectList } from "./object-constructors.js";
-import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
+import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
 import { dropDownListMethods, listMethods } from "./methods.js";
 import { format } from "date-fns";
 
@@ -89,8 +89,8 @@ function projectConstructor()
     
         // Create DOM content for project, 
         // update sidebar display, store main DOM content in array
-        const projectDOM = new ProjectDOM(name.value, [], idGen);
-        projectListDOM.push(projectDOM);
+        const projectDOM = ProjectDOM(name.value, [], idGen);
+        ProjectListDOM.add(projectDOM);
         projectDOM.sidebarDisplay();
     
         // Increment the unique ID generator variable
@@ -108,7 +108,7 @@ const InboxInstance = function(){
     const obj = new Project("Inbox", 0);
     const objDOM = ProjectDOM("Inbox", [], 0);
     ProjectList.add(obj);
-    projectListDOM.push(objDOM);
+    ProjectListDOM.add(objDOM);
 
     return { obj, objDOM };
 }();

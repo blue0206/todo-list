@@ -1,7 +1,5 @@
 import { listMethods } from "./methods.js";
 
-const projectListDOM = [];
-
 const ProjectDOM = function(name, projectTaskList, id) {
     const displayObj = {
         mainDisplay: () => {
@@ -83,4 +81,16 @@ const ProjectDOM = function(name, projectTaskList, id) {
     );
 };
 
-export { ProjectDOM, projectListDOM }; 
+const ProjectListDOM = function(list=[]){
+    const obj = {
+        list
+    };
+
+    return Object.assign(
+        {},
+        obj,
+        listMethods(list)
+    );
+}();
+
+export { ProjectDOM, ProjectListDOM };
