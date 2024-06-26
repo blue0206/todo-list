@@ -1,5 +1,6 @@
 import { Task, Project, projectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
+import { dropDownListMethods } from "./methods.js";
 import { format } from "date-fns";
 
 let idGen = 1;
@@ -7,12 +8,15 @@ let idGen = 1;
 function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
+    const taskDropDown = dropDownListMethods(document.querySelector('#parent-project'));
     const taskModalBtns = Array.from(document.querySelectorAll('.add-task'));
 
     taskModalBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             taskModal.showModal();
             taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
+            // Generate parent project selection content
+            taskDropDown.generate(projectList);
         });
     });
     
@@ -59,6 +63,9 @@ function taskConstructor()
         description.value = "";
         dueDate.value = "";
         priority.value = "Medium";
+
+        // Remove parent project selection content
+        taskDropDown.remove();
 
         taskModal.close();
     });
