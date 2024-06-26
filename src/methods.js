@@ -28,13 +28,25 @@ const listMethods = (list) => {
     return { add, remove };
 };
 
-const generateSelection = (selectElement, list) => {
-    list.forEach((item) => {
-        const option = document.createElement('option');
-        option.value = item.name;
-        option.textContent = item.name;
-        selectElement.appendChild(option);
-    });
+const dropDownListMethods = (selectElement) => {
+	const generate = (list) => {
+		list.forEach((item) => {
+		const option = document.createElement("option");
+		option.value = item.name;
+		option.textContent = item.name;
+		selectElement.appendChild(option);
+		});
+	};
+
+	const remove = () => {
+		const options = selectElement.querySelectorAll('option');
+		options.forEach((option) => {
+			selectElement.removeChild(option);
+		});
+	};
+    
+	return { generate, remove };
 };
 
-export { listMethods, generateSelection };
+
+export { listMethods, dropDownListMethods };
