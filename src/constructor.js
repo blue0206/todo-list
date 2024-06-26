@@ -1,19 +1,18 @@
-import { Task, taskList, Project, projectList } from "./object-constructors.js";
+import { Task, Project, projectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
-import { generateSelection } from "./methods.js";
 import { format } from "date-fns";
 
-// Task Constructor
 let idGen = 0;
+// Task Constructor
 function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
     const taskModalBtns = Array.from(document.querySelectorAll('.add-task'));
+
     taskModalBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             taskModal.showModal();
             taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
-            generateSelection(document.querySelector('#parent-project'), projectList);
         });
     });
     
@@ -23,16 +22,25 @@ function taskConstructor()
         const description = taskModal.querySelector('#description');
         const dueDate = taskModal.querySelector('#due-date');
         const priority = taskModal.querySelector('#priority');
+        const parentProject = taskModal.querySelector("#parent-project");
 
-        // Create task object instance and push into array
+        // Create task object instance and push into parent project array
         const task = new Task(
             name.value, 
             description.value, 
             dueDate.value, 
-            priority.value, 
-            idGen
+            priority.value,
+            idGen,
+            parentProject.value 
         );
-        taskList.push(task);
+        projectList.forEach((project) => {
+            if (project.name == task.project)
+            {
+                project.tasks.push(task);
+                console.log(project);
+            }
+        });
+        // taskList.push(task);
         console.log(task);
 
         // Display the task after updating it
