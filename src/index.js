@@ -1,4 +1,5 @@
 import "./style.css";
-import { taskConstructor } from "./constructor.js";
+import { taskConstructor, projectConstructor } from "./constructor.js";
 
 taskConstructor();
+projectConstructor();
