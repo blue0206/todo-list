@@ -40,7 +40,7 @@ function taskConstructor()
         projectList.forEach((project) => {
             if (project.name == task.project)
             {
-                project.add(task);   
+                project.add(task);
                 console.log(project);
             }
         });
