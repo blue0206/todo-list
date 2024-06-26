@@ -1,3 +1,5 @@
+import { listMethods } from "./methods.js";
+
 const projectListDOM = [];
 
 const ProjectDOM = function(name, projectTaskList, id) {
@@ -77,9 +79,8 @@ const ProjectDOM = function(name, projectTaskList, id) {
     return Object.assign(
         {},
         displayObj,
+        listMethods(projectTaskList)
     );
 };
-
-
 
 export { ProjectDOM, projectListDOM }; 
