@@ -25,7 +25,30 @@ const listMethods = (list) => {
         }
     };
 
-    return { add, remove };
+	const search = (item) => {
+		let start = 0;
+        let end = list.length - 1;
+        let mid = Math.floor(start + (end-start)/2);
+
+        while (start <= end)
+        {
+            if (list[mid].id == item.id)
+            {
+                return list[mid];
+            }
+            else if (list[mid].id < item.id)
+            {
+                start = mid + 1;
+            }
+            else
+            {
+                end = mid - 1;
+            }
+            mid = Math.floor(start + (end-start)/2);
+        }
+	};
+
+    return { add, remove, search };
 };
 
 const dropDownListMethods = (selectElement) => {
