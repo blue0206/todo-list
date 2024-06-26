@@ -28,4 +28,13 @@ const listMethods = (list) => {
     return { add, remove };
 };
 
-export { listMethods };
+const generateSelection = (selectElement, list) => {
+    list.forEach((item) => {
+        const option = document.createElement('option');
+        option.value = item.name;
+        option.textContent = item.name;
+        selectElement.appendChild(option);
+    });
+};
+
+export { listMethods, generateSelection };
