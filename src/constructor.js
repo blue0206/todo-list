@@ -1,6 +1,6 @@
 import { Task, Project, projectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
-import { dropDownListMethods } from "./methods.js";
+import { dropDownListMethods, listMethods } from "./methods.js";
 import { format } from "date-fns";
 
 let idGen = 1;
@@ -37,14 +37,8 @@ function taskConstructor()
             idGen,
             parentProject.value 
         );
-        projectList.forEach((project) => {
-            if (project.name == task.project)
-            {
-                project.add(task);
-                console.log(project);
-            }
-        });
-        // taskList.push(task);
+        listMethods(projectList).search(task.project).add(task);
+        console.log(listMethods(projectList).search(task.project));
         console.log(task);
 
         // Display the task after updating it
