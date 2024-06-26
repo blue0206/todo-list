@@ -1,4 +1,4 @@
-import { Task, Project, projectList } from "./object-constructors.js";
+import { Task, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
 import { dropDownListMethods, listMethods } from "./methods.js";
 import { format } from "date-fns";
@@ -16,7 +16,7 @@ function taskConstructor()
             taskModal.showModal();
             taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
             // Generate parent project selection content
-            taskDropDown.generate(projectList);
+            taskDropDown.generate(ProjectList.list);
         });
     });
     
@@ -37,8 +37,9 @@ function taskConstructor()
             idGen,
             parentProject.value 
         );
-        listMethods(projectList).search(task.project).add(task);
-        console.log(listMethods(projectList).search(task.project));
+        // Add task to the task list of parent project.
+        ProjectList.search(task.project).add(task);
+        console.log(ProjectList.search(task.project));
         console.log(task);
 
         // Display the task after updating it
@@ -83,7 +84,7 @@ function projectConstructor()
     
         // Create Project object instance and push into array (application-side)
         const project = new Project(name.value, idGen);
-        projectList.push(project);
+        ProjectList.add(project);
         console.log(project);
     
         // Create DOM content for project, 
@@ -106,7 +107,7 @@ function projectConstructor()
 const InboxInstance = function(){
     const obj = new Project("Inbox", 0);
     const objDOM = ProjectDOM("Inbox", [], 0);
-    projectList.push(obj);
+    ProjectList.add(obj);
     projectListDOM.push(objDOM);
 
     return { obj, objDOM };
