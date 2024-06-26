@@ -2,12 +2,6 @@ import { Task, taskList, Project, projectList } from "./object-constructors.js";
 import { ProjectDOM, projectListDOM } from "./dom-object-constructors.js";
 import { format } from "date-fns";
 
-const taskDisplayModal = document.querySelector('.task-modal');
-const closeBtn = document.querySelector('.close-btn');
-closeBtn.addEventListener('click', () => {
-    taskDisplayModal.close();
-});
-
 // Task Constructor
 let idGen = 0;
 function taskConstructor()
@@ -40,6 +34,7 @@ function taskConstructor()
         console.log(task);
 
         // Display the task after updating it
+        const taskDisplayModal = document.querySelector(".task-modal");
         taskDisplayModal.querySelector('.task-name').textContent = name.value;
         taskDisplayModal.querySelector('.task-description').textContent = description.value;
         taskDisplayModal.querySelector('.date').textContent = dueDate.value;
