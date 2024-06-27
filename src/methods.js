@@ -80,9 +80,14 @@ const displayControl = function() {
         checkBox.type = "checkbox";
         taskContainer.appendChild(checkBox);
 
-        const taskBody = document.createElement("div");
+        const taskBody = document.createElement("button");
         taskBody.classList.add('task');
         taskBody.id = task.id;
+        // Attach event listener to display full task window.
+        taskBody.addEventListener('click', () => {
+            taskDisplay(task);
+        });
+
         const taskName = document.createElement("div");
         taskName.textContent = task.name;
         taskBody.appendChild(taskName);
@@ -103,7 +108,16 @@ const displayControl = function() {
         }
     }
 
-    return { updateParentProjectDisplay, updateProjectTaskList };
+    const taskDisplay = (task) => {
+        const taskDisplayModal = document.querySelector(".task-modal");
+        taskDisplayModal.querySelector('.task-name').textContent = task.name;
+        taskDisplayModal.querySelector('.task-description').textContent = task.description;
+        taskDisplayModal.querySelector('.date').textContent = task.dueDate;
+        taskDisplayModal.querySelector('.priority').textContent = task.priority;
+        taskDisplayModal.showModal();
+    };
+
+    return { updateParentProjectDisplay, updateProjectTaskList, taskDisplay };
 }();
 
 export { listMethods, dropDownListMethods, displayControl };
