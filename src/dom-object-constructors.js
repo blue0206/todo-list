@@ -26,27 +26,27 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             const taskList = document.createElement('ul');
             taskList.classList.add('project-task-list');
 
-            const taskContainer = document.createElement('li');
             projectTaskList.forEach((task) => {
-                    taskContainer.classList.add('project-task');
-            
-                    const checkBox = document.createElement('input');
-                    checkBox.type = 'checkbox';
-                    taskContainer.appendChild(checkBox);
-            
-                    
-                    const taskBody = document.createElement('div');
-                    const taskName = document.createElement('div');
-                    taskName.textContent = task.name;
-                    taskBody.appendChild(taskName);
-            
-                    const taskDescription = document.createElement('div');
-                    taskDescription.textContent = task.description;
-                    taskBody.appendChild(taskDescription);
-                    
-                    taskContainer.appendChild(taskBody);
-                });
-            taskList.appendChild(taskContainer);
+                const taskContainer = document.createElement('li');
+                taskContainer.classList.add('project-task');
+        
+                const checkBox = document.createElement('input');
+                checkBox.type = 'checkbox';
+                taskContainer.appendChild(checkBox);
+        
+                
+                const taskBody = document.createElement('div');
+                const taskName = document.createElement('div');
+                taskName.textContent = task.name;
+                taskBody.appendChild(taskName);
+        
+                const taskDescription = document.createElement('div');
+                taskDescription.textContent = task.description;
+                taskBody.appendChild(taskDescription);
+                
+                taskContainer.appendChild(taskBody);
+                taskList.appendChild(taskContainer);
+            });
             
             projectContainer.appendChild(taskList);
             return projectContainer;
