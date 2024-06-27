@@ -1,4 +1,4 @@
-import { listMethods } from "./methods.js";
+import { listMethods, displayControl } from "./methods.js";
 
 const ProjectDOM = function(name, id, projectTaskList = []) {
     const displayObj = {
@@ -33,28 +33,11 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             taskList.classList.add('project-task-list');
 
             projectTaskList.forEach((task) => {
-                const taskContainer = document.createElement('li');
-                taskContainer.classList.add('project-task');
-        
-                const checkBox = document.createElement('input');
-                checkBox.type = 'checkbox';
-                taskContainer.appendChild(checkBox);
-        
-                
-                const taskBody = document.createElement('div');
-                const taskName = document.createElement('div');
-                taskName.textContent = task.name;
-                taskBody.appendChild(taskName);
-        
-                const taskDescription = document.createElement('div');
-                taskDescription.textContent = task.description;
-                taskBody.appendChild(taskDescription);
-                
-                taskContainer.appendChild(taskBody);
-                taskList.appendChild(taskContainer);
+                displayControl.updateProjectTaskList(taskList, task);
             });
             // Task Add Button shown at bottom of task list
             const addTaskBtn = document.createElement('button');
+            addTaskBtn.classList.add('add-task');
             const addTaskIcon = new Image();
             addTaskIcon.src = "";
             addTaskIcon.alt = "Add Task";
@@ -63,6 +46,13 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             addTaskDiv.textContent = "Add Task";
             addTaskBtn.appendChild(addTaskDiv);
             taskList.appendChild(addTaskBtn);
+
+            // Dispatch "Add Task" event to the Add Task button
+            addTaskBtn.addEventListener('click', (e) => {
+                document.querySelector('.tabs > .add-task').dispatchEvent(
+                    new MouseEvent('click')
+                );
+            });
 
             projectContainer.appendChild(taskList);
             return projectContainer;
