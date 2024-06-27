@@ -71,5 +71,48 @@ const dropDownListMethods = (selectElement) => {
 	return { generate, remove };
 };
 
+const displayControl = function() {
+    const updateParentProjectDisplay = (parentProject, task) => {
+        const main = document.querySelector('main');
+        // Check if the project is being displayed.
+        if (main.lastChild.id == parentProject.id)
+        {
+            const taskList = main.lastChild.querySelector('.project-task-list');
+            const insertBeforeNode = taskList.lastChild;
+            updateProjectTaskList(taskList, task, insertBeforeNode);
+        }
+    };
 
-export { listMethods, dropDownListMethods };
+    const updateProjectTaskList = (taskList, task, insertBeforeNode=null) => {
+        const taskContainer = document.createElement("li");
+        taskContainer.classList.add("project-task");
+
+        const checkBox = document.createElement("input");
+        checkBox.type = "checkbox";
+        taskContainer.appendChild(checkBox);
+
+        const taskBody = document.createElement("div");
+        const taskName = document.createElement("div");
+        taskName.textContent = task.name;
+        taskBody.appendChild(taskName);
+
+        const taskDescription = document.createElement("div");
+        taskDescription.textContent = task.description;
+        taskBody.appendChild(taskDescription);
+
+        taskContainer.appendChild(taskBody);
+        // If project already exists, then task needs to be inserted before the "Add Task" button
+        if (insertBeforeNode)   
+        {
+            taskList.insertBefore(taskContainer, insertBeforeNode)
+        }
+        else    // This case is used when the project DOM object method to show display is called
+        {
+            taskList.appendChild(taskContainer);
+        }
+    }
+
+    return { updateParentProjectDisplay, updateProjectTaskList };
+}();
+
+export { listMethods, dropDownListMethods, displayControl };
