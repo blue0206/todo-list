@@ -39,7 +39,9 @@ function taskConstructor()
         );
         // Add task to the task list of parent project.
         ProjectList.search(task.project).add(task);
+        ProjectListDOM.search(task.project).add(task);
         console.log(ProjectList.search(task.project));
+        console.log(ProjectListDOM.search(task.project));
         console.log(task);
 
         // Display the task after updating it
@@ -83,13 +85,13 @@ function projectConstructor()
         const name = projectModal.querySelector('#project-name');
     
         // Create Project object instance and push into array (application-side)
-        const project = new Project(name.value, idGen);
+        const project = Project(name.value, idGen);
         ProjectList.add(project);
         console.log(project);
     
         // Create DOM content for project, 
         // update sidebar display, store main DOM content in array
-        const projectDOM = ProjectDOM(name.value, [], idGen);
+        const projectDOM = ProjectDOM(name.value, idGen);
         ProjectListDOM.add(projectDOM);
         projectDOM.sidebarDisplay();
     
@@ -106,7 +108,7 @@ function projectConstructor()
 // Create instance of Inbox
 const InboxInstance = function(){
     const obj = new Project("Inbox", 0);
-    const objDOM = ProjectDOM("Inbox", [], 0);
+    const objDOM = ProjectDOM("Inbox", 0);
     ProjectList.add(obj);
     ProjectListDOM.add(objDOM);
 
