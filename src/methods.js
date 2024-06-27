@@ -92,6 +92,8 @@ const displayControl = function() {
         taskContainer.appendChild(checkBox);
 
         const taskBody = document.createElement("div");
+        taskBody.classList.add('task');
+        taskBody.id = task.id;
         const taskName = document.createElement("div");
         taskName.textContent = task.name;
         taskBody.appendChild(taskName);
