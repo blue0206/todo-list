@@ -9,15 +9,13 @@ function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
     const taskDropDown = dropDownListMethods(document.querySelector('#parent-project'));
-    const taskModalBtns = Array.from(document.querySelectorAll('.add-task'));
+    const taskModalBtn = document.querySelector('.tabs > .add-task');
 
-    taskModalBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            taskModal.showModal();
-            taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
-            // Generate parent project selection content
-            taskDropDown.generate(ProjectList.list);
-        });
+    taskModalBtn.addEventListener('click', () => {
+        taskModal.showModal();
+        taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
+        // Generate parent project selection content
+        taskDropDown.generate(ProjectList.list);
     });
     
     const taskAddBtn = document.querySelector('.submit-task');
@@ -76,12 +74,10 @@ function taskConstructor()
 function projectConstructor()
 {
     const projectModal = document.querySelector('.add-project-modal');
-    const projectModalBtns = Array.from(document.querySelectorAll('.add-project'));
+    const projectModalBtn = document.querySelector('.project-tabs > .add-project');
     
-    projectModalBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            projectModal.showModal();
-        });
+    projectModalBtn.addEventListener('click', () => {
+        projectModal.showModal();
     });
     
     const projectAddBtn = document.querySelector('.submit-project');
