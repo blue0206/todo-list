@@ -68,6 +68,11 @@ function taskConstructor()
 
         taskModal.close();
     });
+
+    const taskCancelBtn = taskModal.querySelector('.cancel-btn');
+    taskCancelBtn.addEventListener('click', () => {
+        taskModal.close();
+    });
 };
 
 // Project Constructor
@@ -101,6 +106,11 @@ function projectConstructor()
         // Clear form input fields
         name.value = "";
     
+        projectModal.close();
+    });
+
+    const projectCancelBtn = projectModal.querySelector('.cancel-btn');
+    projectCancelBtn.addEventListener('click', () => {
         projectModal.close();
     });
 }
