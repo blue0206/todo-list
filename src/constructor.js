@@ -46,13 +46,8 @@ function taskConstructor()
         // If the parent project tab is open, update its display.
         displayControl.updateParentProjectDisplay(projectDOM, task);
 
-        // Display the task after updating it
-        const taskDisplayModal = document.querySelector(".task-modal");
-        taskDisplayModal.querySelector('.task-name').textContent = name.value;
-        taskDisplayModal.querySelector('.task-description').textContent = description.value;
-        taskDisplayModal.querySelector('.date').textContent = dueDate.value;
-        taskDisplayModal.querySelector('.priority').textContent = priority.value;
-        taskDisplayModal.showModal();
+        // Display full task window
+        displayControl.taskDisplay(task);
         
         // Increment the unique ID generator variable
         idGen++;
