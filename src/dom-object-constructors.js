@@ -1,6 +1,6 @@
 import { listMethods } from "./methods.js";
 
-const ProjectDOM = function(name, projectTaskList, id) {
+const ProjectDOM = function(name, id, projectTaskList = []) {
     const displayObj = {
         mainDisplay: () => {
             const projectContainer = document.createElement('div');
@@ -71,7 +71,9 @@ const ProjectDOM = function(name, projectTaskList, id) {
 
 
             projectTab.insertBefore(projectBtn, insertBeforeNode);
-        }
+        },
+        name,
+        id
     };
 
     return Object.assign(
