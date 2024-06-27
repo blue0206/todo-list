@@ -18,12 +18,6 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             projectName.textContent = name;
             projectName.classList.add('project-name');
             projectHeading.appendChild(projectName);
-        
-            // Project Edit Button
-            const editBtn = document.createElement('button');
-            editBtn.classList.add('edit');
-            editBtn.textContent = "Edit";
-            projectHeading.appendChild(editBtn);
             
             projectContainer.appendChild(projectHeading);
         
