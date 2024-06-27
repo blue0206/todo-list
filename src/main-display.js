@@ -1,11 +1,15 @@
 import { InboxInstance } from "./constructor.js";
 import { ProjectListDOM } from "./dom-object-constructors.js";
 
-const taskDisplayModal = document.querySelector(".task-modal");
-const closeBtn = document.querySelector(".close-btn");
-closeBtn.addEventListener("click", () => {
-  taskDisplayModal.close();
-});
+// Generate task display
+function taskWindowClose()
+{
+    const taskDisplayModal = document.querySelector(".task-modal");
+    const closeBtn = taskDisplayModal.querySelector(".close-btn");
+    closeBtn.addEventListener("click", () => {
+        taskDisplayModal.close();
+    });
+}
 
 
 // Generate Inbox main display.
@@ -31,3 +35,5 @@ projectTabs.addEventListener('click', (e) => {
         main.appendChild(ProjectListDOM.search(projectID).mainDisplay());
     }
 });
+
+export { taskWindowClose };
