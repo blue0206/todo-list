@@ -1,6 +1,6 @@
 import { Task, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
-import { dropDownListMethods, listMethods } from "./methods.js";
+import { dropDownListMethods, displayControl } from "./methods.js";
 import { format } from "date-fns";
 
 let idGen = 1;
@@ -39,10 +39,14 @@ function taskConstructor()
         );
         // Add task to the task list of parent project.
         ProjectList.search(task.project).add(task);
-        ProjectListDOM.search(task.project).add(task);
+        const projectDOM = ProjectListDOM.search(task.project);
+        projectDOM.add(task);
         console.log(ProjectList.search(task.project));
         console.log(ProjectListDOM.search(task.project));
         console.log(task);
+
+        // If the parent project tab is open, update its display.
+        displayControl.updateParentProjectDisplay(projectDOM, task);
 
         // Display the task after updating it
         const taskDisplayModal = document.querySelector(".task-modal");
