@@ -3,26 +3,32 @@ import { listMethods } from "./methods.js";
 const ProjectDOM = function(name, id, projectTaskList = []) {
     const displayObj = {
         mainDisplay: () => {
+            // Container
             const projectContainer = document.createElement('div');
             projectContainer.classList.add('project-container');
             projectContainer.id = id;
         
             
+            // Project Heading
             const projectHeading = document.createElement('div');
             projectHeading.classList.add('project-heading');
         
+            // Project Name
             const projectName = document.createElement('h1');
             projectName.textContent = name;
             projectName.classList.add('project-name');
             projectHeading.appendChild(projectName);
         
+            // Project Edit Button
             const editBtn = document.createElement('button');
             editBtn.classList.add('edit');
+            editBtn.textContent = "Edit";
             projectHeading.appendChild(editBtn);
-        
+            
             projectContainer.appendChild(projectHeading);
         
         
+            // Project Task List (shown in form of checkboxes)
             const taskList = document.createElement('ul');
             taskList.classList.add('project-task-list');
 
@@ -47,7 +53,17 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
                 taskContainer.appendChild(taskBody);
                 taskList.appendChild(taskContainer);
             });
-            
+            // Task Add Button shown at bottom of task list
+            const addTaskBtn = document.createElement('button');
+            const addTaskIcon = new Image();
+            addTaskIcon.src = "";
+            addTaskIcon.alt = "Add Task";
+            addTaskBtn.appendChild(addTaskIcon);
+            const addTaskDiv = document.createElement('div');
+            addTaskDiv.textContent = "Add Task";
+            addTaskBtn.appendChild(addTaskDiv);
+            taskList.appendChild(addTaskBtn);
+
             projectContainer.appendChild(taskList);
             return projectContainer;
         },
