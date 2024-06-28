@@ -8,7 +8,7 @@ let idGen = 1;
 function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
-    const taskDropDown = dropDownListMethods(document.querySelector('#parent-project'));
+    const taskDropDown = dropDownListMethods(taskModal.querySelector('#parent-project'));
     const taskModalBtn = document.querySelector('.tabs > .add-task');
 
     taskModalBtn.addEventListener('click', () => {
