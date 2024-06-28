@@ -64,6 +64,36 @@
                 </div>
             </div>
         </dialog>
+        <dialog class="edit-task-modal">
+            <form>
+                <h2>EDIT TASK</h2>
+                <div class="form-element">
+                    <textarea id="task-name" placeholder="Task Name"></textarea>
+                </div>
+                <div class="form-element">
+                    <textarea id="description" placeholder="Description"></textarea>
+                </div>
+                <div class="form-element">
+                    <label for="due-date">Due Date:</label>
+                    <input type="date" id="due-date">
+                </div>
+                <div class="form-element">
+                    <label for="priority">Set Priority:</label>
+                    <select id="priority">
+                        <option value="Maximum">Maximum</option>
+                        <option value="High">High</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="Minimum">Minimum</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <select id="parent-project"></select>
+                </div>
+                <button type="button" class="modify-btn">SUBMIT</button>
+                <button type="reset" class="cancel-btn">CANCEL</button>
+            </form>
+        </dialog>
         <dialog class="add-task-modal">
             <form>
                 <h2>ADD TASK</h2>
