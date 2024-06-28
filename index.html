@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <main>
+
+    </main>
+    <aside>
+        <div class="heading">
+            <img src="" alt="">
+            <h1>Dashboard</h1>
+        </div>
+        <nav class="tabs">
+            <button class="add-task">
+                <img src="" alt="">
+                <div>Add Task</div>
+            </button>
+            <button class="home">
+                <img src="" alt="">
+                <div>Home</div>
+            </button>
+            <button class="inbox">
+                <img src="" alt="">
+                <div>Inbox</div>
+            </button>
+        </nav>
+        <nav class="project-tabs">
+            <button class="my-projects">My Projects</button>
+            <button class="add-project">
+                <img src="" alt="">
+                <div>Add Project</div>
+            </button>
+        </nav>
+    </aside>
+    <footer>
+
+    </footer>
+    <section class="modals">
+        <dialog class="task-modal">
+            <div class="task-container">
+                <div class="btns">
+                    <button class="edit-task">Edit</button>
+                    <button class="close-btn">X</button>
+                </div>
+                <div class="task-body">
+                    <div class="task-heading">
+                        <h2 class="task-name"></h2>
+                        <div class="task-description"></div>
+                    </div>
+                </div>
+                <div class="task-details">
+                    <div class="detail">
+                        <h3 class="date-heading">Due Date</h3>
+                        <div class="date"></div>
+                    </div>
+                    <div class="detail">
+                        <h3 class="priority-heading">Priority</h3>
+                        <div class="priority"></div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+        <dialog class="edit-task-modal">
+            <form>
+                <h2>EDIT TASK</h2>
+                <div class="form-element">
+                    <textarea id="task-name" placeholder="Task Name"></textarea>
+                </div>
+                <div class="form-element">
+                    <textarea id="description" placeholder="Description"></textarea>
+                </div>
+                <div class="form-element">
+                    <label for="due-date">Due Date:</label>
+                    <input type="date" id="due-date">
+                </div>
+                <div class="form-element">
+                    <label for="priority">Set Priority:</label>
+                    <select id="priority">
+                        <option value="Maximum">Maximum</option>
+                        <option value="High">High</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="Minimum">Minimum</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <select id="parent-project"></select>
+                </div>
+                <button type="button" class="modify-btn">SUBMIT</button>
+                <button type="reset" class="cancel-btn">CANCEL</button>
+            </form>
+        </dialog>
+        <dialog class="add-task-modal">
+            <form>
+                <h2>ADD TASK</h2>
+                <div class="form-element">
+                    <textarea id="task-name" placeholder="Task Name"></textarea>
+                </div>
+                <div class="form-element">
+                    <textarea id="description" placeholder="Description"></textarea>
+                </div>
+                <div class="form-element">
+                    <label for="due-date">Due Date:</label>
+                    <input type="date" id="due-date">
+                </div>
+                <div class="form-element">
+                    <label for="priority">Set Priority:</label>
+                    <select id="priority">
+                        <option value="Maximum">Maximum</option>
+                        <option value="High">High</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="Minimum">Minimum</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <select id="parent-project"></select>
+                </div>
+                <button type="button" class="submit-task">SUBMIT</button>
+                <button type="reset" class="cancel-btn">CANCEL</button>
+            </form>
+        </dialog>
+        <dialog class="add-project-modal">
+            <form>
+                <h2>ADD PROJECT</h2>
+                <div class="form-element">
+                    <label for="project-name">Name</label>
+                    <input type="text" id="project-name">
+                </div>
+                <button type="button" class="submit-project">SUBMIT</button>
+                <button type="reset" class="cancel-btn">CANCEL</button>
+            </form>
+        </dialog>
+    </section>
+</body>
+</html>
