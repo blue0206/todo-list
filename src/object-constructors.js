@@ -12,6 +12,18 @@ const Task = function(name, description, dueDate, priority, id, project, status=
     this.status = status;
 };
 
+const TaskList = function(list=[]) {
+    const obj = {
+        list
+    };
+
+    return Object.assign(
+        {},
+        obj,
+        listMethods(list)
+    );
+}();
+
 const Project = function(name, id, tasks=[]) {
     const obj = {
         name,
@@ -39,7 +51,8 @@ const ProjectList = function(list=[]){
 }();
 
 export { 
-    Task, 
+    Task,
+    TaskList, 
     Project,
     ProjectList
 };
