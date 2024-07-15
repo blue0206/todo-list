@@ -1,4 +1,4 @@
-import { Task, Project, ProjectList } from "./object-constructors.js";
+import { Task, TaskList, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
 import { dropDownListMethods, displayControl } from "./methods.js";
 import { format } from "date-fns";
@@ -35,6 +35,10 @@ function taskConstructor()
             idGen,
             parentProject.value 
         );
+
+        // Add task to global task list.
+        TaskList.add(task);
+
         // Add task to the task list of parent project.
         ProjectList.search(task.project).add(task);
         const projectDOM = ProjectListDOM.search(task.project);
