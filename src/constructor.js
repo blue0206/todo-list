@@ -1,7 +1,7 @@
 import { Task, TaskList, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
-import { dropDownListMethods, displayControl, listMethods } from "./methods.js";
-import { TaskDisplayControl } from "./display.js";
+import { dropDownListMethods, displayControl } from "./methods.js";
+import { refreshProjectDisplay, TaskDisplayControl } from "./display.js";
 import { format } from "date-fns";
 
 let idGen = 1;
@@ -99,19 +99,8 @@ const TaskControl = function() {
 
             TaskDisplayControl.taskDisplay(task);   // Display the task window after update.
 
-            if (task.project == 0)  // If task is present in inbox.
-            {
-                document.querySelector('button.inbox').dispatchEvent(new MouseEvent('click'));
-            }
-            else    // If task is not present in inbox but another project.
-            {
-                const projects = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
-                listMethods(projects).search(task.project).dispatchEvent(new MouseEvent(
-                    'click', 
-                    // Set to true as the event listener has been set up for parent element of node.
-                    { bubbles: true }
-                ));
-            }
+            // Refresh the project display to show the updated task.
+            refreshProjectDisplay(task.project);
         });
 
         // Cancel button event listener.
