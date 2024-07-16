@@ -22,6 +22,7 @@ const TaskControl = function() {
             taskDropDown.generate(ProjectList.list);
         });
 
+
         // Submit button event listener.
         const taskAddBtn = document.querySelector('.submit-task');
         taskAddBtn.addEventListener('click', () => {
@@ -32,35 +33,8 @@ const TaskControl = function() {
             const priority = taskModal.querySelector('#priority');
             const parentProject = taskModal.querySelector("#parent-project");
 
-            // Create task object instance and push into parent project array
-            const task = new Task(
-                name.value, 
-                description.value, 
-                dueDate.value, 
-                priority.value,
-                idGen,
-                parentProject.value 
-            );
-    
-            // Add task to global task list.
-            TaskList.add(task);
-    
-            // Add task to the task list of parent project.
-            ProjectList.search(task.project).add(task);
-            const projectDOM = ProjectListDOM.search(task.project);
-            projectDOM.add(task);
-            console.log(ProjectList.search(task.project));
-            console.log(ProjectListDOM.search(task.project));
-            console.log(task);
-    
-            // If the parent project tab is open, update its display.
-            displayControl.updateParentProjectDisplay(projectDOM, task);
-    
-            // Display full task window
-            displayControl.taskDisplay(task);
-            
-            // Increment the unique ID generator variable
-            idGen++;
+            // Setup task: construct task and add to the concerned lists.
+            taskSetup(name, description, dueDate, priority, parentProject);
     
             // Clear modal form element input fields
             name.value = "";
@@ -73,13 +47,45 @@ const TaskControl = function() {
     
             taskModal.close();
         });
-    
+
+
         // Cancel button event listener.
         const taskCancelBtn = taskModal.querySelector('.cancel-btn');
         taskCancelBtn.addEventListener('click', () => {
             taskModal.close();
         });
     };
+
+    function taskSetup(name, description, dueDate, priority, parentProject)
+    {
+        // APPLICATION-SIDE
+
+        // Create task object instance
+        const task = new Task(
+            name.value, 
+            description.value, 
+            dueDate.value, 
+            priority.value, 
+            idGen++,            // Increment ID generator.
+            parentProject.value
+        );
+        
+        // Push created task into global and parent project task list.
+        TaskList.add(task);
+        ProjectList.search(task.project).add(task);
+
+        // DOM-SIDE
+
+        // Push created task into DOM parent project object task list.
+        const projectDOM = ProjectListDOM.search(task.project);
+        projectDOM.add(task);
+
+        // If the parent project tab is open, update its display.
+        displayControl.updateParentProjectDisplay(projectDOM, task);
+
+        // Display task upon creation.
+        displayControl.taskDisplay(task);
+    }
 
     return { taskConstructor };
 }();
