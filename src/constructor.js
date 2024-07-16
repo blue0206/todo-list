@@ -8,14 +8,14 @@ let idGen = 1;
 
 // Task Control Unit
 const TaskControl = function() {
-    const taskModal = document.querySelector('.add-task-modal');
     
     function taskConstructor() 
     {
-        // Task-add modal button event listener to display the modal on click.
+        const taskModal = document.querySelector('.add-task-modal');
         const taskModalBtn = document.querySelector('.tabs > .add-task');
         const taskDropDown = dropDownListMethods(taskModal.querySelector('#parent-project'));
         
+        // Task-add modal button event listener to display the modal on click.
         taskModalBtn.addEventListener('click', () => {
             taskModal.showModal();
             taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
