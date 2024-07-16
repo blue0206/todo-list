@@ -1,5 +1,6 @@
 import { InboxInstance } from "./constructor.js";
 import { ProjectListDOM } from "./dom-object-constructors.js";
+import { listMethods } from "./methods.js";
 
 // Task Display Control Unit
 const TaskDisplayControl = function() {
@@ -58,4 +59,21 @@ const ProjectDisplayControl = function() {
     return { inboxDisplay, projectDisplay };
 }();
 
-export { TaskDisplayControl, ProjectDisplayControl };
+function refreshProjectDisplay(projectID)
+{
+    if (projectID == 0)     // ID == 0 refers to inbox.
+    {
+        document.querySelector('button.inbox').dispatchEvent(new MouseEvent('click'));
+    }
+    else    // ID != 0 refers to any project other than inbox.
+    {
+        const projectNodes = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
+        listMethods(projectNodes).search(task.project).dispatchEvent(new MouseEvent(
+            'click', 
+            // Set to true as the event listener has been set up for parent element of node.
+            { bubbles: true }
+        ));
+    }
+}
+
+export { TaskDisplayControl, ProjectDisplayControl, refreshProjectDisplay };
