@@ -27,7 +27,7 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             taskList.classList.add('project-task-list');
 
             projectTaskList.forEach((task) => {
-                displayControl.updateProjectTaskList(taskList, task);
+                updateProjectTaskList(taskList, task);
             });
             // Task Add Button shown at bottom of task list
             const addTaskBtn = document.createElement('button');
@@ -74,6 +74,34 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
         },
         name,
         id
+    };
+
+    const updateProjectTaskList = (taskList, task) => {
+        const taskContainer = document.createElement("li");
+        taskContainer.classList.add("project-task");
+
+        const checkBox = document.createElement("input");
+        checkBox.type = "checkbox";
+        taskContainer.appendChild(checkBox);
+
+        const taskBody = document.createElement("button");
+        taskBody.classList.add('task');
+        taskBody.id = task.id;
+        // Attach event listener to display full task window.
+        taskBody.addEventListener('click', () => {
+            taskDisplay(task);
+        });
+
+        const taskName = document.createElement("div");
+        taskName.textContent = task.name;
+        taskBody.appendChild(taskName);
+
+        const taskDescription = document.createElement("div");
+        taskDescription.textContent = task.description;
+        taskBody.appendChild(taskDescription);
+
+        taskContainer.appendChild(taskBody);
+        taskList.appendChild(taskContainer);
     };
 
     return Object.assign(

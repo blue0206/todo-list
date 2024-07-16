@@ -60,36 +60,4 @@ const dropDownListMethods = (selectElement) => {
 	return { generate, remove };
 };
 
-const displayControl = function() {
-    const updateProjectTaskList = (taskList, task) => {
-        const taskContainer = document.createElement("li");
-        taskContainer.classList.add("project-task");
-
-        const checkBox = document.createElement("input");
-        checkBox.type = "checkbox";
-        taskContainer.appendChild(checkBox);
-
-        const taskBody = document.createElement("button");
-        taskBody.classList.add('task');
-        taskBody.id = task.id;
-        // Attach event listener to display full task window.
-        taskBody.addEventListener('click', () => {
-            taskDisplay(task);
-        });
-
-        const taskName = document.createElement("div");
-        taskName.textContent = task.name;
-        taskBody.appendChild(taskName);
-
-        const taskDescription = document.createElement("div");
-        taskDescription.textContent = task.description;
-        taskBody.appendChild(taskDescription);
-
-        taskContainer.appendChild(taskBody);
-        taskList.appendChild(taskContainer);
-    }
-
-    return { updateProjectTaskList };
-}();
-
-export { listMethods, dropDownListMethods, displayControl };
+export { listMethods, dropDownListMethods };
