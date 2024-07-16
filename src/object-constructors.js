@@ -12,6 +12,17 @@ const Task = function(name, description, dueDate, priority, id, project, status=
     this.status = status;
 };
 
+// Method to update task details.
+Task.prototype.update = function(name, description, dueDate, priority, id, project, status) {
+    this.name = name;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.id = id;
+    this.project = project;
+    this.status = status;
+}
+
 const TaskList = function(list=[]) {
     const obj = {
         list
