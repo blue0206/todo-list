@@ -1,9 +1,9 @@
 import "./style.css";
 import { TaskControl, projectConstructor } from "./constructor.js";
-import { taskWindowClose, inboxDisplay, projectDisplay } from "./main-display.js";
+import { inboxDisplay, projectDisplay } from "./display.js";
 
 TaskControl.taskConstructor();
+TaskControl.taskEditor();
 projectConstructor();
-taskWindowClose();
 inboxDisplay();
 projectDisplay();
