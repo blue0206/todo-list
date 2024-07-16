@@ -1,4 +1,4 @@
-import { listMethods, displayControl } from "./methods.js";
+import { listMethods } from "./methods.js";
 
 const ProjectDOM = function(name, id, projectTaskList = []) {
     const displayObj = {
