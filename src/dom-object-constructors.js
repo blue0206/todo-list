@@ -1,4 +1,5 @@
 import { listMethods } from "./methods.js";
+import { TaskDisplayControl } from "./display.js";
 
 const ProjectDOM = function(name, id, projectTaskList = []) {
     const displayObj = {
@@ -89,7 +90,7 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
         taskBody.id = task.id;
         // Attach event listener to display full task window.
         taskBody.addEventListener('click', () => {
-            taskDisplay(task);
+            TaskDisplayControl.taskDisplay(task);
         });
 
         const taskName = document.createElement("div");
