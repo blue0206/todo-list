@@ -8,70 +8,77 @@ let idGen = 1;
 function taskConstructor()
 {
     const taskModal = document.querySelector('.add-task-modal');
-    const taskDropDown = dropDownListMethods(taskModal.querySelector('#parent-project'));
-    const taskModalBtn = document.querySelector('.tabs > .add-task');
-
-    taskModalBtn.addEventListener('click', () => {
-        taskModal.showModal();
-        taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
-        // Generate parent project selection content
-        taskDropDown.generate(ProjectList.list);
-    });
     
-    const taskAddBtn = document.querySelector('.submit-task');
-    taskAddBtn.addEventListener('click', () => {
-        const name = taskModal.querySelector('#task-name');
-        const description = taskModal.querySelector('#description');
-        const dueDate = taskModal.querySelector('#due-date');
-        const priority = taskModal.querySelector('#priority');
-        const parentProject = taskModal.querySelector("#parent-project");
-
-        // Create task object instance and push into parent project array
-        const task = new Task(
-            name.value, 
-            description.value, 
-            dueDate.value, 
-            priority.value,
-            idGen,
-            parentProject.value 
-        );
-
-        // Add task to global task list.
-        TaskList.add(task);
-
-        // Add task to the task list of parent project.
-        ProjectList.search(task.project).add(task);
-        const projectDOM = ProjectListDOM.search(task.project);
-        projectDOM.add(task);
-        console.log(ProjectList.search(task.project));
-        console.log(ProjectListDOM.search(task.project));
-        console.log(task);
-
-        // If the parent project tab is open, update its display.
-        displayControl.updateParentProjectDisplay(projectDOM, task);
-
-        // Display full task window
-        displayControl.taskDisplay(task);
+    const add = function() {
+        // Task-add modal button event listener to display the modal on click.
+        const taskModalBtn = document.querySelector('.tabs > .add-task');
+        const taskDropDown = dropDownListMethods(taskModal.querySelector('#parent-project'));
         
-        // Increment the unique ID generator variable
-        idGen++;
+        taskModalBtn.addEventListener('click', () => {
+            taskModal.showModal();
+            taskModal.querySelector("#due-date").value = format(new Date(), "yyyy-MM-dd");
+            // Generate parent project selection content
+            taskDropDown.generate(ProjectList.list);
+        });
 
-        // Clear modal form element input fields
-        name.value = "";
-        description.value = "";
-        dueDate.value = "";
-        priority.value = "Medium";
+        // Submit button event listener.
+        const taskAddBtn = document.querySelector('.submit-task');
+        taskAddBtn.addEventListener('click', () => {
+            // Fetch input field values.
+            const name = taskModal.querySelector('#task-name');
+            const description = taskModal.querySelector('#description');
+            const dueDate = taskModal.querySelector('#due-date');
+            const priority = taskModal.querySelector('#priority');
+            const parentProject = taskModal.querySelector("#parent-project");
 
-        // Remove parent project selection content
-        taskDropDown.remove();
-
-        taskModal.close();
-    });
-
-    const taskCancelBtn = taskModal.querySelector('.cancel-btn');
-    taskCancelBtn.addEventListener('click', () => {
-        taskModal.close();
-    });
+            // Create task object instance and push into parent project array
+            const task = new Task(
+                name.value, 
+                description.value, 
+                dueDate.value, 
+                priority.value,
+                idGen,
+                parentProject.value 
+            );
+    
+            // Add task to global task list.
+            TaskList.add(task);
+    
+            // Add task to the task list of parent project.
+            ProjectList.search(task.project).add(task);
+            const projectDOM = ProjectListDOM.search(task.project);
+            projectDOM.add(task);
+            console.log(ProjectList.search(task.project));
+            console.log(ProjectListDOM.search(task.project));
+            console.log(task);
+    
+            // If the parent project tab is open, update its display.
+            displayControl.updateParentProjectDisplay(projectDOM, task);
+    
+            // Display full task window
+            displayControl.taskDisplay(task);
+            
+            // Increment the unique ID generator variable
+            idGen++;
+    
+            // Clear modal form element input fields
+            name.value = "";
+            description.value = "";
+            dueDate.value = "";
+            priority.value = "Medium";
+    
+            // Remove parent project selection content
+            taskDropDown.remove();
+    
+            taskModal.close();
+        });
+    
+        // Cancel button event listener.
+        const taskCancelBtn = taskModal.querySelector('.cancel-btn');
+        taskCancelBtn.addEventListener('click', () => {
+            taskModal.close();
+        });
+    }();
 };
 
 // Project Constructor
