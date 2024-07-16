@@ -4,12 +4,13 @@ import { dropDownListMethods, displayControl } from "./methods.js";
 import { format } from "date-fns";
 
 let idGen = 1;
-// Task Constructor
-function taskConstructor()
-{
+
+// Task Control Unit
+const TaskControl = function() {
     const taskModal = document.querySelector('.add-task-modal');
     
-    const add = function() {
+    function taskConstructor() 
+    {
         // Task-add modal button event listener to display the modal on click.
         const taskModalBtn = document.querySelector('.tabs > .add-task');
         const taskDropDown = dropDownListMethods(taskModal.querySelector('#parent-project'));
@@ -78,8 +79,10 @@ function taskConstructor()
         taskCancelBtn.addEventListener('click', () => {
             taskModal.close();
         });
-    }();
-};
+    };
+
+    return { taskConstructor };
+}();
 
 // Project Constructor
 function projectConstructor()
@@ -131,4 +134,4 @@ const InboxInstance = function(){
     return { obj, objDOM };
 }();
 
-export { taskConstructor, projectConstructor, InboxInstance };
+export { TaskControl, projectConstructor, InboxInstance };
