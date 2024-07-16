@@ -61,7 +61,7 @@ const dropDownListMethods = (selectElement) => {
 };
 
 const displayControl = function() {
-    const updateProjectTaskList = (taskList, task, insertBeforeNode=null) => {
+    const updateProjectTaskList = (taskList, task) => {
         const taskContainer = document.createElement("li");
         taskContainer.classList.add("project-task");
 
@@ -86,15 +86,7 @@ const displayControl = function() {
         taskBody.appendChild(taskDescription);
 
         taskContainer.appendChild(taskBody);
-        // If project already exists, then task needs to be inserted before the "Add Task" button
-        if (insertBeforeNode)   
-        {
-            taskList.insertBefore(taskContainer, insertBeforeNode)
-        }
-        else    // This case is used when the project DOM object method to show display is called
-        {
-            taskList.appendChild(taskContainer);
-        }
+        taskList.appendChild(taskContainer);
     }
 
     return { updateProjectTaskList };
