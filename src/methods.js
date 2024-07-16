@@ -108,16 +108,7 @@ const displayControl = function() {
         }
     }
 
-    const taskDisplay = (task) => {
-        const taskDisplayModal = document.querySelector(".task-modal");
-        taskDisplayModal.querySelector('.task-name').textContent = task.name;
-        taskDisplayModal.querySelector('.task-description').textContent = task.description;
-        taskDisplayModal.querySelector('.date').textContent = task.dueDate;
-        taskDisplayModal.querySelector('.priority').textContent = task.priority;
-        taskDisplayModal.showModal();
-    };
-
-    return { updateParentProjectDisplay, updateProjectTaskList, taskDisplay };
+    return { updateParentProjectDisplay, updateProjectTaskList };
 }();
 
 export { listMethods, dropDownListMethods, displayControl };
