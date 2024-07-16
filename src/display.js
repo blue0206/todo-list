@@ -23,36 +23,39 @@ const TaskDisplayControl = function() {
     return { taskDisplay };
 }();
 
+// Project Display Control Unit
+const ProjectDisplayControl = function() {
+    // Generate Inbox display.
+    function inboxDisplay()
+    {
+        const main = document.querySelector('main');
+        const inboxTab = document.querySelector('button.inbox');
+        inboxTab.addEventListener('click', () => {
+            main.removeChild(main.lastChild);   // Remove existing content
+            main.appendChild(InboxInstance.objDOM.mainDisplay()); // Add new content
+        });
+    }
 
-// Generate Inbox main display.
-function inboxDisplay()
-{
-    const main = document.querySelector('main');
-    const inboxTab = document.querySelector('button.inbox');
-    inboxTab.addEventListener('click', () => {
-        main.removeChild(main.lastChild);   // Remove existing content
-        main.appendChild(InboxInstance.objDOM.mainDisplay()); // Add new content
-    });
-}
+    // Generate main display of projects.
+    function projectDisplay()
+    {
+        const main = document.querySelector("main");
+        const projectTabs = document.querySelector('.project-tabs');
+        projectTabs.addEventListener('click', (e) => {
+            let projectID = e.target.id;    // If button is clicked
+            if (e.target.parentNode.id)     // If a child element of button is clicked
+            {
+                projectID = e.target.parentNode.id;
+            }
+            if (projectID)
+            {
+                main.removeChild(main.lastChild);
+                main.appendChild(ProjectListDOM.search(projectID).mainDisplay());
+            }
+        });
+    }
 
+    return { inboxDisplay, projectDisplay };
+}();
 
-// Generate main display of projects.
-function projectDisplay()
-{
-    const main = document.querySelector("main");
-    const projectTabs = document.querySelector('.project-tabs');
-    projectTabs.addEventListener('click', (e) => {
-        let projectID = e.target.id;    // If button is clicked
-        if (e.target.parentNode.id)     // If a child element of button is clicked
-        {
-            projectID = e.target.parentNode.id;
-        }
-        if (projectID)
-        {
-            main.removeChild(main.lastChild);
-            main.appendChild(ProjectListDOM.search(projectID).mainDisplay());
-        }
-    });
-}
-
-export { TaskDisplayControl, inboxDisplay, projectDisplay };
+export { TaskDisplayControl, ProjectDisplayControl };
