@@ -1,6 +1,6 @@
 import { Task, TaskList, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
-import { dropDownListMethods, displayControl } from "./methods.js";
+import { dropDownListMethods } from "./methods.js";
 import { refreshProjectDisplay, TaskDisplayControl } from "./display.js";
 import { format } from "date-fns";
 
@@ -152,7 +152,7 @@ const TaskControl = function() {
         projectDOM.add(task);
 
         // If the parent project tab is open, update its display.
-        displayControl.updateParentProjectDisplay(projectDOM, task);
+        refreshProjectDisplay(task.project);
 
         // Display task upon creation.
         TaskDisplayControl.taskDisplay(task);
