@@ -1,15 +1,27 @@
 import { InboxInstance } from "./constructor.js";
 import { ProjectListDOM } from "./dom-object-constructors.js";
 
-// Generate task display
-function taskWindowClose()
-{
+// Task Display Control Unit
+const TaskDisplayControl = function() {
     const taskDisplayModal = document.querySelector(".task-modal");
     const closeBtn = taskDisplayModal.querySelector(".close-btn");
     closeBtn.addEventListener("click", () => {
         taskDisplayModal.close();
     });
-}
+
+    function taskDisplay(task)
+    {
+        const taskDisplayModal = document.querySelector(".task-modal");
+        taskDisplayModal.querySelector('.task-name').textContent = task.name;
+        taskDisplayModal.querySelector('.task-description').textContent = task.description;
+        taskDisplayModal.querySelector('.date').textContent = task.dueDate;
+        taskDisplayModal.querySelector('.priority').textContent = task.priority;
+        taskDisplayModal.querySelector('.edit-task').id = `${task.id}`;
+        taskDisplayModal.showModal();
+    }
+
+    return { taskDisplay };
+}();
 
 
 // Generate Inbox main display.
@@ -43,4 +55,4 @@ function projectDisplay()
     });
 }
 
-export { taskWindowClose, inboxDisplay, projectDisplay };
+export { TaskDisplayControl, inboxDisplay, projectDisplay };
