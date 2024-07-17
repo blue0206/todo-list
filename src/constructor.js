@@ -161,45 +161,49 @@ const TaskControl = function() {
     return { taskConstructor, taskEditor };
 }();
 
-// Project Constructor
-function projectConstructor()
-{
-    const projectModal = document.querySelector('.add-project-modal');
-    const projectModalBtn = document.querySelector('.project-tabs > .add-project');
+// Project Control Unit
+const ProjectControl = function() {
+    function projectConstructor()
+    {
+        const projectModal = document.querySelector('.add-project-modal');
+        const projectModalBtn = document.querySelector('.project-tabs > .add-project');
+        
+        projectModalBtn.addEventListener('click', () => {
+            projectModal.showModal();
+        });
+        
+        const projectAddBtn = document.querySelector('.submit-project');
+        projectAddBtn.addEventListener('click', () => {
+            const name = projectModal.querySelector('#project-name');
+        
+            // Create Project object instance and push into array (application-side)
+            const project = Project(name.value, idGen);
+            ProjectList.add(project);
+            console.log(project);
+        
+            // Create DOM content for project, 
+            // update sidebar display, store main DOM content in array
+            const projectDOM = ProjectDOM(name.value, idGen);
+            ProjectListDOM.add(projectDOM);
+            projectDOM.sidebarDisplay();
+        
+            // Increment the unique ID generator variable
+            idGen++;
+        
+            // Clear form input fields
+            name.value = "";
+        
+            projectModal.close();
+        });
     
-    projectModalBtn.addEventListener('click', () => {
-        projectModal.showModal();
-    });
-    
-    const projectAddBtn = document.querySelector('.submit-project');
-    projectAddBtn.addEventListener('click', () => {
-        const name = projectModal.querySelector('#project-name');
-    
-        // Create Project object instance and push into array (application-side)
-        const project = Project(name.value, idGen);
-        ProjectList.add(project);
-        console.log(project);
-    
-        // Create DOM content for project, 
-        // update sidebar display, store main DOM content in array
-        const projectDOM = ProjectDOM(name.value, idGen);
-        ProjectListDOM.add(projectDOM);
-        projectDOM.sidebarDisplay();
-    
-        // Increment the unique ID generator variable
-        idGen++;
-    
-        // Clear form input fields
-        name.value = "";
-    
-        projectModal.close();
-    });
+        const projectCancelBtn = projectModal.querySelector('.cancel-btn');
+        projectCancelBtn.addEventListener('click', () => {
+            projectModal.close();
+        });
+    }
 
-    const projectCancelBtn = projectModal.querySelector('.cancel-btn');
-    projectCancelBtn.addEventListener('click', () => {
-        projectModal.close();
-    });
-}
+    return { projectConstructor };
+}();
 
 // Create instance of Inbox
 const InboxInstance = function(){
@@ -211,4 +215,4 @@ const InboxInstance = function(){
     return { obj, objDOM };
 }();
 
-export { TaskControl, projectConstructor, InboxInstance };
+export { TaskControl, ProjectControl, InboxInstance };
