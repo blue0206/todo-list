@@ -175,20 +175,9 @@ const ProjectControl = function() {
         const projectAddBtn = document.querySelector('.submit-project');
         projectAddBtn.addEventListener('click', () => {
             const name = projectModal.querySelector('#project-name');
-        
-            // Create Project object instance and push into array (application-side)
-            const project = Project(name.value, idGen);
-            ProjectList.add(project);
-            console.log(project);
-        
-            // Create DOM content for project, 
-            // update sidebar display, store main DOM content in array
-            const projectDOM = ProjectDOM(name.value, idGen);
-            ProjectListDOM.add(projectDOM);
-            projectDOM.sidebarDisplay();
-        
-            // Increment the unique ID generator variable
-            idGen++;
+
+            // Construct project object and setup DOM content for the same.
+            projectSetup(name);
         
             // Clear form input fields
             name.value = "";
@@ -200,6 +189,25 @@ const ProjectControl = function() {
         projectCancelBtn.addEventListener('click', () => {
             projectModal.close();
         });
+    }
+
+    function projectSetup(name)
+    {
+        // APPLICATION-SIDE
+
+        // Create Project object instance and push into array (application-side)
+        ProjectList.add(Project(name.value, idGen));
+        
+        // DOM-SIDE
+
+        // Create DOM content for project, 
+        // update sidebar display, store main DOM content in array
+        const projectDOM = ProjectDOM(name.value, idGen);
+        ProjectListDOM.add(projectDOM);
+        projectDOM.sidebarDisplay();
+
+        // Increment ID generator.
+        idGen++;
     }
 
     return { projectConstructor };
