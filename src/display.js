@@ -76,7 +76,7 @@ function refreshDisplay(projectID=null)
     {
         document.querySelector('.project-tabs .my-projects').dispatchEvent(new MouseEvent('click'));
     }
-    else if (mainChild.id == projectID)
+    else if (mainChild.id == projectID && projectID !== null)
     {
         if (projectID == 0)
         {
