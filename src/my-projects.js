@@ -2,6 +2,7 @@ import { ProjectListDOM } from "./dom-object-constructors";
 
 export default function content() {
     const main = document.querySelector('main');
+    // Remove any child elements of main.
     if (main.lastChild)
     {
         main.removeChild(main.lastChild);
@@ -15,7 +16,7 @@ export default function content() {
     container.appendChild(heading);
 
     const projectList = document.createElement('div');
-    projectList.classList.add('projet-list');
+    projectList.classList.add('project-list');
 
     ProjectListDOM.list.forEach((project) => {
         if (project.id != 0)
