@@ -70,18 +70,23 @@ function myProjectsTab()
 
 function refreshProjectDisplay(projectID)
 {
-    if (projectID == 0)     // ID == 0 refers to inbox.
+    const mainChild = document.querySelector('main').lastChild;
+
+    if (mainChild.id == projectID)
     {
-        document.querySelector('button.inbox').dispatchEvent(new MouseEvent('click'));
-    }
-    else    // ID != 0 refers to any project other than inbox.
-    {
-        const projectNodes = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
-        listMethods(projectNodes).search(projectID).dispatchEvent(new MouseEvent(
-            'click', 
-            // Set to true as the event listener has been set up for parent element of node.
-            { bubbles: true }
-        ));
+        if (projectID == 0)
+        {
+            document.querySelector('button.inbox').dispatchEvent(new MouseEvent('click'));
+        }
+        else
+        {
+            const projectNodes = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
+            listMethods(projectNodes).search(projectID).dispatchEvent(new MouseEvent(
+                'click', 
+                // Set to true as the event listener has been set up for parent element of node.
+                { bubbles: true }
+            ));
+        }
     }
 }
 
