@@ -68,11 +68,15 @@ function myProjectsTab()
     });
 }
 
-function refreshProjectDisplay(projectID)
+function refreshDisplay(projectID=null)
 {
     const mainChild = document.querySelector('main').lastChild;
 
-    if (mainChild.id == projectID)
+    if (mainChild.className == "my-projects")
+    {
+        document.querySelector('.project-tabs .my-projects').dispatchEvent(new MouseEvent('click'));
+    }
+    else if (mainChild.id == projectID)
     {
         if (projectID == 0)
         {
@@ -90,4 +94,4 @@ function refreshProjectDisplay(projectID)
     }
 }
 
-export { TaskDisplayControl, ProjectDisplayControl, myProjectsTab, refreshProjectDisplay };
+export { TaskDisplayControl, ProjectDisplayControl, myProjectsTab, refreshDisplay };
