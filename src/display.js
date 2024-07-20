@@ -1,6 +1,6 @@
 import { InboxInstance } from "./constructor.js";
 import { ProjectListDOM } from "./dom-object-constructors.js";
-import { listMethods } from "./methods.js";
+import { listMethods, sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
 
 // Task Display Control Unit
@@ -84,12 +84,7 @@ function refreshDisplay(projectID=null)
         }
         else
         {
-            const projectNodes = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
-            listMethods(projectNodes).search(projectID).dispatchEvent(new MouseEvent(
-                'click', 
-                // Set to true as the event listener has been set up for parent element of node.
-                { bubbles: true }
-            ));
+            sidebarProjectsClickDispatch(projectID);
         }
     }
 }

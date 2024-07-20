@@ -60,4 +60,14 @@ const dropDownListMethods = (selectElement) => {
 	return { generate, remove };
 };
 
-export { listMethods, dropDownListMethods };
+function sidebarProjectsClickDispatch(projectID)
+{
+    const projectNodes = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
+    listMethods(projectNodes).search(projectID).dispatchEvent(new MouseEvent(
+        'click', 
+        // Set to true as the event listener has been set up for parent element of node.
+        { bubbles: true }
+    ));
+}
+
+export { listMethods, dropDownListMethods, sidebarProjectsClickDispatch };
