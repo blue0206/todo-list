@@ -54,8 +54,6 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
         },
         sidebarDisplay: () => {
             const projectTab = document.querySelector('.project-tabs');
-            const insertBeforeNode = projectTab.querySelector('.add-project');
-
             
             const projectBtn = document.createElement('button');
             projectBtn.classList.add('project-item');
@@ -70,8 +68,7 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             div.textContent = name;
             projectBtn.appendChild(div);
 
-
-            projectTab.insertBefore(projectBtn, insertBeforeNode);
+            projectTab.appendChild(projectBtn);
         },
         name,
         id
