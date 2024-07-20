@@ -1,4 +1,5 @@
 import { ProjectListDOM } from "./dom-object-constructors";
+import { sidebarProjectsClickDispatch } from "./methods";
 
 export default function content() {
     const main = document.querySelector('main');
@@ -26,6 +27,9 @@ export default function content() {
         {
             const projectBtn = document.createElement('button');
             projectBtn.classList.add('project');
+            projectBtn.addEventListener('click', () => {
+                sidebarProjectsClickDispatch(project.id);
+            });
             
             const projectName = document.createElement('div');
             projectName.textContent = project.name;
