@@ -77,7 +77,7 @@ function refreshProjectDisplay(projectID)
     else    // ID != 0 refers to any project other than inbox.
     {
         const projectNodes = Array.from(document.querySelectorAll('.project-tabs > .project-item'));
-        listMethods(projectNodes).search(task.project).dispatchEvent(new MouseEvent(
+        listMethods(projectNodes).search(projectID).dispatchEvent(new MouseEvent(
             'click', 
             // Set to true as the event listener has been set up for parent element of node.
             { bubbles: true }
