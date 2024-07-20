@@ -1,7 +1,7 @@
 import { Task, TaskList, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
 import { dropDownListMethods } from "./methods.js";
-import { refreshProjectDisplay, TaskDisplayControl } from "./display.js";
+import { refreshDisplay, TaskDisplayControl } from "./display.js";
 import { format } from "date-fns";
 
 let idGen = 1;
@@ -100,7 +100,7 @@ const TaskControl = function() {
             TaskDisplayControl.taskDisplay(task);   // Display the task window after update.
 
             // Refresh the project display to show the updated task.
-            refreshProjectDisplay(task.project);
+            refreshDisplay(task.project);
         });
 
         // Cancel button event listener.
@@ -152,7 +152,7 @@ const TaskControl = function() {
         projectDOM.add(task);
 
         // If the parent project tab is open, update its display.
-        refreshProjectDisplay(task.project);
+        refreshDisplay(task.project);
 
         // Display task upon creation.
         TaskDisplayControl.taskDisplay(task);
@@ -208,6 +208,9 @@ const ProjectControl = function() {
 
         // Increment ID generator.
         idGen++;
+
+        // Update 'My Projects' display if open.
+        refreshDisplay();
     }
 
     return { projectConstructor };
