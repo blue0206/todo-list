@@ -18,7 +18,10 @@ export default function content() {
     const projectList = document.createElement('div');
     projectList.classList.add('project-list');
 
+    // Generate DOM for all projects created this far
     ProjectListDOM.list.forEach((project) => {
+        // Project ID 0 belongs to Inbox which is
+        // not considered a project.
         if (project.id != 0)
         {
             const projectBtn = document.createElement('button');
@@ -32,14 +35,19 @@ export default function content() {
         }
     });
 
+    // Create "Add Project" button.
     const addProjectBtn = document.createElement('button');
     addProjectBtn.classList.add('add-project');
+    // Attach event listener to "Add Project" button in order to
+    // display the modal.
     addProjectBtn.addEventListener('click', () => {
+        // Dispatch the event to the "Add Project" button on sidebar.
         document
           .querySelector("nav .add-project")
           .dispatchEvent(new MouseEvent("click"));
     });
 
+    // Add Project Icon
     const addIcon = new Image();
     addIcon.src = "";
     addIcon.alt = "Add Project";
