@@ -1,6 +1,7 @@
 import { InboxInstance } from "./constructor.js";
 import { ProjectListDOM } from "./dom-object-constructors.js";
 import { listMethods } from "./methods.js";
+import myProjects from "./my-projects.js";
 
 // Task Display Control Unit
 const TaskDisplayControl = function() {
@@ -59,6 +60,14 @@ const ProjectDisplayControl = function() {
     return { inboxDisplay, projectDisplay };
 }();
 
+function myProjectsTab()
+{
+    const myProjectsBtn = document.querySelector("nav > .my-projects");
+    myProjectsBtn.addEventListener("click", () => {
+      myProjects();
+    });
+}
+
 function refreshProjectDisplay(projectID)
 {
     if (projectID == 0)     // ID == 0 refers to inbox.
@@ -76,4 +85,4 @@ function refreshProjectDisplay(projectID)
     }
 }
 
-export { TaskDisplayControl, ProjectDisplayControl, refreshProjectDisplay };
+export { TaskDisplayControl, ProjectDisplayControl, myProjectsTab, refreshProjectDisplay };
