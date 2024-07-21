@@ -127,6 +127,24 @@ const TaskControl = function() {
         }
     }
 
+    function taskDestructor()
+    {
+        const taskWindow = document.querySelector(".task-modal");   // Task Display Modal
+        // Attach event listener to task delete button to delete task.
+        const deleteBtn = taskWindow.querySelector(".delete-task");
+        deleteBtn.addEventListener('click', () => {
+            const task = TaskList.search(deleteBtn.id);
+            // Remove task from global task list.
+            TaskList.remove(task.id);
+            // Remove task from parent project's task list (application-side)
+            ProjectList.search(task.project).remove(task.id);
+            // Remove task from parent project's task list (DOM-side)
+            ProjectListDOM.search(task.project).remove(task.id);
+            // Close the task display modal.
+            taskWindow.close();
+        });
+    }
+
     function taskSetup(name, description, dueDate, priority, parentProject)
     {
         // APPLICATION-SIDE
@@ -158,7 +176,7 @@ const TaskControl = function() {
         TaskDisplayControl.taskDisplay(task);
     }
 
-    return { taskConstructor, taskEditor };
+    return { taskConstructor, taskEditor, taskDestructor };
 }();
 
 // Project Control Unit
