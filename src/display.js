@@ -1,6 +1,6 @@
 import { InboxInstance } from "./constructor.js";
 import { ProjectListDOM } from "./dom-object-constructors.js";
-import { listMethods, sidebarProjectsClickDispatch } from "./methods.js";
+import { sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
 
 // Task Display Control Unit
