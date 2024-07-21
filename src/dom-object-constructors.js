@@ -1,7 +1,7 @@
 import { listMethods } from "./methods.js";
 import { TaskDisplayControl } from "./display.js";
 
-const ProjectDOM = function(name, id, projectTaskList = []) {
+const ProjectDOM = function(name, id, tasks = []) {
     const displayObj = {
         mainDisplay: () => {
             // Container
@@ -27,7 +27,7 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             const taskList = document.createElement('ul');
             taskList.classList.add('project-task-list');
 
-            projectTaskList.forEach((task) => {
+            tasks.forEach((task) => {
                 updateProjectTaskList(taskList, task);
             });
             // Task Add Button shown at bottom of task list
@@ -71,7 +71,8 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
             projectTab.appendChild(projectBtn);
         },
         name,
-        id
+        id,
+        tasks
     };
 
     const updateProjectTaskList = (taskList, task) => {
@@ -105,7 +106,7 @@ const ProjectDOM = function(name, id, projectTaskList = []) {
     return Object.assign(
         {},
         displayObj,
-        listMethods(projectTaskList)
+        listMethods(tasks)
     );
 };
 
