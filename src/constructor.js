@@ -9,6 +9,8 @@ let idGen = 1;
 // Task Control Unit
 const TaskControl = function() {
     
+    const taskWindow = document.querySelector(".task-modal");  // Task Display Modal
+    
     function taskConstructor() 
     {
         const taskModal = document.querySelector('.add-task-modal');
@@ -59,7 +61,6 @@ const TaskControl = function() {
 
     function taskEditor()
     {
-        const taskWindow = document.querySelector(".task-modal");           // Task Display Modal
         const taskEditModal = document.querySelector(".edit-task-modal");   // Task Edit Modal
         const editModalBtn = taskWindow.querySelector(".edit-task");        // Modal button
         const editSubmitBtn = taskEditModal.querySelector(".modify-btn");
@@ -129,7 +130,6 @@ const TaskControl = function() {
 
     function taskDestructor()
     {
-        const taskWindow = document.querySelector(".task-modal");   // Task Display Modal
         // Attach event listener to task delete button to delete task.
         const deleteBtn = taskWindow.querySelector(".delete-task");
         deleteBtn.addEventListener('click', () => {
