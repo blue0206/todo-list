@@ -118,17 +118,7 @@ const TaskControl = function() {
         // Attach event listener to task delete button to delete task.
         const deleteBtn = taskWindow.querySelector(".delete-task");
         deleteBtn.addEventListener('click', () => {
-            const task = TaskList.search(deleteBtn.id);
-            // Remove task from global task list.
-            TaskList.remove(task.id);
-            // Remove task from parent project's task list (application-side)
-            ProjectList.search(task.project).remove(task.id);
-            // Remove task from parent project's task list (DOM-side)
-            ProjectListDOM.search(task.project).remove(task.id);
-            // Refresh display.
-            refreshDisplay(task.project);
-            // Close the task display modal.
-            taskWindow.close();
+            deleteTask(TaskList.search(deleteBtn.id));
         });
     }
 
@@ -182,7 +172,27 @@ const TaskControl = function() {
         parentProjectSelection.querySelector(`option[value="${task.project}"]`).toggleAttribute('selected');
     }
 
-    return { taskConstructor, taskEditor, taskDestructor, setupTaskEditFields };
+    function deleteTask(task)
+    {
+        // Remove task from global task list.
+        TaskList.remove(task.id);
+        // Remove task from parent project's task list (application-side)
+        ProjectList.search(task.project).remove(task.id);
+        // Remove task from parent project's task list (DOM-side)
+        ProjectListDOM.search(task.project).remove(task.id);
+        // Refresh display.
+        refreshDisplay(task.project);
+        // Close the task display modal.
+        taskWindow.close();
+    }
+
+    return { 
+        taskConstructor, 
+        taskEditor, 
+        taskDestructor, 
+        setupTaskEditFields, 
+        deleteTask
+    };
 }();
 
 // Project Control Unit
