@@ -1,5 +1,3 @@
-import { InboxInstance } from "./constructor.js";
-import { ProjectListDOM } from "./dom-object-constructors.js";
 import { sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
 
@@ -26,46 +24,22 @@ const TaskDisplayControl = function() {
     return { taskDisplay };
 }();
 
-// Project Display Control Unit
-const ProjectDisplayControl = function() {
-    // Generate Inbox display.
-    function inboxDisplay()
+// Generate project display.
+function projectDisplay(project)
+{
+    const main = document.querySelector('main');
+    if (main.lastChild)
     {
-        const main = document.querySelector('main');
-        const inboxTab = document.querySelector('button.inbox');
-        inboxTab.addEventListener('click', () => {
-            main.removeChild(main.lastChild);   // Remove existing content
-            main.appendChild(InboxInstance.objDOM.mainDisplay()); // Add new content
-        });
+        main.removeChild(main.lastChild);
     }
-
-    // Generate main display of projects.
-    function projectDisplay()
-    {
-        const main = document.querySelector("main");
-        const projectTabs = document.querySelector('.project-tabs');
-        projectTabs.addEventListener('click', (e) => {
-            let projectID = e.target.id;    // If button is clicked
-            if (e.target.parentNode.id)     // If a child element of button is clicked
-            {
-                projectID = e.target.parentNode.id;
-            }
-            if (projectID)
-            {
-                main.removeChild(main.lastChild);
-                main.appendChild(ProjectListDOM.search(projectID).mainDisplay());
-            }
-        });
-    }
-
-    return { inboxDisplay, projectDisplay };
-}();
+    main.appendChild(project.mainDisplay());
+}
 
 function myProjectsTab()
 {
     const myProjectsBtn = document.querySelector("nav > .my-projects");
     myProjectsBtn.addEventListener("click", () => {
-      myProjects();
+        myProjects();
     });
 }
 
@@ -90,4 +64,4 @@ function refreshDisplay(projectID=null)
     }
 }
 
-export { TaskDisplayControl, ProjectDisplayControl, myProjectsTab, refreshDisplay };
+export { TaskDisplayControl, projectDisplay, myProjectsTab, refreshDisplay };
