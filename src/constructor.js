@@ -111,7 +111,6 @@ const TaskControl = function() {
             taskEditModal.close();  // Close task edit modal upon cancelling.
             taskWindow.showModal();  // Display the task.
         });
-        
     }
     
     function taskDestructor()
@@ -126,6 +125,8 @@ const TaskControl = function() {
             ProjectList.search(task.project).remove(task.id);
             // Remove task from parent project's task list (DOM-side)
             ProjectListDOM.search(task.project).remove(task.id);
+            // Refresh display.
+            refreshDisplay(task.project);
             // Close the task display modal.
             taskWindow.close();
         });
