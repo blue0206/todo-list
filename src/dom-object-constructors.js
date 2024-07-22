@@ -1,5 +1,5 @@
 import { listMethods } from "./methods.js";
-import { TaskDisplayControl } from "./display.js";
+import { TaskDisplayControl, projectDisplay } from "./display.js";
 import { TaskControl } from "./constructor.js";
 import { TaskList } from "./object-constructors.js";
 
@@ -60,6 +60,9 @@ const ProjectDOM = function(name, id, tasks = []) {
             const projectBtn = document.createElement('button');
             projectBtn.classList.add('project-item');
             projectBtn.id = id;
+            projectBtn.addEventListener('click', () => {
+                projectDisplay(ProjectListDOM.search(id));
+            });
 
             const img = new Image();
             img.src = "";
