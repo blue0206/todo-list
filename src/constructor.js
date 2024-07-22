@@ -1,7 +1,7 @@
 import { Task, TaskList, Project, ProjectList } from "./object-constructors.js";
 import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
 import { dropDownListMethods } from "./methods.js";
-import { refreshDisplay, TaskDisplayControl } from "./display.js";
+import { projectDisplay, refreshDisplay, TaskDisplayControl } from "./display.js";
 import { format } from "date-fns";
 
 let idGen = 1;
@@ -250,14 +250,22 @@ const ProjectControl = function() {
     return { projectConstructor };
 }();
 
-// Create instance of Inbox
-const InboxInstance = function(){
-    const obj = new Project("Inbox", 0);
-    const objDOM = ProjectDOM("Inbox", 0);
-    ProjectList.add(obj);
-    ProjectListDOM.add(objDOM);
+// Initialize and attach event listener to Inbox.
+function inboxSetup()
+{
+    // Application-side
+    const inbox = Project("Inbox", 0);
+    ProjectList.add(inbox);
 
-    return { obj, objDOM };
-}();
+    // DOM-side
+    const inboxDOM = ProjectDOM("Inbox", 0);
+    ProjectListDOM.add(inboxDOM);
 
-export { TaskControl, ProjectControl, InboxInstance };
+    // Attach event listener to Inbox tab in sidebar.
+    const inboxTab = document.querySelector('.tabs .inbox');
+    inboxTab.addEventListener('click', () => {
+        projectDisplay(inboxDOM);
+    });
+}
+
+export { TaskControl, ProjectControl, inboxSetup };
