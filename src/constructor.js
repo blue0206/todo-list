@@ -69,19 +69,18 @@ const TaskControl = function() {
         const taskDropDown = dropDownListMethods(
             taskEditModal.querySelector('#parent-project')
         );
-        let task = null;    // Will store the task to be edited.
-
+        
         // Task edit modal button event listener to display modal on click.
         editModalBtn.addEventListener('click', () => {
             taskWindow.close();         // Close task display modal.
             taskEditModal.showModal();  // Show task edit modal
-            task = TaskList.search(editModalBtn.id);    // Store the task to be edited.
             // Setup the task edit fields with existing data.
-            setupTaskEditFields(task);
+            setupTaskEditFields(TaskList.search(editModalBtn.id)); // Pass the task as argument.
         });
-
+        
         // Submit button event listener.
         editSubmitBtn.addEventListener('click', () => {
+            const task = TaskList.search(editModalBtn.id);    // Store the task to be edited.
             // Get rid of generated project list.
             taskDropDown.remove();
 
@@ -110,24 +109,11 @@ const TaskControl = function() {
             taskDropDown.remove();
 
             taskEditModal.close();  // Close task edit modal upon cancelling.
-            taskModal.showModal();  // Display the task.
+            taskWindow.showModal();  // Display the task.
         });
-
-        function setupTaskEditFields(task)
-        {
-            taskEditModal.querySelector('#task-name').value = task.name;
-            taskEditModal.querySelector('#description').value = task.description;
-            taskEditModal.querySelector('#due-date').value = task.dueDate;
-            taskEditModal.querySelector('#priority').value = task.priority;
-            
-            // Generate project list.
-            taskDropDown.generate(ProjectList.list);
-            // Set current parent project as selected in the drop-down.
-            const parentProjectSelection = taskEditModal.querySelector('#parent-project');
-            parentProjectSelection.querySelector(`option[value="${task.project}"]`).toggleAttribute('selected');
-        }
+        
     }
-
+    
     function taskDestructor()
     {
         // Attach event listener to task delete button to delete task.
@@ -148,7 +134,7 @@ const TaskControl = function() {
     function taskSetup(name, description, dueDate, priority, parentProject)
     {
         // APPLICATION-SIDE
-
+        
         // Create task object instance
         const task = new Task(
             name.value, 
@@ -162,21 +148,40 @@ const TaskControl = function() {
         // Push created task into global and parent project task list.
         TaskList.add(task);
         ProjectList.search(task.project).add(task);
-
+        
         // DOM-SIDE
-
+        
         // Push created task into DOM parent project object task list.
         const projectDOM = ProjectListDOM.search(task.project);
         projectDOM.add(task);
-
+        
         // If the parent project tab is open, update its display.
         refreshDisplay(task.project);
-
+        
         // Display task upon creation.
         TaskDisplayControl.taskDisplay(task);
     }
 
-    return { taskConstructor, taskEditor, taskDestructor };
+    function setupTaskEditFields(task)
+    {
+        const taskEditModal = document.querySelector(".edit-task-modal");   // Task Edit Modal
+        taskEditModal.querySelector('#task-name').value = task.name;
+        taskEditModal.querySelector('#description').value = task.description;
+        taskEditModal.querySelector('#due-date').value = task.dueDate;
+        taskEditModal.querySelector('#priority').value = task.priority;
+        
+        // Create parent-project drop-down handler.
+        const taskDropDown = dropDownListMethods(
+            taskEditModal.querySelector('#parent-project')
+        );
+        // Generate project list.
+        taskDropDown.generate(ProjectList.list);
+        // Set current parent project as selected in the drop-down.
+        const parentProjectSelection = taskEditModal.querySelector('#parent-project');
+        parentProjectSelection.querySelector(`option[value="${task.project}"]`).toggleAttribute('selected');
+    }
+
+    return { taskConstructor, taskEditor, taskDestructor, setupTaskEditFields };
 }();
 
 // Project Control Unit
