@@ -60,18 +60,10 @@ const ProjectDOM = function(name, id, tasks = []) {
             const projectBtn = document.createElement('button');
             projectBtn.classList.add('project-item');
             projectBtn.id = id;
+            projectBtn.textContent = name;
             projectBtn.addEventListener('click', () => {
                 projectDisplay(ProjectListDOM.search(id));
             });
-
-            const img = new Image();
-            img.src = "";
-            img.alt = "Open Project";
-            projectBtn.appendChild(img);
-
-            const div = document.createElement('div');
-            div.textContent = name;
-            projectBtn.appendChild(div);
 
             projectTab.appendChild(projectBtn);
         },
