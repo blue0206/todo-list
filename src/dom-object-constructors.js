@@ -1,5 +1,7 @@
 import { listMethods } from "./methods.js";
 import { TaskDisplayControl } from "./display.js";
+import { TaskControl } from "./constructor.js";
+import { TaskList } from "./object-constructors.js";
 
 const ProjectDOM = function(name, id, tasks = []) {
     const displayObj = {
@@ -100,6 +102,20 @@ const ProjectDOM = function(name, id, tasks = []) {
         taskBody.appendChild(taskDescription);
 
         taskContainer.appendChild(taskBody);
+
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('edit-task');
+        editBtn.addEventListener('click', () => {
+            document.querySelector('.edit-task-modal').showModal();
+            TaskControl.setupTaskEditFields(TaskList.search(task.id));
+        });
+
+        const editIcon = new Image();
+        editIcon.src = "";
+        editIcon.alt = "Edit Task";
+        editBtn.appendChild(editIcon);
+
+        taskContainer.appendChild(editBtn);
         taskList.appendChild(taskContainer);
     };
 
