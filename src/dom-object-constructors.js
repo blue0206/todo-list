@@ -116,6 +116,19 @@ const ProjectDOM = function(name, id, tasks = []) {
         editBtn.appendChild(editIcon);
 
         taskContainer.appendChild(editBtn);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-task');
+        deleteBtn.addEventListener('click', () => {
+            TaskControl.deleteTask(task);
+        });
+
+        const deleteIcon = new Image();
+        deleteIcon.src = "";
+        deleteIcon.alt = "Delete Task";
+        deleteBtn.appendChild(deleteIcon);
+        
+        taskContainer.appendChild(deleteBtn);
         taskList.appendChild(taskContainer);
     };
 
