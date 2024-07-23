@@ -29,13 +29,7 @@ const ProjectDOM = function(name, id, tasks = []) {
                 const projectEditBtn = document.createElement('button');
                 projectEditBtn.classList.add('edit-project');
                 projectEditBtn.addEventListener('click', () => {
-                    const projectEditModal = document.querySelector('.edit-project-modal');
-                    // Id will be utilised in editor function to identify project.
-                    projectEditModal.id = id;
-                    // Setup edit modal input field with initial value.
-                    projectEditModal.querySelector('#project-name').value = name;
-                    // Display project edit modal.
-                    projectEditModal.showModal();
+                    editProject(name);
                 });
     
                 // Project Edit Icon
@@ -97,13 +91,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             const editBtn = document.createElement('button');
             editBtn.classList.add('edit-project');
             editBtn.addEventListener('click', () => {
-                const projectEditModal = document.querySelector('.edit-project-modal');
-                // Id will be utilised in editor function to identify project.
-                projectEditModal.id = id;
-                // Setup edit modal input field with initial value.
-                projectEditModal.querySelector('#project-name').value = name;
-                // Display project edit modal.
-                projectEditModal.showModal();
+                editProject(name);
             });
 
             const editIcon = new Image();
@@ -186,6 +174,16 @@ const ProjectDOM = function(name, id, tasks = []) {
         
         taskContainer.appendChild(deleteBtn);
         taskList.appendChild(taskContainer);
+    };
+
+    const editProject = (name) => {
+        const projectEditModal = document.querySelector(".edit-project-modal");
+        // Id will be utilised in editor function to identify project.
+        projectEditModal.id = id;
+        // Setup edit modal input field with initial value.
+        projectEditModal.querySelector("#project-name").value = name;
+        // Display project edit modal.
+        projectEditModal.showModal();
     };
 
     return Object.assign(
