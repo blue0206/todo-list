@@ -72,7 +72,13 @@ const ProjectDOM = function(name, id, tasks = []) {
             const editBtn = document.createElement('button');
             editBtn.classList.add('edit-project');
             editBtn.addEventListener('click', () => {
-                
+                const projectEditModal = document.querySelector('.edit-project-modal');
+                // Id will be utilised in editor function to identify project.
+                projectEditModal.id = id;
+                // Setup edit modal input field with initial value.
+                projectEditModal.querySelector('#project-name').value = name;
+                // Display project edit modal.
+                projectEditModal.showModal();
             });
 
             const editIcon = new Image();
@@ -85,7 +91,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-project');
             deleteBtn.addEventListener('click', () => {
-                
+
             });
 
             const deleteIcon = new Image();
