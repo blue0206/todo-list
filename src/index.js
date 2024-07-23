@@ -6,5 +6,6 @@ TaskControl.taskConstructor();
 TaskControl.taskEditor();
 TaskControl.taskDestructor();
 ProjectControl.projectConstructor();
+ProjectControl.projectEditor();
 inboxSetup();
 myProjectsTab();
