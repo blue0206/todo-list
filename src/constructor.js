@@ -247,6 +247,16 @@ const ProjectControl = function() {
         });
     }
 
+    function projectDestructor(projectID)
+    {
+        // Remove project from application-side list.
+        ProjectList.remove(projectID);
+        // Remove project from DOM-side list.
+        ProjectListDOM.remove(projectID);
+        // Refresh main & sidebar display.
+        refreshDisplay(projectID, true);
+    }
+
     function projectSetup(name)
     {
         // APPLICATION-SIDE
@@ -269,7 +279,7 @@ const ProjectControl = function() {
         refreshDisplay();
     }
 
-    return { projectConstructor, projectEditor };
+    return { projectConstructor, projectEditor, projectDestructor };
 }();
 
 // Initialize and attach event listener to Inbox.
