@@ -1,6 +1,6 @@
 import { listMethods } from "./methods.js";
 import { TaskDisplayControl, projectDisplay } from "./display.js";
-import { TaskControl } from "./constructor.js";
+import { TaskControl, ProjectControl } from "./constructor.js";
 import { TaskList } from "./object-constructors.js";
 
 const ProjectDOM = function(name, id, tasks = []) {
@@ -44,7 +44,7 @@ const ProjectDOM = function(name, id, tasks = []) {
                 const projectDeleteBtn = document.createElement('button');
                 projectDeleteBtn.classList.add('delete-project');
                 projectDeleteBtn.addEventListener('click', () => {
-                    
+                    ProjectControl.projectDestructor(id);
                 });
 
                 // Project Delete Icon
@@ -119,7 +119,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-project');
             deleteBtn.addEventListener('click', () => {
-
+                ProjectControl.projectDestructor(id);
             });
 
             const deleteIcon = new Image();
