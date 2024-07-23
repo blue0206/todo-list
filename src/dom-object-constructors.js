@@ -4,7 +4,7 @@ import { TaskControl } from "./constructor.js";
 import { TaskList } from "./object-constructors.js";
 
 const ProjectDOM = function(name, id, tasks = []) {
-    const displayObj = {
+    const obj = {
         mainDisplay: () => {
             // Container
             const projectContainer = document.createElement('div');
@@ -158,7 +158,7 @@ const ProjectDOM = function(name, id, tasks = []) {
 
     return Object.assign(
         {},
-        displayObj,
+        obj,
         listMethods(tasks)
     );
 };
