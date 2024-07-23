@@ -22,7 +22,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             projectName.classList.add('project-name');
             projectHeading.appendChild(projectName);
 
-            // Add edit feature (not for Inbox)
+            // Add edit & delete feature (not for Inbox)
             if (id != 0)    // Inbox has id == 0.
             {
                 // Project Edit
@@ -39,6 +39,21 @@ const ProjectDOM = function(name, id, tasks = []) {
                 projectEditBtn.appendChild(projectEditIcon);
                 
                 projectHeading.appendChild(projectEditBtn);
+
+                // Project Delete
+                const projectDeleteBtn = document.createElement('button');
+                projectDeleteBtn.classList.add('delete-project');
+                projectDeleteBtn.addEventListener('click', () => {
+                    
+                });
+
+                // Project Delete Icon
+                const projectDeleteIcon = new Image();
+                projectDeleteIcon.src = "";
+                projectDeleteIcon.alt = "Delete Project";
+                projectDeleteBtn.appendChild(projectDeleteIcon);
+
+                projectHeading.appendChild(projectDeleteBtn);
             }
 
             projectContainer.appendChild(projectHeading);
