@@ -48,17 +48,21 @@ function refreshDisplay(projectID=null, sidebarDisplay=false)
 {
     const mainChild = document.querySelector('main').lastChild;
 
-    if (mainChild.className == "my-projects")
+    if (mainChild.className == "my-projects")   // Refresh "My Projects" tab if on display.
     {
         document.querySelector('.project-tabs .my-projects').dispatchEvent(new MouseEvent('click'));
     }
-    else if (mainChild.id == projectID && projectID !== null)
+    else if (projectID !== null && !ProjectListDOM.search(projectID))  // If ID provided & project is deleted.
     {
-        if (projectID == 0)
+        document.querySelector('main').removeChild(mainChild);         // Remove deleted project from display.
+    }
+    else if (mainChild.id == projectID && projectID !== null)  // Refresh project tab if on display & id provided.
+    {
+        if (projectID == 0)     // ID == 0 refers to Inbox.
         {
             document.querySelector('button.inbox').dispatchEvent(new MouseEvent('click'));
         }
-        else
+        else    // For all projects.
         {
             sidebarProjectsClickDispatch(projectID);
         }
