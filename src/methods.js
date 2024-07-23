@@ -35,6 +35,8 @@ const listMethods = (list) => {
             }
             mid = Math.floor(start + (end-start)/2);
         }
+
+        return false;
     };
 
     return { add, remove, search };
