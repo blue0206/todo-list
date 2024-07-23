@@ -21,7 +21,32 @@ const ProjectDOM = function(name, id, tasks = []) {
             projectName.textContent = name;
             projectName.classList.add('project-name');
             projectHeading.appendChild(projectName);
-            
+
+            // Add edit feature (not for Inbox)
+            if (id != 0)    // Inbox has id == 0.
+            {
+                // Project Edit
+                const projectEditBtn = document.createElement('button');
+                projectEditBtn.classList.add('edit-project');
+                projectEditBtn.addEventListener('click', () => {
+                    const projectEditModal = document.querySelector('.edit-project-modal');
+                    // Id will be utilised in editor function to identify project.
+                    projectEditModal.id = id;
+                    // Setup edit modal input field with initial value.
+                    projectEditModal.querySelector('#project-name').value = name;
+                    // Display project edit modal.
+                    projectEditModal.showModal();
+                });
+    
+                // Project Edit Icon
+                const projectEditIcon = new Image();
+                projectEditIcon.src = "";
+                projectEditIcon.alt = "Edit Project";
+                projectEditBtn.appendChild(projectEditIcon);
+                
+                projectHeading.appendChild(projectEditBtn);
+            }
+
             projectContainer.appendChild(projectHeading);
         
         
