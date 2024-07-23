@@ -225,6 +225,28 @@ const ProjectControl = function() {
         });
     }
 
+    function projectEditor()
+    {
+        const projectEditModal = document.querySelector('.edit-project-modal');
+        const submitBtn = projectEditModal.querySelector('.modify-btn');
+        const cancelBtn = projectEditModal.querySelector('.cancel-btn');
+
+        submitBtn.addEventListener('click', () => {
+            const projectID = projectEditModal.id;
+            const newName = projectEditModal.querySelector('#project-name').value;
+
+            ProjectList.search(projectID).update(newName);
+            ProjectListDOM.search(projectID).update(newName);
+
+            refreshDisplay(projectID, true);
+            projectEditModal.close();
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            projectEditModal.close();
+        });
+    }
+
     function projectSetup(name)
     {
         // APPLICATION-SIDE
@@ -247,7 +269,7 @@ const ProjectControl = function() {
         refreshDisplay();
     }
 
-    return { projectConstructor };
+    return { projectConstructor, projectEditor };
 }();
 
 // Initialize and attach event listener to Inbox.
