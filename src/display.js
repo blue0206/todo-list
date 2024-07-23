@@ -1,3 +1,4 @@
+import { ProjectListDOM } from "./dom-object-constructors.js";
 import { sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
 
@@ -43,7 +44,7 @@ function myProjectsTab()
     });
 }
 
-function refreshDisplay(projectID=null)
+function refreshDisplay(projectID=null, sidebarDisplay=false)
 {
     const mainChild = document.querySelector('main').lastChild;
 
@@ -61,6 +62,22 @@ function refreshDisplay(projectID=null)
         {
             sidebarProjectsClickDispatch(projectID);
         }
+    }
+
+    if (sidebarDisplay)
+    {
+        const projectTabs = document.querySelector('.project-tabs');
+        while (projectTabs.lastChild.className == "project-li")
+        {
+            projectTabs.removeChild(projectTabs.lastChild);
+        }
+
+        ProjectListDOM.list.forEach((project) => {
+            if (project.id != 0)
+            {
+                project.sidebarDisplay();
+            }
+        });
     }
 }
 
