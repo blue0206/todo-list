@@ -98,6 +98,7 @@ const ProjectDOM = function(name, id, tasks = []) {
         },
         name,
         id,
+        update: function(newName) { name = newName },
         tasks
     };
 
