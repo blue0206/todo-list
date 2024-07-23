@@ -39,6 +39,7 @@ const Project = function(name, id, tasks=[]) {
     const obj = {
         name,
         id,
+        update: function(newName) { name = newName },
         tasks
     }
     
