@@ -57,6 +57,9 @@ const ProjectDOM = function(name, id, tasks = []) {
         sidebarDisplay: () => {
             const projectTab = document.querySelector('.project-tabs');
             
+            const projectContainer = document.createElement('li');
+            projectContainer.classList.add('project-li');
+
             const projectBtn = document.createElement('button');
             projectBtn.classList.add('project-item');
             projectBtn.id = id;
@@ -64,8 +67,34 @@ const ProjectDOM = function(name, id, tasks = []) {
             projectBtn.addEventListener('click', () => {
                 projectDisplay(ProjectListDOM.search(id));
             });
+            projectContainer.appendChild(projectBtn);
 
-            projectTab.appendChild(projectBtn);
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('edit-project');
+            editBtn.addEventListener('click', () => {
+                
+            });
+
+            const editIcon = new Image();
+            editIcon.src = "";
+            editIcon.alt = "Edit Project";
+            editBtn.appendChild(editIcon);
+
+            projectContainer.appendChild(editBtn);
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('delete-project');
+            deleteBtn.addEventListener('click', () => {
+                
+            });
+
+            const deleteIcon = new Image();
+            deleteIcon.src = "";
+            deleteIcon.alt = "Delete Project";
+            deleteBtn.appendChild(deleteIcon);
+
+            projectContainer.appendChild(deleteBtn);
+            projectTab.appendChild(projectContainer);
         },
         name,
         id,
