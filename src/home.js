@@ -9,9 +9,11 @@ export default function content()
     const home = document.createElement('div');
     home.classList.add('home');
 
-    // Append header content.
+    // Append header section content.
     home.appendChild(headerContent());
 
+    // Append main section content.
+    home.appendChild(mainContent());
     
 }
 
@@ -26,4 +28,12 @@ function headerContent()
     header.appendChild(heading);
 
     return header;
+}
+
+function mainContent()
+{
+    // Main Content Container
+    const mainSection = document.createElement('div');
+    mainSection.classList.add('home-main');
+
 }
