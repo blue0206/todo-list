@@ -149,6 +149,9 @@ function taskCard(task)
     // Delete button.
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('card-delete-btn');
+    deleteBtn.addEventListener('click', () => {
+        TaskControl.deleteTask(task);
+    });
     const deleteIcon = new Image();
     deleteIcon.src = "";
     deleteIcon.alt = "Delete Task";
