@@ -24,7 +24,7 @@ const TaskDisplayControl = function() {
         taskDisplayModal.querySelector('.priority').textContent = task.priority;
         // Show task status.
         taskDisplayModal.querySelector(".status").textContent =
-          task.status == true ? "Complete" : "Incomplete";
+          task.status == true ? "Complete" : "Pending";
         // Attach id to edit & delete buttons for task identification and appropriate action.
         taskDisplayModal.querySelector('.edit-task').id = `${task.id}`;
         taskDisplayModal.querySelector(".delete-task").id = `${task.id}`;

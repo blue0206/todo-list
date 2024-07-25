@@ -1,5 +1,6 @@
 import { TaskList } from "./object-constructors";
 import { ProjectListDOM } from "./dom-object-constructors";
+import { TaskDisplayControl } from "./display";
 
 export default function content()
 {
@@ -95,6 +96,9 @@ function taskCard(task)
     const taskName = document.createElement('h3');
     taskName.classList.add('task-name');
     taskName.textContent = task.name;
+    taskName.addEventListener('click', () => {
+        TaskDisplayControl.taskDisplay(task);
+    });
     cardContent.appendChild(taskName);
 
     // Task Description
