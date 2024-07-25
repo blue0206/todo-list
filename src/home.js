@@ -1,6 +1,7 @@
 import { TaskList } from "./object-constructors";
 import { ProjectListDOM } from "./dom-object-constructors";
 import { refreshDisplay, TaskDisplayControl } from "./display";
+import { TaskControl } from "./constructor";
 
 export default function content()
 {
@@ -136,6 +137,10 @@ function taskCard(task)
     // Edit button.
     const editBtn = document.createElement('button');
     editBtn.classList.add('card-edit-btn');
+    editBtn.addEventListener('click', () => {
+        document.querySelector(".edit-task-modal").showModal();
+        TaskControl.setupTaskEditFields(task);
+    });
     const editIcon = new Image();
     editIcon.src = "";
     editIcon.alt = "Edit Task";
