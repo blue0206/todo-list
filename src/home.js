@@ -219,13 +219,45 @@ function highPriorityTasks()
     highPriorityListContainer.classList.add('priority-task-list');
     // First display MAXIMUM priority tasks.
     TaskList.list.forEach((task) => {
-
+        if (task.priority == "Maximum")
+        {
+            highPriorityListContainer.appendChild(priorityTaskContent(task));
+            // Generate outline container for styling purposes and append.
+            const outline = document.createElement('div');
+            outline.classList.add('outline');
+            highPriorityListContainer.appendChild(outline);
+        }
     });
     // Second display HIGH priority tasks.
     TaskList.list.forEach((task) => {
-
+        if (task.priority == "High")
+        {
+            highPriorityListContainer.appendChild(priorityTaskContent(task));
+            // Generate outline container for styling purposes and append.
+            const outline = document.createElement('div');
+            outline.classList.add('outline');
+            highPriorityListContainer.appendChild(outline);
+        }
     });
     prioritySection.appendChild(highPriorityListContainer);
 
     return prioritySection;
+}
+
+function priorityTaskContent(task)
+{
+    const container = document.createElement('div');
+    container.classList.add('priority-task');
+
+    // Task Heading
+    const heading = document.createElement('button');
+    heading.textContent = task.name;
+    container.appendChild(heading);
+
+    // Task Priority
+    const taskPriority = document.createElement('div');
+    taskPriority.textContent = task.priority;
+    container.appendChild(taskPriority);
+
+    return container;
 }
