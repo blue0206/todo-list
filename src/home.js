@@ -1,4 +1,5 @@
 import { TaskList } from "./object-constructors";
+import { ProjectListDOM } from "./dom-object-constructors";
 
 export default function content()
 {
@@ -157,12 +158,15 @@ function projects()
     const projectListContainer = document.createElement('div');
     projectListContainer.classList.add('home-project-list');
     ProjectListDOM.list.forEach((project) => {
-        // Append project item DOM content.
-        projectListContainer.appendChild(generateProjectContent(project));
-        // Generate outline container for styling purposes and append.
-        const outline = document.createElement('div');
-        outline.classList.add('outline');
-        projectListContainer.appendChild(outline);
+        if (project.id != 0)  // ID == 0 refers to inbox, which is not a project.
+        {
+            // Append project item DOM content.
+            projectListContainer.appendChild(generateProjectContent(project));
+            // Generate outline container for styling purposes and append.
+            const outline = document.createElement('div');
+            outline.classList.add('outline');
+            projectListContainer.appendChild(outline);
+        }
     });
     projectSection.appendChild(projectListContainer);
 
