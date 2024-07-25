@@ -1,6 +1,6 @@
 import { TaskList } from "./object-constructors";
 import { ProjectListDOM } from "./dom-object-constructors";
-import { TaskDisplayControl } from "./display";
+import { refreshDisplay, TaskDisplayControl } from "./display";
 
 export default function content()
 {
@@ -124,6 +124,10 @@ function taskCard(task)
     // Mark Complete button.
     const markCompleteBtn = document.createElement('button');
     markCompleteBtn.classList.add('card-mark-btn');
+    markCompleteBtn.addEventListener('click', () => {
+        task.status = true;
+        refreshDisplay();
+    });
     const markCompleteIcon = new Image();
     markCompleteIcon.src = "";
     markCompleteIcon.alt = "Mark Complete";
