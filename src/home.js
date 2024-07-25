@@ -2,6 +2,7 @@ import { TaskList } from "./object-constructors";
 import { ProjectListDOM } from "./dom-object-constructors";
 import { refreshDisplay, TaskDisplayControl } from "./display";
 import { TaskControl } from "./constructor";
+import { sidebarProjectsClickDispatch } from "./methods";
 
 export default function content()
 {
@@ -206,6 +207,9 @@ function generateProjectContent(project)
     // Project Heading
     const heading = document.createElement('button');
     heading.textContent = project.name;
+    heading.addEventListener('click', () => {
+        sidebarProjectsClickDispatch(project.id);
+    });
     projectContainer.appendChild(heading);
 
     // Project tasks (set word limit as well.)
