@@ -157,9 +157,38 @@ function projects()
     const projectListContainer = document.createElement('div');
     projectListContainer.classList.add('home-project-list');
     ProjectListDOM.list.forEach((project) => {
-        
+        // Append project item DOM content.
+        projectListContainer.appendChild(generateProjectContent(project));
+        // Generate outline container for styling purposes and append.
+        const outline = document.createElement('div');
+        outline.classList.add('outline');
+        projectListContainer.appendChild(outline);
     });
     projectSection.appendChild(projectListContainer);
 
     return projectSection;
+}
+
+function generateProjectContent(project)
+{
+    const projectContainer = document.createElement('button');
+    projectContainer.classList.add('home-project-item');
+    projectContainer.id = project.id;
+
+    // Project Heading
+    const heading = document.createElement('h3');
+    heading.textContent = project.name;
+    projectContainer.appendChild(heading);
+
+    // Project tasks (set word limit as well.)
+    const projectTasks = document.createElement('div');
+    // Set word limit to text content.
+    for (let i=0; i<project.tasks.length && projectTasks.textContent.length <= 85; i++)
+    {
+        projectTasks.textContent += project.tasks[i].name + ", ";
+    }
+    projectTasks.textContent += "...";
+    projectContainer.appendChild(projectTasks)
+
+    return projectContainer;
 }
