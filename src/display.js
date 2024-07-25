@@ -18,6 +18,8 @@ const TaskDisplayControl = function() {
         taskDisplayModal.querySelector('.task-description').textContent = task.description;
         taskDisplayModal.querySelector('.date').textContent = task.dueDate;
         taskDisplayModal.querySelector('.priority').textContent = task.priority;
+        taskDisplayModal.querySelector(".status").textContent =
+          task.status == true ? "Complete" : "Incomplete";
         taskDisplayModal.querySelector('.edit-task').id = `${task.id}`;
         taskDisplayModal.querySelector(".delete-task").id = `${task.id}`;
         taskDisplayModal.showModal();
