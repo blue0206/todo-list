@@ -200,11 +200,11 @@ function projects()
 
 function generateProjectContent(project)
 {
-    const projectContainer = document.createElement('button');
+    const projectContainer = document.createElement('div');
     projectContainer.classList.add('home-project-item');
 
     // Project Heading
-    const heading = document.createElement('h3');
+    const heading = document.createElement('button');
     heading.textContent = project.name;
     projectContainer.appendChild(heading);
 
