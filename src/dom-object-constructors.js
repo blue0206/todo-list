@@ -142,11 +142,24 @@ const ProjectDOM = function(name, id, tasks = []) {
 
         const checkBox = document.createElement("input");
         checkBox.type = "checkbox";
+        checkBox.addEventListener('click', () => {
+            if (checkBox.checked)
+            {
+                taskContainer.style.textDecoration = "line-through";
+                task.status = true;
+            }
+            else
+            {
+                taskContainer.style.textDecoration = "none";
+                task.status = false;
+            }
+        });
         taskContainer.appendChild(checkBox);
 
         const taskBody = document.createElement("button");
         taskBody.classList.add('task');
         taskBody.id = task.id;
+        taskBody.style.textDecoration = "inherit";
         // Attach event listener to display full task window.
         taskBody.addEventListener('click', () => {
             TaskDisplayControl.taskDisplay(task);
@@ -154,10 +167,12 @@ const ProjectDOM = function(name, id, tasks = []) {
 
         const taskName = document.createElement("div");
         taskName.textContent = task.name;
+        taskName.textDecoration = "inherit";
         taskBody.appendChild(taskName);
 
         const taskDescription = document.createElement("div");
         taskDescription.textContent = task.description;
+        taskDescription.textDecoration = "inherit";
         taskBody.appendChild(taskDescription);
 
         taskContainer.appendChild(taskBody);
