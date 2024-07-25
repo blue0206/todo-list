@@ -17,7 +17,8 @@ export default function content()
 
     // Append main section content.
     home.appendChild(mainContent());
-    
+
+    main.appendChild(home);
 }
 
 function headerContent()
@@ -44,6 +45,11 @@ function mainContent()
 
     // Append projects section content.
     mainSection.appendChild(projects());
+
+    // Append high priority tasks section content.
+    mainSection.appendChild(highPriorityTasks());
+
+    return mainSection;
 }
 
 function tasks()
@@ -195,4 +201,31 @@ function generateProjectContent(project)
     projectContainer.appendChild(projectTasks)
 
     return projectContainer;
+}
+
+function highPriorityTasks()
+{
+    const prioritySection = document.createElement('div');
+    prioritySection.classList.add('home-priority-tasks');
+
+    // High priority tasks section heading.
+    const heading = document.createElement('h2');
+    heading.classList.add('section-heading');
+    heading.textContent = "High Priority Tasks";
+    prioritySection.appendChild(heading);
+
+    // High priority task list container.
+    const highPriorityListContainer = document.createElement('div');
+    highPriorityListContainer.classList.add('priority-task-list');
+    // First display MAXIMUM priority tasks.
+    TaskList.list.forEach((task) => {
+
+    });
+    // Second display HIGH priority tasks.
+    TaskList.list.forEach((task) => {
+
+    });
+    prioritySection.appendChild(highPriorityListContainer);
+
+    return prioritySection;
 }
