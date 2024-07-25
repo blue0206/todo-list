@@ -201,15 +201,15 @@ function projects()
 
 function generateProjectContent(project)
 {
-    const projectContainer = document.createElement('div');
+    const projectContainer = document.createElement('button');
     projectContainer.classList.add('home-project-item');
-
-    // Project Heading
-    const heading = document.createElement('button');
-    heading.textContent = project.name;
-    heading.addEventListener('click', () => {
+    projectContainer.addEventListener('click', () => {
         sidebarProjectsClickDispatch(project.id);
     });
+
+    // Project Heading
+    const heading = document.createElement('div');
+    heading.textContent = project.name;
     projectContainer.appendChild(heading);
 
     // Project tasks (set word limit as well.)
