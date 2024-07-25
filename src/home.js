@@ -70,7 +70,11 @@ function tasks()
 
     // Create task card.
     TaskList.list.forEach((task) => {
-        taskCardsContainer.appendChild(taskCard(task));
+        // Only display pending tasks.
+        if (!task.status)
+        {
+            taskCardsContainer.appendChild(taskCard(task));
+        }
     });
 
     taskSection.appendChild(taskCardsContainer);
