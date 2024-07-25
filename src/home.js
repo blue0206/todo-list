@@ -268,11 +268,14 @@ function highPriorityTasks()
 
 function priorityTaskContent(task)
 {
-    const container = document.createElement('div');
+    const container = document.createElement('button');
     container.classList.add('priority-task');
+    container.addEventListener('click', () => {
+        TaskDisplayControl.taskDisplay(task);
+    });
 
     // Task Heading
-    const heading = document.createElement('button');
+    const heading = document.createElement('h3');
     heading.textContent = task.name;
     container.appendChild(heading);
 
