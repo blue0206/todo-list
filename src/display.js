@@ -14,12 +14,18 @@ const TaskDisplayControl = function() {
     function taskDisplay(task)
     {
         const taskDisplayModal = document.querySelector(".task-modal");
+        // Show task name.
         taskDisplayModal.querySelector('.task-name').textContent = task.name;
+        // Show task description.
         taskDisplayModal.querySelector('.task-description').textContent = task.description;
+        // Show task due date.
         taskDisplayModal.querySelector('.date').textContent = task.dueDate;
+        // Show task priority level.
         taskDisplayModal.querySelector('.priority').textContent = task.priority;
+        // Show task status.
         taskDisplayModal.querySelector(".status").textContent =
           task.status == true ? "Complete" : "Incomplete";
+        // Attach id to edit & delete buttons for task identification and appropriate action.
         taskDisplayModal.querySelector('.edit-task').id = `${task.id}`;
         taskDisplayModal.querySelector(".delete-task").id = `${task.id}`;
         taskDisplayModal.showModal();
