@@ -61,6 +61,10 @@ function refreshDisplay(projectID=null, sidebarDisplay=false)
     {
         document.querySelector('.project-tabs .my-projects').dispatchEvent(new MouseEvent('click'));
     }
+    else if (mainChild && mainChild.className == "home")
+    {
+        home();
+    }
     else if (mainChild && mainChild.id == projectID && projectID !== null)  // Refresh project tab if on display & id provided.
     {
         if (!ProjectListDOM.search(projectID))  // If ID provided but project is deleted.
