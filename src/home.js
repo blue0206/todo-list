@@ -40,6 +40,9 @@ function mainContent()
 
     // Append tasks section content.
     mainSection.appendChild(tasks());
+
+    // Append projects section content.
+    mainSection.appendChild(projects());
 }
 
 function tasks()
@@ -137,4 +140,26 @@ function taskCard(task)
     taskCard.appendChild(cardContent);
 
     return taskCard;
+}
+
+function projects()
+{
+    const projectSection = document.createElement('div');
+    projectSection.classList.add('home-project');
+
+    // Project section heading.
+    const heading = document.createElement('h2');
+    heading.classList.add('section-heading');
+    heading.textContent = "Projects";
+    projectSection.appendChild(heading);
+
+    // Project list container.
+    const projectListContainer = document.createElement('div');
+    projectListContainer.classList.add('home-project-list');
+    ProjectListDOM.list.forEach((project) => {
+        
+    });
+    projectSection.appendChild(projectListContainer);
+
+    return projectSection;
 }
