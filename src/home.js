@@ -98,7 +98,7 @@ function taskCard(task)
     cardContent.classList.add('card-content');
 
     // Task Name
-    const taskName = document.createElement('h3');
+    const taskName = document.createElement('button');
     taskName.classList.add('task-name');
     taskName.textContent = task.name;
     taskName.addEventListener('click', () => {
