@@ -142,6 +142,11 @@ const ProjectDOM = function(name, id, tasks = []) {
 
         const checkBox = document.createElement("input");
         checkBox.type = "checkbox";
+        if (task.status)
+        {
+            checkBox.setAttribute('checked', true);
+            taskContainer.style.textDecoration = "line-through";
+        }
         checkBox.addEventListener('click', () => {
             if (checkBox.checked)
             {
