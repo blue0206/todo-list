@@ -1,6 +1,6 @@
 import "./style.css";
 import { TaskControl, ProjectControl, inboxSetup } from "./constructor.js";
-import { myProjectsTab } from "./display.js";
+import { myProjectsTab, homeTab } from "./display.js";
 
 TaskControl.taskConstructor();
 TaskControl.taskEditor();
@@ -9,3 +9,4 @@ ProjectControl.projectConstructor();
 ProjectControl.projectEditor();
 inboxSetup();
 myProjectsTab();
+homeTab();
