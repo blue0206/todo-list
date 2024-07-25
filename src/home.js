@@ -81,7 +81,6 @@ function taskCard(task)
     // Task card container.
     const taskCard = document.createElement('div');
     taskCard.classList.add('task-card');
-    taskCard.id = task.id;
 
     // Task card sideline.
     const sideline = document.createElement('div');
@@ -183,7 +182,6 @@ function generateProjectContent(project)
 {
     const projectContainer = document.createElement('button');
     projectContainer.classList.add('home-project-item');
-    projectContainer.id = project.id;
 
     // Project Heading
     const heading = document.createElement('h3');
