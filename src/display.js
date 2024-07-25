@@ -1,6 +1,7 @@
 import { ProjectListDOM } from "./dom-object-constructors.js";
 import { sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
+import home from "./home.js";
 
 // Task Display Control Unit
 const TaskDisplayControl = function() {
@@ -41,6 +42,14 @@ function myProjectsTab()
     const myProjectsBtn = document.querySelector("nav > .my-projects");
     myProjectsBtn.addEventListener("click", () => {
         myProjects();
+    });
+}
+
+function homeTab()
+{
+    const homeBtn = document.querySelector("nav > .home");
+    homeBtn.addEventListener('click', () => {
+        home();
     });
 }
 
@@ -85,4 +94,4 @@ function refreshDisplay(projectID=null, sidebarDisplay=false)
     }
 }
 
-export { TaskDisplayControl, projectDisplay, myProjectsTab, refreshDisplay };
+export { TaskDisplayControl, projectDisplay, myProjectsTab, homeTab, refreshDisplay };
