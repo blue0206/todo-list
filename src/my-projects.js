@@ -1,5 +1,6 @@
 import { ProjectListDOM } from "./dom-object-constructors";
 import { sidebarProjectsClickDispatch } from "./methods";
+import AddIcon from "./assets/icons/add-circle.svg";
 
 export default function content() {
     const main = document.querySelector('main');
@@ -53,7 +54,7 @@ export default function content() {
 
     // Add Project Icon
     const addIcon = new Image();
-    addIcon.src = "";
+    addIcon.src = AddIcon;
     addIcon.alt = "Add Project";
     addProjectBtn.appendChild(addIcon);
 

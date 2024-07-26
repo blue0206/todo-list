@@ -2,6 +2,9 @@ import { listMethods } from "./methods.js";
 import { TaskDisplayControl, projectDisplay } from "./display.js";
 import { TaskControl, ProjectControl } from "./constructor.js";
 import { TaskList } from "./object-constructors.js";
+import EditIcon from "./assets/icons/edit.svg";
+import DeleteIcon from "./assets/icons/delete.svg";
+import AddIcon from "./assets/icons/add-circle.svg";
 
 const ProjectDOM = function(name, id, tasks = []) {
     const obj = {
@@ -34,7 +37,7 @@ const ProjectDOM = function(name, id, tasks = []) {
     
                 // Project Edit Icon
                 const projectEditIcon = new Image();
-                projectEditIcon.src = "";
+                projectEditIcon.src = EditIcon;
                 projectEditIcon.alt = "Edit Project";
                 projectEditBtn.appendChild(projectEditIcon);
                 
@@ -49,7 +52,7 @@ const ProjectDOM = function(name, id, tasks = []) {
 
                 // Project Delete Icon
                 const projectDeleteIcon = new Image();
-                projectDeleteIcon.src = "";
+                projectDeleteIcon.src = DeleteIcon;
                 projectDeleteIcon.alt = "Delete Project";
                 projectDeleteBtn.appendChild(projectDeleteIcon);
 
@@ -70,7 +73,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             const addTaskBtn = document.createElement('button');
             addTaskBtn.classList.add('add-task');
             const addTaskIcon = new Image();
-            addTaskIcon.src = "";
+            addTaskIcon.src = AddIcon;
             addTaskIcon.alt = "Add Task";
             addTaskBtn.appendChild(addTaskIcon);
             const addTaskDiv = document.createElement('div');
@@ -110,7 +113,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             });
 
             const editIcon = new Image();
-            editIcon.src = "";
+            editIcon.src = EditIcon;
             editIcon.alt = "Edit Project";
             editBtn.appendChild(editIcon);
 
@@ -123,7 +126,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             });
 
             const deleteIcon = new Image();
-            deleteIcon.src = "";
+            deleteIcon.src = DeleteIcon;
             deleteIcon.alt = "Delete Project";
             deleteBtn.appendChild(deleteIcon);
 
@@ -190,7 +193,7 @@ const ProjectDOM = function(name, id, tasks = []) {
         });
 
         const editIcon = new Image();
-        editIcon.src = "";
+        editIcon.src = EditIcon;
         editIcon.alt = "Edit Task";
         editBtn.appendChild(editIcon);
 
@@ -203,7 +206,7 @@ const ProjectDOM = function(name, id, tasks = []) {
         });
 
         const deleteIcon = new Image();
-        deleteIcon.src = "";
+        deleteIcon.src = DeleteIcon;
         deleteIcon.alt = "Delete Task";
         deleteBtn.appendChild(deleteIcon);
         

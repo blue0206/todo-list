@@ -3,6 +3,10 @@ import { ProjectListDOM } from "./dom-object-constructors";
 import { refreshDisplay, TaskDisplayControl } from "./display";
 import { TaskControl } from "./constructor";
 import { sidebarProjectsClickDispatch } from "./methods";
+import MarkCompleteIcon from "./assets/icons/check-circle.svg";
+import EditIcon from "./assets/icons/edit.svg";
+import DeleteIcon from "./assets/icons/delete.svg";
+
 
 export default function content()
 {
@@ -131,7 +135,7 @@ function taskCard(task)
         refreshDisplay();
     });
     const markCompleteIcon = new Image();
-    markCompleteIcon.src = "";
+    markCompleteIcon.src = MarkCompleteIcon;
     markCompleteIcon.alt = "Mark Complete";
     markCompleteBtn.appendChild(markCompleteIcon);
 
@@ -143,7 +147,7 @@ function taskCard(task)
         TaskControl.setupTaskEditFields(task);
     });
     const editIcon = new Image();
-    editIcon.src = "";
+    editIcon.src = EditIcon;
     editIcon.alt = "Edit Task";
     editBtn.appendChild(editIcon);
 
@@ -154,7 +158,7 @@ function taskCard(task)
         TaskControl.deleteTask(task);
     });
     const deleteIcon = new Image();
-    deleteIcon.src = "";
+    deleteIcon.src = DeleteIcon;
     deleteIcon.alt = "Delete Task";
     deleteBtn.appendChild(deleteIcon);
 
