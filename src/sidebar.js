@@ -1,7 +1,7 @@
 import DashboardIcon from "./assets/icons/dashboard.svg";
-import AddIconCircle from "./assets/icons/add_circle_25dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg";
+import AddIconCircle from "./assets/icons/add-circle.svg";
 import HomeIcon from "./assets/icons/home.svg";
-import InboxIcon from "./assets/icons/inbox_25dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg";
+import InboxIcon from "./assets/icons/inbox.svg";
 
 export default function content() {
     const sidebar = document.querySelector('aside');
