@@ -94,17 +94,21 @@ const ProjectDOM = function(name, id, tasks = []) {
         sidebarDisplay: () => {
             const projectTab = document.querySelector('.project-tabs');
             
-            const projectContainer = document.createElement('li');
+            const projectContainer = document.createElement('button');
             projectContainer.classList.add('project-li');
-
-            const projectBtn = document.createElement('button');
-            projectBtn.classList.add('project-item');
-            projectBtn.id = id;
-            projectBtn.textContent = name;
-            projectBtn.addEventListener('click', () => {
-                projectDisplay(ProjectListDOM.search(id));
+            projectContainer.id = id;
+            projectContainer.addEventListener('click', (e) => {
+                // Prevent trigger for edit & delete buttons.
+                if (e.target.className == "project-li" || e.target.className == 'project-item')
+                {
+                    projectDisplay(ProjectListDOM.search(id));
+                }
             });
-            projectContainer.appendChild(projectBtn);
+
+            const projectName = document.createElement('div');
+            projectName.classList.add('project-item');
+            projectName.textContent = name;
+            projectContainer.appendChild(projectName);
 
             const editBtn = document.createElement('button');
             editBtn.classList.add('edit-project');
