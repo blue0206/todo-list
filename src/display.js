@@ -78,6 +78,7 @@ function refreshDisplay(projectID=null, sidebarDisplay=false)
         if (!ProjectListDOM.search(projectID))  // If ID provided but project is deleted.
         {
             document.querySelector('main').removeChild(mainChild);         // Remove deleted project from display.
+            home();
         }
         else if (projectID == 0)     // ID == 0 refers to Inbox.
         {
