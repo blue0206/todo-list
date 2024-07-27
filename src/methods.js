@@ -64,7 +64,7 @@ const dropDownListMethods = (selectElement) => {
 
 function sidebarProjectsClickDispatch(projectID)
 {
-    const projectNodes = Array.from(document.querySelectorAll('.project-tabs .project-item'));
+    const projectNodes = Array.from(document.querySelectorAll('.project-tabs .project-li'));
     listMethods(projectNodes).search(projectID).dispatchEvent(new MouseEvent('click'));
 }
 
