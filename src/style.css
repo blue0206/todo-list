@@ -112,3 +112,33 @@ aside .heading > img {
 
     filter: invert(100%);
 }
+
+aside button {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    color: hsl(0, 0%, 100%);
+
+    padding-left: 25px;
+}
+
+aside .tabs > button:hover,
+aside .project-tabs > button:hover {
+    background-color: hsl(199, 88%, 22%);
+}
+
+aside button > img {
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+}
+
+aside .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.tabs .home > img {
+    filter: invert(100%);
+}
