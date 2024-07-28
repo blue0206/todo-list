@@ -115,12 +115,6 @@ const ProjectDOM = function(name, id, tasks = []) {
             editBtn.addEventListener('click', () => {
                 editProject(name);
             });
-
-            const editIcon = new Image();
-            editIcon.src = EditIcon;
-            editIcon.alt = "Edit Project";
-            editBtn.appendChild(editIcon);
-
             projectContainer.appendChild(editBtn);
 
             const deleteBtn = document.createElement('button');
@@ -128,12 +122,6 @@ const ProjectDOM = function(name, id, tasks = []) {
             deleteBtn.addEventListener('click', () => {
                 ProjectControl.projectDestructor(id);
             });
-
-            const deleteIcon = new Image();
-            deleteIcon.src = DeleteIcon;
-            deleteIcon.alt = "Delete Project";
-            deleteBtn.appendChild(deleteIcon);
-
             projectContainer.appendChild(deleteBtn);
             projectTab.appendChild(projectContainer);
         },
