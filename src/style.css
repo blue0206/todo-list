@@ -142,3 +142,69 @@ aside .tabs {
 .tabs .home > img {
     filter: invert(100%);
 }
+
+.project-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    max-height: 58vh;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0, 0%, 100%) hsl(199, 89%, 55%);
+}
+
+.project-tabs > *:not(.my-projects) {
+    padding-left: 32px;
+    font-weight: 400;
+}
+
+.project-li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-li::before {
+    content: url("./assets/icons/hashtag.svg");
+    font-size: 1.5em;
+}
+
+.project-li:hover {
+    background-color: hsl(199, 88%, 22%);
+}
+
+.project-li > .project-item {
+    text-overflow: ellipsis;
+    overflow: clip;
+    max-width: 45%;
+}
+
+.project-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+
+    height: 100%;
+}
+
+.project-btns > .edit-project {
+    background-image: url("./assets/icons/edit.svg");
+}
+
+.project-btns > .delete-project {
+    background-image: url("./assets/icons/delete.svg");
+}
+
+.project-btns > * {
+    background-size: 58%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.project-btns > .edit-project:hover,
+.project-btns > .delete-project:hover {
+    background-color: hsl(198, 23%, 45%);
+}
