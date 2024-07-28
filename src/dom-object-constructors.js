@@ -110,19 +110,24 @@ const ProjectDOM = function(name, id, tasks = []) {
             projectName.textContent = name;
             projectContainer.appendChild(projectName);
 
+            const btnContainer = document.createElement('div');
+            btnContainer.classList.add('project-btns');
+
             const editBtn = document.createElement('button');
             editBtn.classList.add('edit-project');
             editBtn.addEventListener('click', () => {
                 editProject(name);
             });
-            projectContainer.appendChild(editBtn);
+            btnContainer.appendChild(editBtn);
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-project');
             deleteBtn.addEventListener('click', () => {
                 ProjectControl.projectDestructor(id);
             });
-            projectContainer.appendChild(deleteBtn);
+            btnContainer.appendChild(deleteBtn);
+
+            projectContainer.appendChild(btnContainer);
             projectTab.appendChild(projectContainer);
         },
         name,
