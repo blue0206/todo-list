@@ -62,8 +62,8 @@ body {
                 Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     display: grid;
-    grid-template: 1fr minmax(auto, 116px) / minmax(auto, 320px) 1fr;
-    grid-template-areas: 'sidebar main' 'sidebar footer';
+    grid-template: 1fr / minmax(auto, 320px) 1fr;
+    grid-template-areas: 'sidebar main';
 
     min-height: 100vh;
     min-height: 100dvh;
@@ -75,10 +75,6 @@ main {
 
 aside {
     grid-area: sidebar;
-}
-
-footer {
-    grid-area: footer;
 }
 
 /* Sidebar Styling */
