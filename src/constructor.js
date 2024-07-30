@@ -80,7 +80,7 @@ const TaskControl = function() {
         
         // Submit button event listener.
         editSubmitBtn.addEventListener('click', () => {
-            const task = TaskList.search(editModalBtn.id);    // Store the task to be edited.
+            const task = TaskList.search(editSubmitBtn.id);    // Store the task to be edited.
             // Get rid of generated project list.
             taskDropDown.remove();
 
@@ -160,6 +160,7 @@ const TaskControl = function() {
         taskEditModal.querySelector('#description').value = task.description;
         taskEditModal.querySelector('#due-date').value = task.dueDate;
         taskEditModal.querySelector('#priority').value = task.priority;
+        taskEditModal.querySelector('.modify-btn').id = task.id;
         
         // Create parent-project drop-down handler.
         const taskDropDown = dropDownListMethods(
