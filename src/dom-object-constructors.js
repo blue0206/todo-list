@@ -186,7 +186,7 @@ const ProjectDOM = function(name, id, tasks = []) {
         editBtn.classList.add('edit-task');
         editBtn.addEventListener('click', () => {
             document.querySelector('.edit-task-modal').showModal();
-            TaskControl.setupTaskEditFields(TaskList.search(task.id));
+            TaskControl.setupTaskEditFields(task);
         });
 
         const editIcon = new Image();
