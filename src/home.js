@@ -3,9 +3,9 @@ import { ProjectListDOM } from "./dom-object-constructors";
 import { refreshDisplay, TaskDisplayControl } from "./display";
 import { TaskControl } from "./constructor";
 import { sidebarProjectsClickDispatch } from "./methods";
-import MarkCompleteIcon from "./assets/icons/check-circle.svg";
-import EditIcon from "./assets/icons/edit.svg";
-import DeleteIcon from "./assets/icons/delete.svg";
+import MarkCompleteIcon from "./assets/icons/check-circle-fill0.svg";
+import EditIcon from "./assets/icons/edit-fill0.svg";
+import DeleteIcon from "./assets/icons/delete-fill0.svg";
 
 
 export default function content()
