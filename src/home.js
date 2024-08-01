@@ -320,13 +320,23 @@ function priorityTaskContent(task)
 
     // Task Heading
     const heading = document.createElement('h3');
+    heading.classList.add('priority-task-name');
     heading.textContent = task.name;
     container.appendChild(heading);
 
-    // Task Priority
+    // Task Content
+    const taskContent = document.createElement('div');
+    taskContent.classList.add('priority-task-content');
+    
     const taskPriority = document.createElement('div');
-    taskPriority.textContent = task.priority;
-    container.appendChild(taskPriority);
+    taskPriority.textContent = `Priority: ${task.priority}`;
+    taskContent.appendChild(taskPriority);
+
+    const taskDescription = document.createElement('div');
+    taskDescription.textContent = task.description;
+    taskContent.appendChild(taskDescription);
+
+    container.appendChild(taskContent);
 
     return container;
 }
