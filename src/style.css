@@ -307,6 +307,18 @@ main > .home {
     filter: invert(100%);
 }
 
+.home-prompt {
+    width: fit-content;
+    padding-inline: 5px;
+    margin-top: 16px;
+    margin-left: 16px;
+    border-radius: 4px;
+    font-size: 1rem;
+
+    color: hsl(170, 100%, 64%);
+    background-color: rgb(0, 0, 0);
+}
+
 .home-project {
     grid-area: project;
 }
