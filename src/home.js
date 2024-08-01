@@ -75,13 +75,23 @@ function tasks()
     taskCardsContainer.classList.add('task-cards');
 
     // Create task card.
+    let noPendingTasks = true;
     TaskList.list.forEach((task) => {
         // Only display pending tasks.
         if (!task.status)
         {
             taskCardsContainer.appendChild(taskCard(task));
+            noPendingTasks = false;
         }
     });
+    // Show prompt if no tasks are pending.
+    if (noPendingTasks)
+    {
+        const prompt = document.createElement('div');
+        prompt.classList.add('home-prompt');
+        prompt.textContent = "No tasks pending!";
+        taskCardsContainer.appendChild(prompt);
+    }
 
     taskSection.appendChild(taskCardsContainer);
     return taskSection;
@@ -186,6 +196,7 @@ function projects()
 
     // Project list container.
     const projectListContainer = document.createElement('div');
+    let activeProjects = false;
     projectListContainer.classList.add('home-project-list');
     ProjectListDOM.list.forEach((project) => {
         if (project.id != 0)  // ID == 0 refers to inbox, which is not a project.
@@ -196,8 +207,18 @@ function projects()
             const outline = document.createElement('div');
             outline.classList.add('outline');
             projectListContainer.appendChild(outline);
+
+            activeProjects = true;
         }
     });
+    // Show prompt in case there are no projects.
+    if (!activeProjects)
+    {
+        const prompt = document.createElement('div');
+        prompt.classList.add('home-prompt');
+        prompt.textContent = "No active projects!";
+        projectListContainer.appendChild(prompt);
+    }
     projectSection.appendChild(projectListContainer);
 
     return projectSection;
@@ -243,6 +264,7 @@ function highPriorityTasks()
     // High priority task list container.
     const highPriorityListContainer = document.createElement('div');
     highPriorityListContainer.classList.add('priority-task-list');
+    let noPendingTasks = true;
     // First display MAXIMUM priority tasks.
     TaskList.list.forEach((task) => {
         if (task.priority == "Maximum")
@@ -252,6 +274,8 @@ function highPriorityTasks()
             const outline = document.createElement('div');
             outline.classList.add('outline');
             highPriorityListContainer.appendChild(outline);
+
+            noPendingTasks = false;
         }
     });
     // Second display HIGH priority tasks.
@@ -263,8 +287,18 @@ function highPriorityTasks()
             const outline = document.createElement('div');
             outline.classList.add('outline');
             highPriorityListContainer.appendChild(outline);
+
+            noPendingTasks = false;
         }
     });
+    // Show prompt in case no high-priority tasks are pending.
+    if (noPendingTasks)
+    {
+        const prompt = document.createElement('div');
+        prompt.classList.add('home-prompt');
+        prompt.textContent = "No high-priority tasks pending!";
+        highPriorityListContainer.appendChild(prompt);
+    }
     prioritySection.appendChild(highPriorityListContainer);
 
     return prioritySection;
