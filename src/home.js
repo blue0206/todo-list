@@ -237,15 +237,21 @@ function generateProjectContent(project)
     heading.textContent = project.name;
     projectContainer.appendChild(heading);
 
-    // Project tasks (set word limit as well.)
-    const projectTasks = document.createElement('div');
-    // Set word limit to text content.
-    for (let i=0; i<project.tasks.length && projectTasks.textContent.length <= 85; i++)
+    // Project Text
+    const projectText = document.createElement('div');
+    if (project.tasks.length == 0)
     {
-        projectTasks.textContent += project.tasks[i].name + ", ";
+        projectText.textContent = `Empty`;
     }
-    projectTasks.textContent += "...";
-    projectContainer.appendChild(projectTasks)
+    else if (project.tasks.length == 1)
+    {
+        projectText.textContent = `1 task`;
+    }
+    else
+    {
+        projectText.textContent = `${project.tasks.length} tasks`;
+    }
+    projectContainer.appendChild(projectText)
 
     return projectContainer;
 }
