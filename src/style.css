@@ -345,7 +345,6 @@ main > .home {
 
     overflow: auto;
     scrollbar-width: auto;
-    scrollbar-color: hsla(0, 0%, 0%, 0.116) hsl(0, 0%, 0%);
     
     background-color: hsl(0, 0%, 100%);
 
@@ -356,9 +355,7 @@ main > .home {
 @supports selector(::-webkit-scrollbar) {
     .home-project-list {
         border-radius: 25px;
-
         scrollbar-width: unset;
-        scrollbar-color: unset;
     }
     
     .home-project-list::-webkit-scrollbar {
