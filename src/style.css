@@ -503,3 +503,23 @@ main > .home {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+
+.maximum {
+    background-color: hsl(0, 100%, 50%);
+}
+
+.high {
+    background-color: hsl(39, 100%, 50%);
+}
+
+.medium {
+    background-color: hsl(60, 100%, 74%);
+}
+
+.low {
+    background-color: hsl(172, 100%, 78%);
+}
+
+.minimum {
+    background-color: hsl(120, 75%, 45%);
+}
