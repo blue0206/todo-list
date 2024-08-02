@@ -321,6 +321,85 @@ main > .home {
 
 .home-project {
     grid-area: project;
+
+    padding-bottom: 35px;
+    padding-right: 35px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.home-project-list {
+    display: grid;
+    place-items: start;
+    gap: 35px;
+
+    padding: 32px 38px;
+    /* Set height equivalent to 16 lines of text */
+    height: calc(16 * 1em * 1.5);
+
+    overflow: auto;
+    scrollbar-width: auto;
+    scrollbar-color: hsla(0, 0%, 0%, 0.116) hsl(0, 0%, 0%);
+    
+    background-color: hsl(0, 0%, 100%);
+
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .home-project-list {
+        border-radius: 25px;
+
+        scrollbar-width: unset;
+        scrollbar-color: unset;
+    }
+    
+    .home-project-list::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .home-project-list::-webkit-scrollbar-track {
+        margin-block: 25px;
+        border-radius: 25px;
+        background-color: hsla(0, 0%, 0%, 0.116);
+    }
+    
+    .home-project-list::-webkit-scrollbar-thumb {
+        border-radius: 25px;
+        background-color: hsl(0, 0%, 0%);
+    }
+}
+
+.home-project-list > .home-prompt {
+    background-color: inherit;
+    color: inherit;
+    font-size: inherit;
+
+    align-self: center;
+    justify-self: center;
+
+    margin-bottom: 35px;
+}
+
+.home-project-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.home-project-item > div {
+    font-size: 1rem;
+    color: hsl(0, 0%, 48%);
+}
+
+.outline:not(.outline:last-child) {
+    height: 2px;
+    width: 100%;
+
+    background-color: hsl(213, 27%, 84%);
 }
 
 .home-priority-tasks {
