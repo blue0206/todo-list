@@ -3,6 +3,7 @@ import { ProjectListDOM } from "./dom-object-constructors";
 import { refreshDisplay, TaskDisplayControl } from "./display";
 import { TaskControl } from "./constructor";
 import { sidebarProjectsClickDispatch } from "./methods";
+import { format } from "date-fns";
 import MarkCompleteIcon from "./assets/icons/check-circle-fill0.svg";
 import EditIcon from "./assets/icons/edit-fill0.svg";
 import DeleteIcon from "./assets/icons/delete-fill0.svg";
@@ -130,7 +131,7 @@ function taskCard(task)
     // Task Due Date
     const taskDueDate = document.createElement('div');
     taskDueDate.classList.add('task-due-date');
-    taskDueDate.textContent = `Due Date: ${task.dueDate}`;
+    taskDueDate.textContent = `Due Date: ${format(task.dueDate, "do MMMM yyyy")}`;
     cardContent.appendChild(taskDueDate);
 
     // Task card buttons container.
