@@ -203,6 +203,10 @@ function projects()
         {
             // Append project item DOM content.
             projectListContainer.appendChild(generateProjectContent(project));
+            // Generate outline container for styling purposes and append.
+            const outline = document.createElement('div');
+            outline.classList.add('outline');
+            projectListContainer.appendChild(outline);
 
             activeProjects = true;
         }
