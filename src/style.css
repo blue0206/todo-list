@@ -209,7 +209,7 @@ aside .tabs {
     background-color: hsl(198, 23%, 45%);
 }
 
-/* Main Styling */
+/* Main Styling (HOME-PAGE) */
 main > .home {
     height: 100%;
 
@@ -241,8 +241,8 @@ main > .home {
     background-color: hsl(214, 32%, 91%);
 
     display: grid;
-    grid-template: 1fr 1fr / 2fr 1fr;
-    grid-template-areas: 'task project' 'task priority';
+    grid-template: auto auto 1fr / 2fr 1fr;
+    grid-template-areas: 'task project' 'task priority' 'task .';
     gap: 35px;
 }
 
@@ -329,14 +329,13 @@ main > .home {
     border-radius: 4px;
     font-size: 1rem;
 
-    color: hsl(170, 100%, 64%);
-    background-color: rgb(0, 0, 0);
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(0, 0%, 0%);
 }
 
 .home-project {
     grid-area: project;
 
-    padding-bottom: 35px;
     padding-right: 35px;
 
     display: flex;
@@ -347,7 +346,7 @@ main > .home {
 .home-project-list {
     display: grid;
     place-items: start;
-    gap: 35px;
+    gap: 32px;
 
     padding: 32px 38px;
     /* Set height equivalent to 16 lines of text */
@@ -387,11 +386,7 @@ main > .home {
     }
 }
 
-.home-project-list > .home-prompt {
-    background-color: inherit;
-    color: inherit;
-    font-size: inherit;
-
+.home-project-list > .home-prompt, .priority-task-list > .home-prompt {
     align-self: center;
     justify-self: center;
 
@@ -402,10 +397,12 @@ main > .home {
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    font-size: 1rem;
 }
 
 .home-project-item > div {
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: hsl(0, 0%, 48%);
 }
 
@@ -418,4 +415,91 @@ main > .home {
 
 .home-priority-tasks {
     grid-area: priority;
+
+    padding-bottom: 35px;
+    padding-right: 35px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.priority-task-list {
+    display: grid;
+    place-items: start;
+    gap: 16px;
+
+    padding: 32px 16px;
+    /* Set height equivalent to 18 lines of text */
+    height: calc(18 * 1em * 1.5);
+
+    overflow: auto;
+    scrollbar-width: auto;
+    
+    background-color: hsl(0, 0%, 100%);
+
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+
+    box-shadow: 6.4px 12.8px 12.5px rgba(0, 0, 0, 0.16),
+                58px 116px 85px rgba(0, 0, 0, 0.075);
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .priority-task-list {
+        border-radius: 25px;
+        scrollbar-width: unset;
+    }
+
+    .priority-task-list::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .priority-task-list::-webkit-scrollbar-track {
+        margin-block: 25px;
+        border-radius: 25px;
+        background-color: hsla(0, 0%, 0%, 0.116);
+    }
+    
+    .priority-task-list::-webkit-scrollbar-thumb {
+        border-radius: 25px;
+        background-color: hsl(0, 0%, 0%);
+    }
+}
+
+.priority-task-list .priority-task {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.priority-task-name {
+    font-size: 1rem;
+    text-align: justify;
+
+    /* Limit text display within one line */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.priority-task-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    color: hsl(0, 0%, 48%);
+    font-size: 0.85rem;
+}
+
+.priority-task-content > div:last-child {
+    font-size: 0.8rem;
+    text-align: justify;
+
+    /* Limit text display within two lines */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
