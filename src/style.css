@@ -89,6 +89,9 @@ aside {
     padding-top: 25px;
     font-size: 1.25rem;
     font-weight: 800;
+
+    box-shadow: 2.7px 5.3px 14.4px rgba(0, 0, 0, 0.34),
+                11px 22px 85px rgba(0, 0, 0, 0.16);
 }
 
 aside .heading {
@@ -213,17 +216,21 @@ main > .home {
     display: grid;
     grid-template: auto 1fr / 1fr;
     grid-template-areas: 'header' 'main';
-
-    padding-top: 38px;
 }
 
 .home-header {
     grid-area: header;
-
+    
     display: flex;
     justify-content: center;
 
+    padding-top: 38px;
+    
     font-size: 1.5rem;
+
+    box-shadow: 2.7px 5.3px 14.4px rgba(0, 0, 0, 0.34),
+                11px 22px 85px rgba(0, 0, 0, 0.16);
+    z-index: 1;
 }
 
 .home-main {
@@ -262,6 +269,9 @@ main > .home {
 
     border-radius: 16px;
     background-color: hsl(0, 0%, 100%);
+
+    box-shadow: 6.4px 12.8px 12.5px rgba(0, 0, 0, 0.16),
+                58px 116px 85px rgba(0, 0, 0, 0.075);
 }
 
 .sideline {
@@ -350,6 +360,9 @@ main > .home {
 
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
+
+    box-shadow: 6.4px 12.8px 12.5px rgba(0, 0, 0, 0.16),
+                58px 116px 85px rgba(0, 0, 0, 0.075);
 }
 
 @supports selector(::-webkit-scrollbar) {
