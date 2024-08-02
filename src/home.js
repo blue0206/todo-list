@@ -229,7 +229,7 @@ function generateProjectContent(project)
     });
 
     // Project Heading
-    const heading = document.createElement('div');
+    const heading = document.createElement('h3');
     heading.textContent = project.name;
     projectContainer.appendChild(heading);
 
