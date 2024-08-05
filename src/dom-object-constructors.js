@@ -1,7 +1,7 @@
 import { listMethods } from "./methods.js";
-import { TaskDisplayControl, projectDisplay } from "./display.js";
+import { projectDisplay } from "./display.js";
 import { TaskControl, ProjectControl } from "./constructor.js";
-import { TaskList } from "./object-constructors.js";
+import { format } from "date-fns";
 import EditIcon from "./assets/icons/edit.svg";
 import DeleteIcon from "./assets/icons/delete.svg";
 import AddIcon from "./assets/icons/add-circle.svg";
@@ -140,47 +140,51 @@ const ProjectDOM = function(name, id, tasks = []) {
         const taskContainer = document.createElement("li");
         taskContainer.classList.add("project-task");
 
+        // Checkbox
         const checkBox = document.createElement("input");
+        checkBox.classList.add('task-complete');
         checkBox.type = "checkbox";
         if (task.status)
         {
             checkBox.setAttribute('checked', true);
-            taskContainer.style.textDecoration = "line-through";
         }
+        // Checkbox Event Listener
         checkBox.addEventListener('click', () => {
-            if (checkBox.checked)
-            {
-                taskContainer.style.textDecoration = "line-through";
-                task.status = true;
-            }
-            else
-            {
-                taskContainer.style.textDecoration = "none";
-                task.status = false;
-            }
+            task.status = task.status ? false : true;
         });
         taskContainer.appendChild(checkBox);
 
-        const taskBody = document.createElement("button");
-        taskBody.classList.add('task');
-        taskBody.id = task.id;
-        taskBody.style.textDecoration = "inherit";
-        // Attach event listener to display full task window.
-        taskBody.addEventListener('click', () => {
-            TaskDisplayControl.taskDisplay(task);
-        });
+        // Task
+        const taskBodyContainer = document.createElement('div');
+        taskBodyContainer.classList.add('project-task-container');
 
+        // Sideline to indicate priority via bg-color.
+        const sideline = document.createElement('div');
+        sideline.classList.add(`${task.priority.toLowerCase()}`, 'sideline');
+        taskBodyContainer.appendChild(sideline);
+
+        // Task body composed of name and description.
+        const taskBody = document.createElement("div");
+        taskBody.classList.add('task');
+
+        // Task Name
         const taskName = document.createElement("div");
         taskName.textContent = task.name;
-        taskName.textDecoration = "inherit";
         taskBody.appendChild(taskName);
 
+        // Task Description
         const taskDescription = document.createElement("div");
         taskDescription.textContent = task.description;
-        taskDescription.textDecoration = "inherit";
         taskBody.appendChild(taskDescription);
+        
+        taskBodyContainer.appendChild(taskBody);
 
-        taskContainer.appendChild(taskBody);
+        // Container for options and additional task info.
+        const utilityContainer = document.createElement('div');
+        utilityContainer.classList.add('task-utility');
+
+        // Container for edit & delete buttons.
+        const btnContainer = document.createElement('div');
 
         const editBtn = document.createElement('button');
         editBtn.classList.add('edit-task');
@@ -194,7 +198,7 @@ const ProjectDOM = function(name, id, tasks = []) {
         editIcon.alt = "Edit Task";
         editBtn.appendChild(editIcon);
 
-        taskContainer.appendChild(editBtn);
+        btnContainer.appendChild(editBtn);
 
         const deleteBtn = document.createElement('button');
         deleteBtn.classList.add('delete-task');
@@ -206,8 +210,66 @@ const ProjectDOM = function(name, id, tasks = []) {
         deleteIcon.src = DeleteIcon;
         deleteIcon.alt = "Delete Task";
         deleteBtn.appendChild(deleteIcon);
+        btnContainer.appendChild(deleteBtn);
         
-        taskContainer.appendChild(deleteBtn);
+        utilityContainer.appendChild(btnContainer);
+
+        // Container for task due-date.
+        const taskDueDateContainer = document.createElement('div');
+
+        const taskDueDateHeading = document.createElement('div');
+        taskDueDateHeading.classList.add('task-utility-heading');
+        taskDueDateHeading.textContent = "Due Date";
+        taskDueDateContainer.appendChild(taskDueDateHeading);
+
+        const taskDueDate = document.createElement('div');
+        taskDueDate.textContent = `${format(task.dueDate, "do MMMM yyyy")}`;
+        taskDueDateContainer.appendChild(taskDueDate);
+
+        utilityContainer.appendChild(taskDueDateContainer);
+
+        // Container for task status indication.
+        const taskStatusContainer = document.createElement('div');
+        
+        const taskStatusHeading = document.createElement('div');
+        taskStatusHeading.classList.add('task-utility-heading');
+        taskStatusHeading.textContent = "Status";
+        taskStatusContainer.appendChild(taskStatusHeading);
+
+        const taskStatus = document.createElement('div');
+        taskStatus.classList.add('task-status');
+
+        const taskStatusIcon = document.createElement('div');
+        taskStatus.appendChild(taskStatusIcon);
+        const statusText = document.createElement('div');
+        taskStatus.appendChild(statusText);
+
+        taskStatusContainer.appendChild(taskStatus);
+        utilityContainer.appendChild(taskStatusContainer);
+
+        // Container to display task parent project.
+        const parentProjectContainer = document.createElement('div');
+
+        const parentProjectHeading = document.createElement('div');
+        parentProjectHeading.classList.add('task-utility-heading');
+        parentProjectHeading.textContent = "Project";
+        parentProjectContainer.appendChild(parentProjectHeading);
+
+        const parentProject = document.createElement('div');
+        parentProject.textContent = ProjectListDOM.search(task.project).name;
+        parentProjectContainer.appendChild(parentProject);
+        
+        utilityContainer.appendChild(parentProjectContainer);
+
+        taskBodyContainer.appendChild(utilityContainer);
+        
+        // Expand-Collapse button (setup via CSS).
+        const expandCollapse = document.createElement('input');
+        expandCollapse.type = "checkbox";
+        expandCollapse.classList.add('expand-collapse');
+        
+        taskBodyContainer.appendChild(expandCollapse);
+        taskContainer.appendChild(taskBodyContainer);
         taskList.appendChild(taskContainer);
     };
 
