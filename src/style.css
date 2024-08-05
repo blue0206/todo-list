@@ -275,8 +275,6 @@ main > .home {
 }
 
 .sideline {
-    background-color: dodgerblue;
-
     border-top-left-radius: 16px;
     border-bottom-left-radius: 16px;
 }
@@ -522,4 +520,287 @@ main > .home {
 
 .minimum {
     background-color: hsl(120, 75%, 45%);
+}
+
+.project-container {
+    height: 100%;
+
+    display: grid;
+    grid-template: auto 1fr / 1fr;
+    grid-template-areas: 'project-header' 'project-main';
+}
+
+.project-container img {
+    filter: invert(100%);
+}
+
+.project-heading {
+    grid-area: project-header;
+    
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+
+    padding-top: 38px;
+    padding-left: 25px;
+    
+    font-size: 1.5rem;
+
+    box-shadow: 2.7px 5.3px 14.4px rgba(0, 0, 0, 0.34),
+                11px 22px 85px rgba(0, 0, 0, 0.16);
+    z-index: 1;
+}
+
+.project-heading img {
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+}
+
+.project-heading > .edit-project {
+    margin-left: 38px;
+}
+
+.project-task-list {
+    grid-area: project-main;
+    list-style: none;
+
+    padding: 38px;
+    background-color: hsl(214, 32%, 91%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 25px;
+}
+
+.project-task-list > .add-task {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.project-task {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'checkbox task';
+    gap: 11px;
+}
+
+.task-complete {
+    grid-area: checkbox;
+    
+    /* Style checkbox from scratch */
+    appearance: none;
+    margin: 11px 0 0 0;
+    
+    font: inherit;
+    color: hsl(234, 100%, 27%);
+    height: calc(1em * 1.5);
+    width: calc(1em * 1.5);
+    border: 0.2em solid currentColor;
+    border-radius: 0.35em;
+
+    /* Center the ::before content */
+    display: grid;
+    place-content: center;
+}
+
+.task-complete::before {
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1.25em 1.25em black;
+
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.task-complete:checked::before {
+    transform: scale(1);
+}
+
+.task-complete:focus {
+    outline: max(2px, 0.2em) solid currentColor;
+    outline-offset: max(2px, 0.2em);
+}
+
+.project-task-container {
+    grid-area: task;
+
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 6.4px 12.8px 12.5px rgba(0, 0, 0, 0.16),
+                58px 116px 85px rgba(0, 0, 0, 0.075);
+
+    display: grid;
+    grid-template-columns: 11px 1fr auto;
+    gap: 4px;
+
+    border-radius: 16px;
+
+    /* Restrict container dimensions */
+    overflow: hidden;
+    max-height: calc(2.6 * 1em * 1.5);
+    position: relative;
+}
+
+.expand-collapse {
+    /* Create expand-collapse button to fully display or hide task info */
+    position: absolute;
+    place-self: end center;
+
+    appearance: none;
+    cursor: pointer;
+
+    /* Display expand button when unchecked (Default state) */
+    background-image: url("./assets/icons/expand.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    filter: invert(100%);
+}
+
+.expand-collapse:checked {
+    /* Display collapse button when checked */
+    background-image: url("./assets/icons/collapse.svg");
+}
+
+.expand-collapse:hover {
+    background-color: rgb(0, 0, 0);
+    filter: invert(0);
+}
+
+.project-task-container:has(> .expand-collapse:not(:checked))::before {
+    /* Blur text when display is collapsed */
+    content: "";
+    position: absolute;
+    height: calc(2 * 1em * 1.5);
+    width: 100%;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+.project-task-container:has(> .expand-collapse:checked) {
+    /* Display full task container by removing max-height restriction */
+    max-height: none;
+}
+
+.project-task-container > .task {
+    place-self: start;
+    text-align: start;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding-bottom: 11px;
+    padding-right: 8px;
+}
+
+.project-task-container > .task > div:first-child {
+    font-weight: 800;
+}
+
+.project-task-container > .task > div:last-child {
+    font-size: 1rem;
+}
+
+.task-complete:checked + .project-task-container .task > * {
+    /* Strikethrough task name & description if task checked complete */
+    text-decoration: line-through double hsl(0, 0%, 0%) from-font;
+}
+
+.project-task-container > .task-utility {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    padding-bottom: 11px;
+    padding-right: 8px;
+}
+
+.task-utility > *:not(:first-child) {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-utility > div:first-child {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+    padding-top: 5px;
+}
+
+.task-utility-heading {
+    font-weight: 800;
+}
+
+.task-utility-heading + div:has(img) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-utility > *:not(:first-child) img {
+    filter: invert(0%);
+
+    height: 1em;
+    aspect-ratio: 1 / 1;
+}
+
+.task-complete:checked + .project-task-container .task-utility > div:nth-child(even):not(:last-child) > div:last-child {
+    /* Strikethrough task due-date if task checked complete */
+    text-decoration: line-through double hsl(0, 0%, 0%) from-font;
+}
+
+.task-utility .task-status {
+    display: flex;
+    gap: 5px;
+}
+
+.task-complete + .project-task-container .task-status > div:first-child {
+    /* Show active icon to indicate task is unchecked & pending */
+    background-image: url("./assets/icons/active.svg");
+}
+
+.task-complete:checked + .project-task-container .task-status > div:first-child {
+    /* Show inactive icon to indicate task is checked & complete */
+    background-image: url("./assets/icons/inactive.svg");
+}
+
+.task-utility .task-status > div:first-child {
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+}
+
+.task-utility .task-status > div:last-child {
+    display: grid;
+    place-content: start center;
+}
+
+.task-complete + .project-task-container .task-status > div:last-child::after {
+    content: "Active";
+}
+
+.task-complete:checked + .project-task-container .task-status > div:last-child::after {
+    content: "Complete";
+    width: 100%;
+}
+
+.task-complete:checked + .project-task-container .sideline {
+    background-color: hsl(0, 0%, 36%);
+}
+
+.task-complete:checked + .project-task-container {
+    background-color: hsla(0, 0%, 100%, 0.592);
 }
