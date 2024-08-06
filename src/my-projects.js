@@ -1,6 +1,7 @@
 import { ProjectListDOM } from "./dom-object-constructors";
 import { sidebarProjectsClickDispatch } from "./methods";
 import AddIcon from "./assets/icons/add-circle.svg";
+import { ProjectControl } from "./constructor";
 
 export default function content() {
     const main = document.querySelector('main');
@@ -13,9 +14,14 @@ export default function content() {
     const container = document.createElement('div');
     container.classList.add('my-projects');
 
+    const headingContainer = document.createElement('div');
+    headingContainer.classList.add('my-projects-header');
+
     const heading = document.createElement('h1');
     heading.textContent = "My Projects";
-    container.appendChild(heading);
+    headingContainer.appendChild(heading);
+    
+    container.appendChild(headingContainer);
 
     const projectList = document.createElement('div');
     projectList.classList.add('project-list');
@@ -26,17 +32,7 @@ export default function content() {
         // not considered a project.
         if (project.id != 0)
         {
-            const projectBtn = document.createElement('button');
-            projectBtn.classList.add('project');
-            projectBtn.addEventListener('click', () => {
-                sidebarProjectsClickDispatch(project.id);
-            });
-            
-            const projectName = document.createElement('div');
-            projectName.textContent = project.name;
-            projectBtn.appendChild(projectName);
-
-            projectList.appendChild(projectBtn);
+            projectList.appendChild(projectListItemDOM(project));
         }
     });
 
@@ -68,3 +64,39 @@ export default function content() {
 
     main.appendChild(container);
 };
+
+function projectListItemDOM(project)
+{
+    // Project Button to open Project tab.
+    const projectBtn = document.createElement("button");
+    projectBtn.classList.add("project");
+    projectBtn.addEventListener("click", () => {
+      sidebarProjectsClickDispatch(project.id);
+    });
+
+    // Project Name
+    const projectName = document.createElement("div");
+    projectName.textContent = project.name;
+    projectBtn.appendChild(projectName);
+
+    const btnContainer = document.createElement('div');
+
+    // Edit Button
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('edit-project');
+    editBtn.addEventListener('click', () => {
+        ProjectControl.setupProjectEditModal(project.id, project.name);
+    });
+    btnContainer.appendChild(editBtn);
+
+    // Delete Button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-project');
+    deleteBtn.addEventListener('click', () => {
+        ProjectControl.projectDestructor(project.id);
+    });
+    btnContainer.appendChild(deleteBtn);
+
+    projectBtn.appendChild(btnContainer);
+    return projectBtn;
+}
