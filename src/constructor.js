@@ -280,7 +280,23 @@ const ProjectControl = function() {
         refreshDisplay();
     }
 
-    return { projectConstructor, projectEditor, projectDestructor };
+    function setupProjectEditModal(id, name)
+    {
+        const projectEditModal = document.querySelector(".edit-project-modal");
+        // Id will be utilised in editor function to identify project.
+        projectEditModal.id = id;
+        // Setup edit modal input field with initial value.
+        projectEditModal.querySelector("#project-name").value = name;
+        // Display project edit modal.
+        projectEditModal.showModal();
+    }
+
+    return { 
+        projectConstructor, 
+        projectEditor, 
+        projectDestructor,
+        setupProjectEditModal 
+    };
 }();
 
 // Initialize and attach event listener to Inbox.
