@@ -2,8 +2,8 @@ import { listMethods } from "./methods.js";
 import { projectDisplay } from "./display.js";
 import { TaskControl, ProjectControl } from "./constructor.js";
 import { format } from "date-fns";
-import EditIcon from "./assets/icons/edit.svg";
-import DeleteIcon from "./assets/icons/delete.svg";
+import EditIcon from "./assets/icons/edit-fill0.svg";
+import DeleteIcon from "./assets/icons/delete-fill0.svg";
 import AddIcon from "./assets/icons/add-circle.svg";
 
 const ProjectDOM = function(name, id, tasks = []) {
