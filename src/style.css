@@ -570,7 +570,7 @@ main > .home {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
+    align-items: flex-start;
     gap: 25px;
 }
 
@@ -803,4 +803,126 @@ main > .home {
 
 .task-complete:checked + .project-task-container {
     background-color: hsla(0, 0%, 100%, 0.592);
+}
+
+main > .my-projects {
+    height: 100%;
+
+    display: grid;
+    grid-template: auto 1fr / 1fr;
+    grid-template-areas: 'my-projects-header' 'my-projects-main';
+}
+
+main > .my-projects > .my-projects-header {
+    grid-area: my-projects-header;
+
+    display: flex;
+    justify-content: flex-start;
+    
+    padding-top: 38px;
+    padding-left: 25px;
+
+    font-size: 1.5rem;
+
+    box-shadow: 2.7px 5.3px 14.4px rgba(0, 0, 0, 0.34),
+                11px 22px 85px rgba(0, 0, 0, 0.16);
+    z-index: 1;
+}
+
+.project-list {
+    grid-area: my-projects-main;
+
+    background-color: hsl(214, 32%, 91%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 38px;
+}
+
+.project-list .add-project {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 25px 38px;
+
+    width: 100%;
+}
+
+.project-list .add-project > img {
+    filter: invert(100%);
+}
+
+.project-list .project {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 16px 38px;
+    width: 100%;
+}
+
+.project-list .project:first-child {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.project-list .project:has(+ .add-project) {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.project-list .project:nth-child(even) {
+    background-color: hsl(0, 16%, 85%);
+}
+
+.project-list .project:nth-child(even):hover {
+    background-color: hsla(0, 16%, 85%, 0.637);
+    filter: brightness(58%);
+}
+
+.project-list .project:nth-child(odd) {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.project-list .project:nth-child(odd):hover {
+    background-color: hsl(0, 0%, 100%, 0.637);
+    filter: brightness(58%);
+}
+
+.project-list .project > div:first-child {
+    font-weight: 800;
+}
+
+.project-list .project > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.project-list .project button {
+    background-size: 1.5em 1.5em;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: invert(100%);
+
+    height: 2.25em;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+}
+
+.project-list .project button:hover {
+    background-color: hsl(258, 75%, 43%);
+    filter: invert(0%);
+}
+
+.project-list .edit-project {
+    background-image: url("./assets/icons/edit-fill0.svg");
+}
+
+.project-list .delete-project {
+    background-image: url("./assets/icons/delete-fill0.svg");
 }
