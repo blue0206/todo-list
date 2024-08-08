@@ -40,7 +40,6 @@
         </dialog>
         <dialog class="edit-task-modal">
             <form>
-                <h2>EDIT TASK</h2>
                 <div class="form-element">
                     <textarea id="task-name" placeholder="Task Name"></textarea>
                 </div>
@@ -48,11 +47,11 @@
                     <textarea id="description" placeholder="Description"></textarea>
                 </div>
                 <div class="form-element">
-                    <label for="due-date">Due Date:</label>
+                    <label for="due-date">Due Date</label>
                     <input type="date" id="due-date">
                 </div>
                 <div class="form-element">
-                    <label for="priority">Set Priority:</label>
+                    <label for="priority">Priority</label>
                     <select id="priority">
                         <option value="Maximum">Maximum</option>
                         <option value="High">High</option>
@@ -62,10 +61,11 @@
                     </select>
                 </div>
                 <div class="form-element">
+                    <label for="parent-project">Project</label>
                     <select id="parent-project"></select>
                 </div>
-                <button type="button" class="modify-btn">SUBMIT</button>
-                <button type="reset" class="cancel-btn">CANCEL</button>
+                <button type="button" class="modify-btn">Save</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
             </form>
         </dialog>
         <dialog class="add-task-modal">
@@ -100,13 +100,11 @@
         </dialog>
         <dialog class="edit-project-modal">
             <form>
-                <h2>EDIT PROJECT</h2>
                 <div class="form-element">
-                    <label for="project-name">Name</label>
                     <input type="text" id="project-name">
                 </div>
-                <button type="button" class="modify-btn">SUBMIT</button>
-                <button type="reset" class="cancel-btn">CANCEL</button>
+                <button type="button" class="modify-btn">Save</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
             </form>
         </dialog>
         <dialog class="add-project-modal">
