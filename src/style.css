@@ -756,7 +756,10 @@ main > .home {
     aspect-ratio: 1 / 1;
 }
 
-.task-complete:checked + .project-task-container .task-utility > div:nth-child(even):not(:last-child) > div:last-child {
+.task-complete:checked 
++ .project-task-container .task-utility 
+> div:nth-child(even):not(:last-child) 
+> div:last-child {
     /* Strikethrough task due-date if task checked complete */
     text-decoration: line-through double hsl(0, 0%, 0%) from-font;
 }
@@ -948,11 +951,7 @@ dialog textarea {
     outline: none;
 }
 
-/* .add-task-modal {
-    width: max(38%, 50ch);
-} */
-
-.add-task-modal > form {
+.add-task-modal > form, .edit-task-modal > form {
     height: 100%;
     width: 100%;
 
@@ -961,37 +960,39 @@ dialog textarea {
     gap: 25px;
 }
 
-.add-task-modal .form-element {
+.add-task-modal .form-element, .edit-task-modal .form-element {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.add-task-modal textarea {
+textarea {
     height: 100%;
     width: 100%;
     overflow: auto;
     text-align: justify;
 }
 
-.add-task-modal #task-name, .add-task-modal #task-name::placeholder {
+.add-task-modal #task-name, 
+.add-task-modal #task-name::placeholder, 
+.edit-task-modal #task-name {
     font-weight: 800;
 }
 
-.add-task-modal #description {
+.add-task-modal #description, .edit-task-modal #description {
     font-size: 1rem;
 }
 
-.add-task-modal label {
+.add-task-modal label, .edit-task-modal label {
     font-size: 1rem;
     font-weight: 800;
 }
 
-button {
+dialog button {
     border-radius: 16px;
 }
 
-button:not(:disabled):hover {
+dialog button:not(:disabled):hover {
     filter: brightness(68%);
 }
 
@@ -1009,7 +1010,7 @@ button:not(:disabled):hover {
     background-color: hsl(0, 0%, 78%);
 }
 
-.add-project-modal > form {
+.add-project-modal > form, .edit-project-modal > form {
     height: 100%;
     width: 100%;
 
@@ -1018,12 +1019,18 @@ button:not(:disabled):hover {
     gap: 25px;
 }
 
-.add-project-modal input {
+dialog input {
     outline: none;
     border: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    text-align: justify;
 }
 
-.add-project-modal #project-name::placeholder {
+.add-project-modal #project-name::placeholder, 
+.add-project-modal #project-name, 
+.edit-project-modal #project-name {
     font-weight: 800;
 }
 
@@ -1035,4 +1042,8 @@ button:not(:disabled):hover {
 .add-project-modal .submit-project:disabled {
     background-color: hsla(32, 100%, 50%, 0.664);
     cursor: not-allowed;
+}
+
+.modify-btn {
+    background-color: hsl(78, 82%, 52%);
 }
