@@ -70,7 +70,6 @@
         </dialog>
         <dialog class="add-task-modal">
             <form>
-                <h2>ADD TASK</h2>
                 <div class="form-element">
                     <textarea id="task-name" placeholder="Task Name"></textarea>
                 </div>
@@ -78,11 +77,11 @@
                     <textarea id="description" placeholder="Description"></textarea>
                 </div>
                 <div class="form-element">
-                    <label for="due-date">Due Date:</label>
+                    <label for="due-date">Due Date</label>
                     <input type="date" id="due-date">
                 </div>
                 <div class="form-element">
-                    <label for="priority">Set Priority:</label>
+                    <label for="priority">Priority</label>
                     <select id="priority">
                         <option value="Maximum">Maximum</option>
                         <option value="High">High</option>
@@ -92,10 +91,11 @@
                     </select>
                 </div>
                 <div class="form-element">
+                    <label for="parent-project">Project</label>
                     <select id="parent-project"></select>
                 </div>
-                <button type="button" class="submit-task">SUBMIT</button>
-                <button type="reset" class="cancel-btn">CANCEL</button>
+                <button type="button" class="submit-task" disabled>Add Task</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
             </form>
         </dialog>
         <dialog class="edit-project-modal">
