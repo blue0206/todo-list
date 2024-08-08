@@ -502,23 +502,23 @@ main > .home {
     -webkit-line-clamp: 2;
 }
 
-.maximum {
+.maximum, option[value="Maximum"] {
     background-color: hsl(0, 100%, 50%);
 }
 
-.high {
+.high, option[value="High"] {
     background-color: hsl(39, 100%, 50%);
 }
 
-.medium {
+.medium, option[value="Medium"] {
     background-color: hsl(60, 100%, 74%);
 }
 
-.low {
+.low, option[value="Low"] {
     background-color: hsl(172, 100%, 78%);
 }
 
-.minimum {
+.minimum, option[value="Minimum"] {
     background-color: hsl(120, 75%, 45%);
 }
 
@@ -925,4 +925,114 @@ main > .my-projects > .my-projects-header {
 
 .project-list .delete-project {
     background-image: url("./assets/icons/delete-fill0.svg");
+}
+
+/* Styling Modal */
+dialog {
+    margin: auto;
+    border: none;
+    width: max(38%, 50ch);
+
+    border-radius: 25px;
+    box-shadow: 2.7px 5.3px 14.4px rgba(0, 0, 0, 0.34),
+                11px 22px 85px rgba(0, 0, 0, 0.16);
+}
+
+dialog::backdrop {
+    background-color: hsla(0, 0%, 0%, 0.385);
+}
+
+dialog textarea {
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+/* .add-task-modal {
+    width: max(38%, 50ch);
+} */
+
+.add-task-modal > form {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 1.8fr repeat(3, 0.4fr);
+    gap: 25px;
+}
+
+.add-task-modal .form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-task-modal textarea {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    text-align: justify;
+}
+
+.add-task-modal #task-name, .add-task-modal #task-name::placeholder {
+    font-weight: 800;
+}
+
+.add-task-modal #description {
+    font-size: 1rem;
+}
+
+.add-task-modal label {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+button {
+    border-radius: 16px;
+}
+
+button:not(:disabled):hover {
+    filter: brightness(68%);
+}
+
+.add-task-modal .submit-task {
+    background-color: hsl(32, 100%, 50%);
+    color: hsl(0, 0%, 100%);
+}
+
+.add-task-modal .submit-task:disabled {
+    background-color: hsla(32, 100%, 50%, 0.664);
+    cursor: not-allowed;
+}
+
+.cancel-btn {
+    background-color: hsl(0, 0%, 78%);
+}
+
+.add-project-modal > form {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 2fr repeat(2, 0.2fr);
+    gap: 25px;
+}
+
+.add-project-modal input {
+    outline: none;
+    border: none;
+}
+
+.add-project-modal #project-name::placeholder {
+    font-weight: 800;
+}
+
+.add-project-modal .submit-project {
+    background-color: hsl(32, 100%, 50%);
+    color: hsl(0, 0%, 100%);
+}
+
+.add-project-modal .submit-project:disabled {
+    background-color: hsla(32, 100%, 50%, 0.664);
+    cursor: not-allowed;
 }
