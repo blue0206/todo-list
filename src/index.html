@@ -10,32 +10,41 @@
     <aside></aside>
     <section class="modals">
         <dialog class="task-modal">
-            <div class="task-container">
-                <div class="btns">
-                    <button class="edit-task">Edit</button>
-                    <button class="close-btn">X</button>
-                </div>
+            <div class="task-display">
+                <button class="close-btn"></button>
+                <input type="checkbox" class="task-complete">
                 <div class="task-body">
-                    <div class="task-heading">
-                        <h2 class="task-name"></h2>
-                        <div class="task-description"></div>
-                    </div>
+                    <div class="task-name"></div>
+                    <div class="task-description"></div>
+                </div>
+                <div class="btns">
+                    <button class="edit-task"></button>
+                    <button class="delete-task"></button>
                 </div>
                 <div class="task-details">
                     <div class="detail">
-                        <h3 class="date-heading">Due Date</h3>
+                        <div class="date-heading">Due Date</div>
                         <div class="date"></div>
                     </div>
                     <div class="detail">
-                        <h3 class="priority-heading">Priority</h3>
-                        <div class="priority"></div>
+                        <div class="priority-heading">Priority</div>
+                        <div>
+                            <div class="priority-flag"></div>
+                            <div class="priority"></div>
+                        </div>
                     </div>
-                    <div class="status">
-                        <h3 class="status-heading">Status</h3>
-                        <div class="status"></div>
+                    <div class="detail">
+                        <div class="status-heading">Status</div>
+                        <div>
+                            <div class="status-icon"></div>
+                            <div class="status"></div>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <div class="parent-project-heading">Project</div>
+                        <div class="parent-project"></div>
                     </div>
                 </div>
-                <button class="delete-task">Delete</button>
             </div>
         </dialog>
         <dialog class="edit-task-modal">
@@ -94,7 +103,7 @@
                     <label for="parent-project">Project</label>
                     <select id="parent-project"></select>
                 </div>
-                <button type="button" class="submit-task" disabled>Add Task</button>
+                <button type="button" class="submit-task">Add Task</button>
                 <button type="reset" class="cancel-btn">Cancel</button>
             </form>
         </dialog>
