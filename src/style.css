@@ -57,6 +57,14 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 /* My Styling */
+:root {
+    --maximum-priority: hsl(0, 100%, 50%);
+    --high-priority: hsl(39, 100%, 50%);
+    --medium-priority: hsl(60, 41%, 54%);
+    --low-priority: hsl(172, 41%, 59%);
+    --minimum-priority: hsl(120, 75%, 45%);
+}
+
 body {
     font-family: 'roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
                 Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -503,23 +511,23 @@ main > .home {
 }
 
 .maximum, option[value="Maximum"] {
-    background-color: hsl(0, 100%, 50%);
+    background-color: var(--maximum-priority);
 }
 
 .high, option[value="High"] {
-    background-color: hsl(39, 100%, 50%);
+    background-color: var(--high-priority);
 }
 
 .medium, option[value="Medium"] {
-    background-color: hsl(60, 100%, 74%);
+    background-color: var(--medium-priority);
 }
 
 .low, option[value="Low"] {
-    background-color: hsl(172, 100%, 78%);
+    background-color: var(--low-priority);
 }
 
 .minimum, option[value="Minimum"] {
-    background-color: hsl(120, 75%, 45%);
+    background-color: var(--minimum-priority);
 }
 
 .project-container {
@@ -934,7 +942,7 @@ main > .my-projects > .my-projects-header {
 dialog {
     margin: auto;
     border: none;
-    width: max(38%, 50ch);
+    width: clamp(450px, 38%, 75ch);
 
     border-radius: 25px;
     box-shadow: 2.7px 5.3px 14.4px rgba(0, 0, 0, 0.34),
@@ -952,9 +960,6 @@ dialog textarea {
 }
 
 .add-task-modal > form, .edit-task-modal > form {
-    height: 100%;
-    width: 100%;
-
     display: grid;
     grid-template-rows: 1fr 1.8fr repeat(3, 0.4fr);
     gap: 25px;
@@ -977,6 +982,7 @@ textarea {
 .add-task-modal #task-name::placeholder, 
 .edit-task-modal #task-name {
     font-weight: 800;
+    font-size: 1.5rem;
 }
 
 .add-task-modal #description, .edit-task-modal #description {
@@ -1011,17 +1017,12 @@ dialog button:not(:disabled):hover {
 }
 
 .add-project-modal > form, .edit-project-modal > form {
-    height: 100%;
-    width: 100%;
-
     display: grid;
     grid-template-rows: 2fr repeat(2, 0.2fr);
     gap: 25px;
 }
 
-dialog input {
-    outline: none;
-    border: none;
+dialog input:not(.mark-complete) {
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -1032,6 +1033,13 @@ dialog input {
 .add-project-modal #project-name, 
 .edit-project-modal #project-name {
     font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.add-project-modal #project-name,
+.edit-project-modal #project-name {
+    outline: none;
+    border: none;
 }
 
 .add-project-modal .submit-project {
@@ -1046,4 +1054,199 @@ dialog input {
 
 .modify-btn {
     background-color: hsl(78, 82%, 52%);
+}
+
+.task-display {
+    display: grid;
+    grid-template: auto 1fr / auto 2fr 1fr;
+    grid-template-areas: 'task-complete-checkbox body btns' 
+                        '. body details';
+    gap: 25px 16px;
+
+    height: min(650px, 65vh);
+    padding: 35px 16px;
+
+    position: relative;
+}
+
+.task-display > .close-btn {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+
+    background-image: url("./assets/icons/close.svg");
+}
+
+.task-display > .close-btn:hover {
+    background-color: hsl(0, 100%, 50%);
+    filter: invert(0%);
+}
+
+.task-display > .task-complete {
+    grid-area: task-complete-checkbox;
+
+    height: calc(1em * 1.5);
+    aspect-ratio: 1 / 1;
+}
+
+.task-display > .task-body {
+    grid-area: body;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.task-display > .btns {
+    grid-area: btns;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.task-display > .task-details {
+    grid-area: details;
+    font-size: 1rem;
+
+    padding-top: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.task-complete:checked + .task-body > div,
+.task-complete:checked ~ .task-details .date {
+    text-decoration: line-through double hsl(0, 0%, 0%) from-font;
+}
+
+.task-display .task-details > .detail {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-display .task-body > div:first-child {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.task-details > .detail > div:first-child {
+    font-weight: 800;
+}
+
+.task-display .task-body > div:nth-child(2) {
+    font-size: 1rem;
+    overflow: auto;
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .task-display .task-body > div:nth-child(2)::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .task-display .task-body>div:nth-child(2)::-webkit-scrollbar-track {
+        background-color: hsl(0, 0%, 78%);
+        border-radius: 100vh;
+    }
+    
+    .task-display .task-body>div:nth-child(2)::-webkit-scrollbar-thumb {
+        background-color: hsl(0, 0%, 0%);
+        border-radius: 100vh;
+    }
+}
+
+.task-display .edit-task {
+    background-image: url("./assets/icons/edit-fill0.svg");
+}
+
+.task-display .delete-task {
+    background-image: url("./assets/icons/delete-fill0.svg");
+}
+
+.task-display > .close-btn, 
+.task-display .btns > * {
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position: center;
+    height: 2em;
+    aspect-ratio: 1 / 1;
+    filter: invert(100%);
+}
+
+.task-display .btns > *:hover {
+    background-color: black;
+    filter: invert(0%);
+}
+
+.task-display .priority-flag {
+    height: 2em;
+    width: 2em;
+    
+    display: grid;
+    place-content: center;
+}
+
+.task-display .priority-flag::before {
+    content: "";
+    width: 1.5em;
+    height: 1.5em;
+    clip-path: polygon(38% 26%, 80% 50%, 12% 51%, 12% 100%, 0 100%, 0 0, 80% 0);
+}
+
+.priority-flag#maximum::before {
+    background-color: var(--maximum-priority);
+}
+
+.priority-flag#high::before {
+    background-color: var(--high-priority);
+}
+
+.priority-flag#medium::before {
+    background-color: var(--medium-priority);
+}
+
+.priority-flag#low::before {
+    background-color: var(--low-priority);
+}
+
+.priority-flag#minimum::before {
+    background-color: var(--minimum-priority);
+}
+
+.task-display .priority-heading + div,
+.task-display .status-heading + div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-display .status {
+    display: grid;
+    place-content: start center;
+}
+
+.task-display .status::before {
+    content: "Active";
+}
+
+.task-display .status-icon {
+    background-image: url("./assets/icons/active.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+}
+
+.task-complete:checked ~ .task-details .status::before {
+    content: "Complete";
+}
+
+.task-complete:checked ~ .task-details .status-icon {
+    background-image: url("./assets/icons/inactive.svg");
+}
+
+dialog:has( .task-complete:checked) {
+    background-color: hsl(0, 0%, 89%);
 }
