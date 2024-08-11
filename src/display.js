@@ -2,18 +2,41 @@ import { ProjectListDOM } from "./dom-object-constructors.js";
 import { sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
 import home from "./home.js";
+import { TaskList, ProjectList } from "./object-constructors.js";
 
 // Task Display Control Unit
 const TaskDisplayControl = function() {
     const taskDisplayModal = document.querySelector(".task-modal");
+
+    // Close button event listener.
     const closeBtn = taskDisplayModal.querySelector(".close-btn");
     closeBtn.addEventListener("click", () => {
         taskDisplayModal.close();
     });
 
+    // Attach event listener to task checkbox.
+    const taskCompleteCheckbox = document.querySelector('.task-display > .task-complete');
+    taskCompleteCheckbox.addEventListener('click', () => {
+        let task = TaskList.search(taskCompleteCheckbox.id);
+        console.log(task, "BEFORE");
+        task.status = task.status == true ? false : true;
+        console.log(task);
+        refreshDisplay(task.project);
+    });
+
     function taskDisplay(task)
     {
         const taskDisplayModal = document.querySelector(".task-modal");
+        // Set task id on checkbox for status toggling.
+        taskDisplayModal.querySelector('.task-complete').id = task.id;
+        if (task.status)
+        {
+            taskDisplayModal.querySelector('.task-complete').setAttribute('checked', true);
+        }
+        else
+        {
+            taskDisplayModal.querySelector('.task-complete').removeAttribute('checked');
+        }
         // Show task name.
         taskDisplayModal.querySelector('.task-name').textContent = task.name;
         // Show task description.
@@ -22,9 +45,10 @@ const TaskDisplayControl = function() {
         taskDisplayModal.querySelector('.date').textContent = task.dueDate;
         // Show task priority level.
         taskDisplayModal.querySelector('.priority').textContent = task.priority;
-        // Show task status.
-        taskDisplayModal.querySelector(".status").textContent =
-          task.status == true ? "Complete" : "Pending";
+        // Set id to set priority flag icon color.
+        taskDisplayModal.querySelector('.priority-flag').id = task.priority.toLowerCase();
+        // Show task parent project.
+        taskDisplayModal.querySelector(".parent-project").textContent = ProjectList.search(task.project).name;
         // Attach id to edit & delete buttons for task identification and appropriate action.
         taskDisplayModal.querySelector('.edit-task').id = `${task.id}`;
         taskDisplayModal.querySelector(".delete-task").id = `${task.id}`;
