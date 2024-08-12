@@ -132,7 +132,7 @@ const ProjectDOM = function(name, id, tasks = []) {
         },
         name,
         id,
-        update: function(newName) { name = newName },
+        update(newName) { this.name = newName },
         tasks
     };
 
