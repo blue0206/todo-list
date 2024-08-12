@@ -157,7 +157,8 @@ aside .tabs {
     gap: 11px;
 
     max-height: 58vh;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: hsl(0, 0%, 100%) hsl(199, 89%, 55%);
 }
@@ -732,7 +733,7 @@ main > .home {
     gap: 11px;
 
     padding-bottom: 11px;
-    padding-right: 8px;
+    padding-right: 25px;
 }
 
 .task-utility > *:not(:first-child) {
@@ -1255,4 +1256,73 @@ dialog input:not(.mark-complete) {
 
 dialog:has( .task-complete:checked) {
     background-color: hsl(0, 0%, 89%);
+}
+
+/* Tooltip Styling */
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    bottom: -40px;
+
+    display: grid;
+    place-content: center;
+}
+
+.tooltip::before {
+    border-radius: 16px;
+    width: max-content;
+    padding: 8px 11px;
+    background-color: hsl(0, 0%, 0%);
+    color: hsl(0, 0%, 100%);
+    font-size: 0.8rem;
+}
+
+.edit-task,
+.delete-task,
+.open-task,
+.edit-project,
+.delete-project,
+.card-btns > button {
+    position: relative;
+}
+
+.edit-task:hover > .tooltip,
+.delete-task:hover > .tooltip,
+.open-task:hover > .tooltip,
+.edit-project:hover > .tooltip,
+.delete-project:hover > .tooltip,
+.card-btns > button:hover > .tooltip {
+    visibility: visible;
+}
+
+.card-btns > button:hover > .tooltip {
+    filter: invert(100%);
+}
+
+.edit-task:hover > .tooltip::before,
+.card-edit-btn:hover > .tooltip::before {
+    content: "Edit Task";
+}
+
+.delete-task:hover > .tooltip::before,
+.card-delete-btn:hover > .tooltip::before {
+    content: "Delete Task";
+}
+
+.open-task:hover > .tooltip::before,
+.card-open-btn:hover > .tooltip::before {
+    content: "Open Task";
+}
+
+.edit-project:hover > .tooltip::before {
+    content: "Edit Project";
+}
+
+.delete-project:hover > .tooltip::before {
+    content: "Delete Project";
+}
+
+.card-mark-btn:hover > .tooltip::before {
+    content: "Mark Complete";
 }
