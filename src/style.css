@@ -220,10 +220,23 @@ aside .tabs {
     gap: 11px;
 
     max-height: 58vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(0, 0%, 100%) hsl(199, 89%, 55%);
+    overflow: auto;
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .project-tabs::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .project-tabs::-webkit-scrollbar-track {
+        background-color: hsl(0, 0%, 0%);
+        border-radius: 100vh;
+    }
+
+    .project-tabs::-webkit-scrollbar-thumb {
+        background-color: hsl(0, 0%, 100%);
+        border-radius: 100vh;
+    }
 }
 
 .project-tabs > *:not(.my-projects) {
