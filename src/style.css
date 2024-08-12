@@ -1156,7 +1156,7 @@ dialog input:not(.mark-complete) {
     gap: 25px 16px;
 
     height: min(650px, 65vh);
-    padding: 35px 16px;
+    padding: 35px 32px 35px 16px;
 
     position: relative;
 }
