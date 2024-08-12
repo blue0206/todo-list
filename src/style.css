@@ -640,6 +640,13 @@ main > .home {
     margin-left: 38px;
 }
 
+.project-heading > button:hover {
+    background-color: white;
+    padding-inline: 16px;
+    border-radius: 25px;
+    filter: invert(100%);;
+}
+
 .project-task-list {
     grid-area: project-main;
     list-style: none;
@@ -817,6 +824,13 @@ main > .home {
     gap: 8px;
     margin-bottom: 25px;
     padding-top: 5px;
+}
+
+.task-utility > div:first-child > button:hover {
+    background-color: white;
+    padding-block: 2px;
+    border-radius: 25px;
+    filter: invert(100%);
 }
 
 .task-utility-heading {
@@ -1347,6 +1361,12 @@ dialog:has( .task-complete:checked) {
     background-color: hsl(0, 0%, 0%);
     color: hsl(0, 0%, 100%);
     font-size: 0.8rem;
+}
+
+.project-heading button > .tooltip::before,
+.task-utility button > .tooltip::before {
+    background-color: black;
+    filter: invert(100%);
 }
 
 .edit-task,
