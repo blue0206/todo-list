@@ -68,16 +68,16 @@ export default function content() {
 function projectListItemDOM(project)
 {
     // Project Button to open Project tab.
-    const projectBtn = document.createElement("button");
-    projectBtn.classList.add("project");
-    projectBtn.addEventListener("click", () => {
-      sidebarProjectsClickDispatch(project.id);
-    });
+    const projectContainer = document.createElement("div");
+    projectContainer.classList.add("project");
 
     // Project Name
     const projectName = document.createElement("div");
     projectName.textContent = project.name;
-    projectBtn.appendChild(projectName);
+    projectName.addEventListener('click', () => {
+        sidebarProjectsClickDispatch(project.id);
+    });
+    projectContainer.appendChild(projectName);
 
     const btnContainer = document.createElement('div');
 
@@ -97,6 +97,6 @@ function projectListItemDOM(project)
     });
     btnContainer.appendChild(deleteBtn);
 
-    projectBtn.appendChild(btnContainer);
-    return projectBtn;
+    projectContainer.appendChild(btnContainer);
+    return projectContainer;
 }
