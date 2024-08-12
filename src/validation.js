@@ -12,17 +12,8 @@ const Validation = function() {
         }
     
         // Validate task name.
-        let taskNameValidity = false;
         const taskName = taskModal.querySelector('#task-name');
-        taskNameValidity =
-          taskName.value.length > 0 ? true : false;
-        
-        // Validate task description.
-        let taskDescriptionValidity = false;
-        const taskDescription = taskModal.querySelector('#description');
-        taskDescriptionValidity = taskDescription.value.length > 0 ? true : false;
-    
-        return (taskNameValidity && taskDescriptionValidity);
+        return (taskName.value.length > 0);
     }
     
     function validateProject(validateEdit=false)
