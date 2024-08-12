@@ -115,12 +115,9 @@ function taskCard(task)
     cardContent.classList.add('card-content');
 
     // Task Name
-    const taskName = document.createElement('button');
+    const taskName = document.createElement('div');
     taskName.classList.add('task-name');
     taskName.textContent = task.name;
-    taskName.addEventListener('click', () => {
-        TaskDisplayControl.taskDisplay(task);
-    });
     cardContent.appendChild(taskName);
 
     // Task Description
