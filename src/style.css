@@ -324,7 +324,15 @@ main > .home {
     display: flex;
     justify-content: flex-end;
     align-items: end;
+    gap: 8px;
 
+    filter: invert(100%);
+}
+
+.card-content > .card-btns > *:hover {
+    background-color: black;
+    border-radius: 16px;
+    padding-block: 5px;
     filter: invert(100%);
 }
 
@@ -1294,10 +1302,6 @@ dialog:has( .task-complete:checked) {
 .delete-project:hover > .tooltip,
 .card-btns > button:hover > .tooltip {
     visibility: visible;
-}
-
-.card-btns > button:hover > .tooltip {
-    filter: invert(100%);
 }
 
 .edit-task:hover > .tooltip::before,
