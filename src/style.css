@@ -256,15 +256,19 @@ aside .tabs {
     justify-content: flex-end;
     gap: 5px;
 
-    height: 100%;
+    height: 2em;
 }
 
 .project-btns > .edit-project {
     background-image: url("./assets/icons/edit.svg");
+    background-size: 1.5em;
+    background-position: center;
 }
 
 .project-btns > .delete-project {
     background-image: url("./assets/icons/delete.svg");
+    background-size: 1.5em;
+    background-position: center;
 }
 
 .project-btns > * {
@@ -631,6 +635,13 @@ main > .home {
     z-index: 1;
 }
 
+.project-heading > button {
+    height: 1.8em;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    align-self: center;
+}
+
 .project-heading img {
     height: 1.5em;
     aspect-ratio: 1 / 1;
@@ -642,8 +653,6 @@ main > .home {
 
 .project-heading > button:hover {
     background-color: white;
-    padding-inline: 16px;
-    border-radius: 25px;
     filter: invert(100%);;
 }
 
