@@ -139,6 +139,10 @@ function taskCard(task)
     const btns = document.createElement('div');
     btns.classList.add('card-btns');
 
+    // Tooltip Element
+    const tooltip = document.createElement('span');
+    tooltip.classList.add('tooltip');
+
     // Mark Complete button.
     const markCompleteBtn = document.createElement('button');
     markCompleteBtn.classList.add('card-mark-btn');
@@ -150,6 +154,8 @@ function taskCard(task)
     markCompleteIcon.src = MarkCompleteIcon;
     markCompleteIcon.alt = "Mark Complete";
     markCompleteBtn.appendChild(markCompleteIcon);
+    const markCompleteTooltip = tooltip.cloneNode(true);
+    markCompleteBtn.appendChild(markCompleteTooltip);
 
     // Edit button.
     const editBtn = document.createElement('button');
@@ -162,6 +168,8 @@ function taskCard(task)
     editIcon.src = EditIcon;
     editIcon.alt = "Edit Task";
     editBtn.appendChild(editIcon);
+    const editTooltip = tooltip.cloneNode(true);
+    editBtn.appendChild(editTooltip);
 
     // Delete button.
     const deleteBtn = document.createElement('button');
@@ -173,6 +181,8 @@ function taskCard(task)
     deleteIcon.src = DeleteIcon;
     deleteIcon.alt = "Delete Task";
     deleteBtn.appendChild(deleteIcon);
+    const deleteTooltip = tooltip.cloneNode(true);
+    deleteBtn.appendChild(deleteTooltip);
 
     // Open button.
     const openBtn = document.createElement('button');
@@ -184,6 +194,8 @@ function taskCard(task)
     openIcon.src = OpenIcon;
     openIcon.alt = "Open Task";
     openBtn.appendChild(openIcon);
+    const openTooltip = tooltip.cloneNode(true);
+    openBtn.appendChild(openTooltip);
 
     // Append buttons to container.
     btns.appendChild(markCompleteBtn);

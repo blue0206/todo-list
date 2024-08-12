@@ -81,12 +81,18 @@ function projectListItemDOM(project)
 
     const btnContainer = document.createElement('div');
 
+    // tooltip Element
+    const tooltip = document.createElement('span');
+    tooltip.classList.add('tooltip');
+
     // Edit Button
     const editBtn = document.createElement('button');
     editBtn.classList.add('edit-project');
     editBtn.addEventListener('click', () => {
         ProjectControl.setupProjectEditModal(project.id, project.name);
     });
+    const editTooltip = tooltip.cloneNode(true);
+    editBtn.appendChild(editTooltip);
     btnContainer.appendChild(editBtn);
 
     // Delete Button
@@ -95,6 +101,8 @@ function projectListItemDOM(project)
     deleteBtn.addEventListener('click', () => {
         ProjectControl.projectDestructor(project.id);
     });
+    const deleteTooltip = tooltip.cloneNode(true);
+    deleteBtn.appendChild(deleteTooltip);
     btnContainer.appendChild(deleteBtn);
 
     projectContainer.appendChild(btnContainer);

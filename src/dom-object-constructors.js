@@ -8,6 +8,10 @@ import DeleteIcon from "./assets/icons/delete-fill0.svg";
 import AddIcon from "./assets/icons/add-circle.svg";
 
 const ProjectDOM = function(name, id, tasks = []) {
+    // Tooltip Element
+    const tooltip = document.createElement('span');
+    tooltip.classList.add('tooltip');
+    
     const obj = {
         mainDisplay: () => {
             // Container
@@ -28,7 +32,7 @@ const ProjectDOM = function(name, id, tasks = []) {
 
             // Add edit & delete feature (not for Inbox)
             if (id != 0)    // Inbox has id == 0.
-            {
+            {                
                 // Project Edit
                 const projectEditBtn = document.createElement('button');
                 projectEditBtn.classList.add('edit-project');
@@ -41,6 +45,10 @@ const ProjectDOM = function(name, id, tasks = []) {
                 projectEditIcon.src = EditIcon;
                 projectEditIcon.alt = "Edit Project";
                 projectEditBtn.appendChild(projectEditIcon);
+
+                // Project Edit Tooltip
+                const editTooltip = tooltip.cloneNode(true);
+                projectEditBtn.appendChild(editTooltip);
                 
                 projectHeading.appendChild(projectEditBtn);
 
@@ -56,6 +64,10 @@ const ProjectDOM = function(name, id, tasks = []) {
                 projectDeleteIcon.src = DeleteIcon;
                 projectDeleteIcon.alt = "Delete Project";
                 projectDeleteBtn.appendChild(projectDeleteIcon);
+
+                // Project Delete Tooltip
+                const deleteTooltip = tooltip.cloneNode(true);
+                projectDeleteBtn.appendChild(deleteTooltip);
 
                 projectHeading.appendChild(projectDeleteBtn);
             }
@@ -198,6 +210,9 @@ const ProjectDOM = function(name, id, tasks = []) {
         openIcon.alt = "Open Task";
         openBtn.appendChild(openIcon);
 
+        const openTooltip = tooltip.cloneNode(true);
+        openBtn.appendChild(openTooltip);
+
         btnContainer.appendChild(openBtn);
 
         const editBtn = document.createElement('button');
@@ -212,6 +227,9 @@ const ProjectDOM = function(name, id, tasks = []) {
         editIcon.alt = "Edit Task";
         editBtn.appendChild(editIcon);
 
+        const editTooltip = tooltip.cloneNode(true);
+        editBtn.appendChild(editTooltip);
+
         btnContainer.appendChild(editBtn);
 
         const deleteBtn = document.createElement('button');
@@ -225,6 +243,9 @@ const ProjectDOM = function(name, id, tasks = []) {
         deleteIcon.alt = "Delete Task";
         deleteBtn.appendChild(deleteIcon);
         btnContainer.appendChild(deleteBtn);
+
+        const deleteTooltip = tooltip.cloneNode(true);
+        deleteBtn.appendChild(deleteTooltip);
         
         utilityContainer.appendChild(btnContainer);
 
