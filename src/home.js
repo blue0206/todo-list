@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import MarkCompleteIcon from "./assets/icons/check-circle-fill0.svg";
 import EditIcon from "./assets/icons/edit-fill0.svg";
 import DeleteIcon from "./assets/icons/delete-fill0.svg";
+import OpenIcon from "./assets/icons/open-fill0.svg";
 
 
 export default function content()
@@ -173,10 +174,22 @@ function taskCard(task)
     deleteIcon.alt = "Delete Task";
     deleteBtn.appendChild(deleteIcon);
 
+    // Open button.
+    const openBtn = document.createElement('button');
+    openBtn.classList.add('card-open-btn');
+    openBtn.addEventListener('click', () => {
+        TaskDisplayControl.taskDisplay(task);
+    });
+    const openIcon = new Image();
+    openIcon.src = OpenIcon;
+    openIcon.alt = "Open Task";
+    openBtn.appendChild(openIcon);
+
     // Append buttons to container.
     btns.appendChild(markCompleteBtn);
     btns.appendChild(editBtn);
     btns.appendChild(deleteBtn);
+    btns.appendChild(openBtn);
 
     cardContent.appendChild(btns);
     taskCard.appendChild(cardContent);

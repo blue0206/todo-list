@@ -1,7 +1,8 @@
 import { listMethods } from "./methods.js";
-import { projectDisplay } from "./display.js";
+import { projectDisplay, TaskDisplayControl } from "./display.js";
 import { TaskControl, ProjectControl } from "./constructor.js";
 import { format } from "date-fns";
+import OpenIcon from "./assets/icons/open-fill0.svg";
 import EditIcon from "./assets/icons/edit-fill0.svg";
 import DeleteIcon from "./assets/icons/delete-fill0.svg";
 import AddIcon from "./assets/icons/add-circle.svg";
@@ -185,6 +186,19 @@ const ProjectDOM = function(name, id, tasks = []) {
 
         // Container for edit & delete buttons.
         const btnContainer = document.createElement('div');
+
+        const openBtn = document.createElement('button');
+        openBtn.classList.add('open-task');
+        openBtn.addEventListener('click', () => {
+            TaskDisplayControl.taskDisplay(task);
+        });
+
+        const openIcon = new Image();
+        openIcon.src = OpenIcon;
+        openIcon.alt = "Open Task";
+        openBtn.appendChild(openIcon);
+
+        btnContainer.appendChild(openBtn);
 
         const editBtn = document.createElement('button');
         editBtn.classList.add('edit-task');
