@@ -56,6 +56,7 @@ const TaskControl = function() {
         const taskCancelBtn = taskModal.querySelector('.cancel-btn');
         taskCancelBtn.addEventListener('click', () => {
             taskModal.close();
+            taskDropDown.remove();
         });
     };
 
