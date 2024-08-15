@@ -4,6 +4,8 @@ import { TaskControl, ProjectControl, inboxSetup } from "./constructor.js";
 import { myProjectsTab, homeTab } from "./display.js";
 import home from "./home.js";
 import sidebar from "./sidebar.js";
+import { storageAvailable, getData, storageSetup } from "./local-storage.js";
+
 
 // Generate Sidebar DOM.
 sidebar();
@@ -39,3 +41,17 @@ myProjectsTab();
 homeTab();
 // Generate DOM content for the Home tab.
 home();
+
+// STORAGE
+if (storageAvailable("localStorage"))
+{
+    if (!localStorage.getItem("taskList") && !localStorage.getItem("projectList"))
+    {
+        storageSetup();
+    }
+    else
+    {
+        // localStorage.clear();
+        getData();
+    }
+}
