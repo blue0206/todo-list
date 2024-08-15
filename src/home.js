@@ -8,6 +8,7 @@ import MarkCompleteIcon from "./assets/icons/check-circle-fill0.svg";
 import EditIcon from "./assets/icons/edit-fill0.svg";
 import DeleteIcon from "./assets/icons/delete-fill0.svg";
 import OpenIcon from "./assets/icons/open-fill0.svg";
+import { populateStorage } from "./local-storage";
 
 
 export default function content()
@@ -145,6 +146,7 @@ function taskCard(task)
     markCompleteBtn.classList.add('card-mark-btn');
     markCompleteBtn.addEventListener('click', () => {
         task.status = true;
+        populateStorage();
         refreshDisplay();
     });
     const markCompleteIcon = new Image();
