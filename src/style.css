@@ -157,6 +157,7 @@ aside {
     gap: 25px;
 
     padding-top: 25px;
+    max-width: 320px;
     font-size: 1.25rem;
     font-weight: 800;
 
