@@ -3,6 +3,7 @@ import { sidebarProjectsClickDispatch } from "./methods.js";
 import myProjects from "./my-projects.js";
 import home from "./home.js";
 import { TaskList, ProjectList } from "./object-constructors.js";
+import { populateStorage } from "./local-storage.js";
 
 // Task Display Control Unit
 const TaskDisplayControl = function() {
@@ -18,9 +19,18 @@ const TaskDisplayControl = function() {
     const taskCompleteCheckbox = document.querySelector('.task-display > .task-complete');
     taskCompleteCheckbox.addEventListener('click', () => {
         let task = TaskList.search(taskCompleteCheckbox.id);
-        console.log(task, "BEFORE");
-        task.status = task.status == true ? false : true;
-        console.log(task);
+        // Set task status.
+        if (taskCompleteCheckbox.checked)
+        {
+            task.status = true;
+        }
+        else
+        {
+            task.status = false;
+        }
+        // Update storage
+        populateStorage();
+        // Refresh display
         refreshDisplay(task.project);
     });
 
@@ -29,13 +39,14 @@ const TaskDisplayControl = function() {
         const taskDisplayModal = document.querySelector(".task-modal");
         // Set task id on checkbox for status toggling.
         taskDisplayModal.querySelector('.task-complete').id = task.id;
+        // Check/Uncheck checkbox depending on task status.
         if (task.status)
         {
-            taskDisplayModal.querySelector('.task-complete').setAttribute('checked', true);
+            taskDisplayModal.querySelector('.task-complete').checked = true;
         }
         else
         {
-            taskDisplayModal.querySelector('.task-complete').removeAttribute('checked');
+            taskDisplayModal.querySelector('.task-complete').checked = false;
         }
         // Show task name.
         taskDisplayModal.querySelector('.task-name').textContent = task.name;

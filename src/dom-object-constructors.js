@@ -6,6 +6,7 @@ import OpenIcon from "./assets/icons/open-fill0.svg";
 import EditIcon from "./assets/icons/edit-fill0.svg";
 import DeleteIcon from "./assets/icons/delete-fill0.svg";
 import AddIcon from "./assets/icons/add-circle.svg";
+import { populateStorage } from "./local-storage.js";
 
 const ProjectDOM = function(name, id, tasks = []) {
     // Tooltip Element
@@ -163,7 +164,17 @@ const ProjectDOM = function(name, id, tasks = []) {
         }
         // Checkbox Event Listener
         checkBox.addEventListener('click', () => {
-            task.status = task.status ? false : true;
+            // Update task status.
+            if (checkBox.checked)
+            {
+                task.status = true;
+            }
+            else
+            {
+                task.status = false;
+            }
+            // Update storage
+            populateStorage();
         });
         taskContainer.appendChild(checkBox);
 
