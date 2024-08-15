@@ -88,8 +88,6 @@ const TaskControl = function() {
         // Submit button event listener.
         editSubmitBtn.addEventListener('click', () => {
             const task = TaskList.search(editSubmitBtn.id);    // Store the task to be edited.
-            // Get rid of generated project list.
-            taskDropDown.remove();
 
             // Update the task with new data input by user using update method.
             task.update(
@@ -97,9 +95,7 @@ const TaskControl = function() {
                 taskEditModal.querySelector('#description').value,
                 taskEditModal.querySelector('#due-date').value,
                 taskEditModal.querySelector('#priority').value,
-                task.id,
-                task.project,
-                task.status
+                taskEditModal.querySelector('#parent-project').value
             );
 
             // Update storage.
@@ -111,6 +107,9 @@ const TaskControl = function() {
 
             // Refresh the project display to show the updated task.
             refreshDisplay(task.project);
+
+            // Get rid of generated project list.
+            taskDropDown.remove();
         });
 
         // Cancel button event listener.
@@ -186,7 +185,7 @@ const TaskControl = function() {
         taskDropDown.generate(ProjectList.list);
         // Set current parent project as selected in the drop-down.
         const parentProjectSelection = taskEditModal.querySelector('#parent-project');
-        parentProjectSelection.querySelector(`option[value="${task.project}"]`).toggleAttribute('selected');
+        parentProjectSelection.querySelector(`option[value="${task.project}"]`).selected = true;
     }
 
     function deleteTask(task)
