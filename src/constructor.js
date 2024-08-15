@@ -3,8 +3,14 @@ import { ProjectDOM, ProjectListDOM } from "./dom-object-constructors.js";
 import { dropDownListMethods } from "./methods.js";
 import { projectDisplay, refreshDisplay, TaskDisplayControl } from "./display.js";
 import { format } from "date-fns";
+import { populateStorage } from "./local-storage.js";
 
 let idGen = 1;
+
+function incrementIdGen(incrementValue)
+{
+    idGen += incrementValue;
+}
 
 // Task Control Unit
 const TaskControl = function() {
@@ -95,6 +101,9 @@ const TaskControl = function() {
                 task.project,
                 task.status
             );
+
+            // Update storage.
+            populateStorage();
             
             taskEditModal.close();      // Close task edit modal upon submit.
 
@@ -133,7 +142,7 @@ const TaskControl = function() {
             description.value, 
             dueDate.value, 
             priority.value, 
-            idGen++,            // Increment ID generator.
+            idGen,            // Increment ID generator.
             parentProject.value
         );
 
@@ -146,12 +155,18 @@ const TaskControl = function() {
         // Push created task into DOM parent project object task list.
         const projectDOM = ProjectListDOM.search(task.project);
         projectDOM.add(task);
+
+        // Update storage.
+        populateStorage();
         
         // If the parent project tab is open, update its display.
         refreshDisplay(task.project);
         
         // Display task upon creation.
         TaskDisplayControl.taskDisplay(task);
+
+        // Increment id generator variable.
+        incrementIdGen(1);
     }
 
     function setupTaskEditFields(task)
@@ -182,6 +197,8 @@ const TaskControl = function() {
         ProjectList.search(task.project).remove(task.id);
         // Remove task from parent project's task list (DOM-side)
         ProjectListDOM.search(task.project).remove(task.id);
+        // Update storage.
+        populateStorage();
         // Refresh display.
         refreshDisplay(task.project);
         // Close the task display modal.
@@ -240,6 +257,9 @@ const ProjectControl = function() {
             ProjectList.search(projectID).update(newName);
             ProjectListDOM.search(projectID).update(newName);
 
+            // Update storage.
+            populateStorage();
+
             refreshDisplay(projectID, true);
             projectEditModal.close();
         });
@@ -255,6 +275,8 @@ const ProjectControl = function() {
         ProjectList.remove(projectID);
         // Remove project from DOM-side list.
         ProjectListDOM.remove(projectID);
+        // Update storage.
+        populateStorage();
         // Refresh main & sidebar display.
         refreshDisplay(projectID, true);
     }
@@ -274,8 +296,11 @@ const ProjectControl = function() {
         ProjectListDOM.add(projectDOM);
         projectDOM.sidebarDisplay();
 
+        // Update storage.
+        populateStorage();
+
         // Increment ID generator.
-        idGen++;
+        incrementIdGen(1);
 
         // Update 'My Projects' display if open.
         refreshDisplay();
@@ -318,4 +343,4 @@ function inboxSetup()
     });
 }
 
-export { TaskControl, ProjectControl, inboxSetup };
+export { TaskControl, ProjectControl, inboxSetup, incrementIdGen };
