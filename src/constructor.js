@@ -268,16 +268,37 @@ const ProjectControl = function() {
         });
     }
 
-    function projectDestructor(projectID)
+    function projectDestructor()
     {
-        // Remove project from application-side list.
-        ProjectList.remove(projectID);
-        // Remove project from DOM-side list.
-        ProjectListDOM.remove(projectID);
-        // Update storage.
-        populateStorage();
-        // Refresh main & sidebar display.
-        refreshDisplay(projectID, true);
+        const prompt = document.querySelector('.project-delete-prompt');
+        const cancelBtn = prompt.querySelector('.cancel-btn');
+        const deleteBtn = prompt.querySelector('.delete-btn');
+
+        cancelBtn.addEventListener('click', () => {
+            prompt.close();
+        });
+
+        deleteBtn.addEventListener('click', () => {
+            // Delete project tasks.
+            ProjectList.search(deleteBtn.id).tasks.forEach((task) => TaskList.remove(task.id));
+            // Remove project from application-side list.
+            ProjectList.remove(deleteBtn.id);
+            // Remove project from DOM-side list.
+            ProjectListDOM.remove(deleteBtn.id);
+            // Update storage.
+            populateStorage();
+            // Refresh main & sidebar display.
+            refreshDisplay(deleteBtn.id, true);
+            // Close modal.
+            prompt.close();
+        });
+    }
+
+    function confirmDelete(projectID)
+    {
+        const prompt = document.querySelector('.project-delete-prompt');
+        prompt.querySelector('.delete-btn').id = projectID;
+        prompt.showModal();
     }
 
     function projectSetup(name)
@@ -320,6 +341,7 @@ const ProjectControl = function() {
         projectConstructor, 
         projectEditor, 
         projectDestructor,
+        confirmDelete,
         setupProjectEditModal 
     };
 }();
