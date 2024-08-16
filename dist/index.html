@@ -7,78 +7,69 @@
 <script defer src="main.js"></script></head>
 <body>
     <main>
-
-    </main>
-    <aside>
-        <div class="heading">
-            <img src="" alt="">
-            <h1>Dashboard</h1>
+        <div class="sidebar-toggle">
+            <input type="checkbox" id="sidebar-btn">
+            <div class="tooltip"></div>
         </div>
-        <nav class="tabs">
-            <button class="add-task">
-                <img src="" alt="">
-                <div>Add Task</div>
-            </button>
-            <button class="home">
-                <img src="" alt="">
-                <div>Home</div>
-            </button>
-            <button class="inbox">
-                <img src="" alt="">
-                <div>Inbox</div>
-            </button>
-        </nav>
-        <nav class="project-tabs">
-            <button class="my-projects">My Projects</button>
-            <button class="add-project">
-                <img src="" alt="">
-                <div>Add Project</div>
-            </button>
-        </nav>
-    </aside>
-    <footer>
-
-    </footer>
+    </main>
+    <aside></aside>
     <section class="modals">
         <dialog class="task-modal">
-            <div class="task-container">
-                <div class="btns">
-                    <button class="edit-task">Edit</button>
-                    <button class="close-btn">X</button>
-                </div>
+            <div class="task-display">
+                <button class="close-btn"></button>
+                <input type="checkbox" class="task-complete">
                 <div class="task-body">
-                    <div class="task-heading">
-                        <h2 class="task-name"></h2>
-                        <div class="task-description"></div>
-                    </div>
+                    <div class="task-name"></div>
+                    <div class="task-description"></div>
+                </div>
+                <div class="btns">
+                    <button class="edit-task">
+                        <span class="tooltip"></span>
+                    </button>
+                    <button class="delete-task">
+                        <span class="tooltip"></span>
+                    </button>
                 </div>
                 <div class="task-details">
                     <div class="detail">
-                        <h3 class="date-heading">Due Date</h3>
+                        <div class="date-heading">Due Date</div>
                         <div class="date"></div>
                     </div>
                     <div class="detail">
-                        <h3 class="priority-heading">Priority</h3>
-                        <div class="priority"></div>
+                        <div class="priority-heading">Priority</div>
+                        <div>
+                            <div class="priority-flag"></div>
+                            <div class="priority"></div>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <div class="status-heading">Status</div>
+                        <div>
+                            <div class="status-icon"></div>
+                            <div class="status"></div>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <div class="parent-project-heading">Project</div>
+                        <div class="parent-project"></div>
                     </div>
                 </div>
             </div>
         </dialog>
         <dialog class="edit-task-modal">
             <form>
-                <h2>EDIT TASK</h2>
                 <div class="form-element">
-                    <textarea id="task-name" placeholder="Task Name"></textarea>
+                    <textarea id="task-name" placeholder="Task Name" maxlength="85"></textarea>
                 </div>
                 <div class="form-element">
                     <textarea id="description" placeholder="Description"></textarea>
                 </div>
                 <div class="form-element">
-                    <label for="due-date">Due Date:</label>
+                    <label for="due-date">Due Date</label>
                     <input type="date" id="due-date">
                 </div>
                 <div class="form-element">
-                    <label for="priority">Set Priority:</label>
+                    <label for="priority">Priority</label>
                     <select id="priority">
                         <option value="Maximum">Maximum</option>
                         <option value="High">High</option>
@@ -88,27 +79,27 @@
                     </select>
                 </div>
                 <div class="form-element">
+                    <label for="parent-project">Project</label>
                     <select id="parent-project"></select>
                 </div>
-                <button type="button" class="modify-btn">SUBMIT</button>
-                <button type="reset" class="cancel-btn">CANCEL</button>
+                <button type="button" class="modify-btn">Save</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
             </form>
         </dialog>
         <dialog class="add-task-modal">
             <form>
-                <h2>ADD TASK</h2>
                 <div class="form-element">
-                    <textarea id="task-name" placeholder="Task Name"></textarea>
+                    <textarea id="task-name" placeholder="Task Name" maxlength="85"></textarea>
                 </div>
                 <div class="form-element">
                     <textarea id="description" placeholder="Description"></textarea>
                 </div>
                 <div class="form-element">
-                    <label for="due-date">Due Date:</label>
+                    <label for="due-date">Due Date</label>
                     <input type="date" id="due-date">
                 </div>
                 <div class="form-element">
-                    <label for="priority">Set Priority:</label>
+                    <label for="priority">Priority</label>
                     <select id="priority">
                         <option value="Maximum">Maximum</option>
                         <option value="High">High</option>
@@ -118,22 +109,44 @@
                     </select>
                 </div>
                 <div class="form-element">
+                    <label for="parent-project">Project</label>
                     <select id="parent-project"></select>
                 </div>
-                <button type="button" class="submit-task">SUBMIT</button>
-                <button type="reset" class="cancel-btn">CANCEL</button>
+                <button type="button" class="submit-task">Add Task</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+            </form>
+        </dialog>
+        <dialog class="edit-project-modal">
+            <form>
+                <div class="form-element">
+                    <input type="text" id="project-name" maxlength="85">
+                </div>
+                <button type="button" class="modify-btn">Save</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
             </form>
         </dialog>
         <dialog class="add-project-modal">
             <form>
-                <h2>ADD PROJECT</h2>
                 <div class="form-element">
-                    <label for="project-name">Name</label>
-                    <input type="text" id="project-name">
+                    <input type="text" id="project-name" placeholder="Project Name" maxlength="85">
                 </div>
-                <button type="button" class="submit-project">SUBMIT</button>
-                <button type="reset" class="cancel-btn">CANCEL</button>
+                <button type="button" class="submit-project">Add Project</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
             </form>
+        </dialog>
+        <dialog class="project-delete-prompt">
+            <div class="notification">
+                <div>
+                    Delete?
+                </div>
+                <div>
+                    This will permanently delete the project and all its tasks. This can't be undone.
+                </div>
+                <div class="response">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            </div>
         </dialog>
     </section>
 </body>
