@@ -31,6 +31,8 @@ ProjectControl.projectConstructor();
 Validation.editProjectValidation();
 // Setup event listener to edit an existing project upon user input.
 ProjectControl.projectEditor();
+// Setup event listener to delete project.
+ProjectControl.projectDestructor();
 
 // TABS
 // Generate DOM content for the Inbox tab.
@@ -51,7 +53,6 @@ if (storageAvailable("localStorage"))
     }
     else
     {
-        // localStorage.clear();
         getData();
     }
 }
