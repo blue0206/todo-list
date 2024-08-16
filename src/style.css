@@ -1101,6 +1101,7 @@ textarea {
 
 dialog button {
     border-radius: 16px;
+    font-weight: 800;
 }
 
 dialog button:not(:disabled):hover {
