@@ -57,7 +57,7 @@ const ProjectDOM = function(name, id, tasks = []) {
                 const projectDeleteBtn = document.createElement('button');
                 projectDeleteBtn.classList.add('delete-project');
                 projectDeleteBtn.addEventListener('click', () => {
-                    ProjectControl.projectDestructor(id);
+                    ProjectControl.confirmDelete(id);
                 });
 
                 // Project Delete Icon
@@ -137,7 +137,7 @@ const ProjectDOM = function(name, id, tasks = []) {
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-project');
             deleteBtn.addEventListener('click', () => {
-                ProjectControl.projectDestructor(id);
+                ProjectControl.confirmDelete(id);
             });
             btnContainer.appendChild(deleteBtn);
 

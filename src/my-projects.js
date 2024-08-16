@@ -99,7 +99,7 @@ function projectListItemDOM(project)
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete-project');
     deleteBtn.addEventListener('click', () => {
-        ProjectControl.projectDestructor(project.id);
+        ProjectControl.confirmDelete(project.id);
     });
     const deleteTooltip = tooltip.cloneNode(true);
     deleteBtn.appendChild(deleteTooltip);
